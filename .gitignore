@@ -1,0 +1,37 @@
+# Ambiente
+.env
+.env.*
+!.env.example
+
+# Dependências
+/vendor
+/node_modules
+
+# Cache e build
+/.phpunit.cache
+/.phpunit.result.cache
+/public/build
+/public/hot
+/public/storage
+/storage/*.key
+/storage/pail
+
+# Logs
+npm-debug.log
+yarn-error.log
+
+# IDEs e editores
+/.idea
+/.vscode
+/.fleet
+/.nova
+/.zed
+.phpactor.json
+
+# Homestead
+Homestead.json
+Homestead.yaml
+
+# Outros
+/auth.json
+

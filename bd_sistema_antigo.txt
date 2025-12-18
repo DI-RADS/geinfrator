@@ -1,0 +1,1880 @@
+/*
+ Navicat Premium Data Transfer
+
+ Source Server         : Connection
+ Source Server Type    : MySQL
+ Source Server Version : 100432
+ Source Host           : localhost:3306
+ Source Schema         : gepro
+
+ Target Server Type    : MySQL
+ Target Server Version : 100432
+ File Encoding         : 65001
+
+ Date: 27/03/2024 13:02:37
+*/
+
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for adms_acao
+-- ----------------------------
+DROP TABLE IF EXISTS `adms_acao`;
+CREATE TABLE `adms_acao`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `id_cor` int NULL DEFAULT NULL,
+  `created` datetime NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `modified` datetime NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of adms_acao
+-- ----------------------------
+INSERT INTO `adms_acao` VALUES (1, 'APAGADO', 4, '2019-06-10 14:09:35', '2019-06-10 14:09:35');
+INSERT INTO `adms_acao` VALUES (2, 'EDITADO', 1, '2019-06-10 14:09:45', '0000-00-00 00:00:00');
+
+-- ----------------------------
+-- Table structure for adms_cads_usuarios
+-- ----------------------------
+DROP TABLE IF EXISTS `adms_cads_usuarios`;
+CREATE TABLE `adms_cads_usuarios`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `env_email_conf` int NOT NULL,
+  `adms_niveis_acesso_id` int NOT NULL,
+  `adms_sits_usuario_id` int NOT NULL,
+  `created` datetime NOT NULL,
+  `modified` datetime NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Fixed;
+
+-- ----------------------------
+-- Records of adms_cads_usuarios
+-- ----------------------------
+INSERT INTO `adms_cads_usuarios` VALUES (1, 2, 5, 3, '2018-06-23 00:00:00', '2018-06-29 22:24:18');
+
+-- ----------------------------
+-- Table structure for adms_condicao
+-- ----------------------------
+DROP TABLE IF EXISTS `adms_condicao`;
+CREATE TABLE `adms_condicao`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `descricao_codicao` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `id_cor` int NULL DEFAULT NULL,
+  `created` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
+  `modified` datetime NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of adms_condicao
+-- ----------------------------
+INSERT INTO `adms_condicao` VALUES (1, 'Militar', NULL, '0000-00-00 00:00:00', NULL);
+INSERT INTO `adms_condicao` VALUES (2, 'Civil', NULL, '2019-06-13 18:28:50', '2019-06-13 18:28:50');
+
+-- ----------------------------
+-- Table structure for adms_confs_emails
+-- ----------------------------
+DROP TABLE IF EXISTS `adms_confs_emails`;
+CREATE TABLE `adms_confs_emails`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(220) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(220) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `host` varchar(220) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `usuario` varchar(220) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `senha` varchar(120) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `smtpsecure` varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `porta` int NOT NULL,
+  `created` datetime NOT NULL,
+  `modified` datetime NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of adms_confs_emails
+-- ----------------------------
+INSERT INTO `adms_confs_emails` VALUES (1, '', '', '', '', '', '', 547, '2018-06-23 00:00:00', '2018-06-29 19:12:47');
+
+-- ----------------------------
+-- Table structure for adms_cors
+-- ----------------------------
+DROP TABLE IF EXISTS `adms_cors`;
+CREATE TABLE `adms_cors`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(40) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `cor` varchar(40) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `created` datetime NOT NULL,
+  `modified` datetime NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 10 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of adms_cors
+-- ----------------------------
+INSERT INTO `adms_cors` VALUES (1, 'Azul', 'primary', '2018-05-23 00:00:00', '2018-06-29 20:06:34');
+INSERT INTO `adms_cors` VALUES (2, 'Cinza', 'secondary', '2018-05-23 00:00:00', NULL);
+INSERT INTO `adms_cors` VALUES (3, 'Verde', 'success', '2018-05-23 00:00:00', NULL);
+INSERT INTO `adms_cors` VALUES (4, 'Vermelho', 'danger', '2018-05-23 00:00:00', NULL);
+INSERT INTO `adms_cors` VALUES (5, 'Laranjado', 'warning', '2018-05-23 00:00:00', NULL);
+INSERT INTO `adms_cors` VALUES (6, 'Azul claro', 'info', '2018-05-23 00:00:00', NULL);
+INSERT INTO `adms_cors` VALUES (7, 'Claro', 'light', '2018-05-23 00:00:00', NULL);
+INSERT INTO `adms_cors` VALUES (8, 'Cinza escuro', 'dark', '2018-05-23 00:00:00', NULL);
+
+-- ----------------------------
+-- Table structure for adms_crime_comum
+-- ----------------------------
+DROP TABLE IF EXISTS `adms_crime_comum`;
+CREATE TABLE `adms_crime_comum`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `descricao_crimecomum` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of adms_crime_comum
+-- ----------------------------
+INSERT INTO `adms_crime_comum` VALUES (1, 'Homicidio Voluntario');
+INSERT INTO `adms_crime_comum` VALUES (2, 'Exercicio Ilegal das Funcoes Publicas');
+INSERT INTO `adms_crime_comum` VALUES (3, 'Uso de Conduta Suposta');
+INSERT INTO `adms_crime_comum` VALUES (4, 'Estrupo');
+INSERT INTO `adms_crime_comum` VALUES (5, 'Violacao de Menor');
+INSERT INTO `adms_crime_comum` VALUES (6, 'Furto');
+INSERT INTO `adms_crime_comum` VALUES (7, 'Roubo');
+INSERT INTO `adms_crime_comum` VALUES (8, 'Burla');
+INSERT INTO `adms_crime_comum` VALUES (9, 'Uso e Porte de Estupefaciente');
+INSERT INTO `adms_crime_comum` VALUES (10, 'Divulgacao de Segredo Militar');
+INSERT INTO `adms_crime_comum` VALUES (11, 'Danos Culposos');
+INSERT INTO `adms_crime_comum` VALUES (12, 'Ursupacao de Imovel');
+INSERT INTO `adms_crime_comum` VALUES (13, 'Ameacas');
+
+-- ----------------------------
+-- Table structure for adms_crime_militar
+-- ----------------------------
+DROP TABLE IF EXISTS `adms_crime_militar`;
+CREATE TABLE `adms_crime_militar`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `descricao_crime_militar` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of adms_crime_militar
+-- ----------------------------
+INSERT INTO `adms_crime_militar` VALUES (1, 'Insubordinacao');
+INSERT INTO `adms_crime_militar` VALUES (2, 'Violencia Contra Superior');
+INSERT INTO `adms_crime_militar` VALUES (3, 'Violencia Contra Inferior');
+INSERT INTO `adms_crime_militar` VALUES (4, 'Ameacas a Superior');
+INSERT INTO `adms_crime_militar` VALUES (5, 'Abuso no Exercicio do Cargo');
+INSERT INTO `adms_crime_militar` VALUES (6, 'Violencia Contra Militar.Ig.gr/Eq');
+INSERT INTO `adms_crime_militar` VALUES (7, 'Fuga ao Cumprimento.Obrig.Militar');
+INSERT INTO `adms_crime_militar` VALUES (8, 'Ausencia Ilegitima');
+INSERT INTO `adms_crime_militar` VALUES (9, 'Deserção');
+INSERT INTO `adms_crime_militar` VALUES (10, 'Extravio de Bens Militares');
+INSERT INTO `adms_crime_militar` VALUES (11, 'Alienação ou Disposição');
+INSERT INTO `adms_crime_militar` VALUES (12, 'Negliência no Trabalho');
+INSERT INTO `adms_crime_militar` VALUES (13, 'Conduta Indecorosa');
+INSERT INTO `adms_crime_militar` VALUES (14, 'Violação R.S Interno');
+INSERT INTO `adms_crime_militar` VALUES (15, 'Ofensas a Subordinado');
+INSERT INTO `adms_crime_militar` VALUES (16, 'Ofensas a Superior');
+INSERT INTO `adms_crime_militar` VALUES (17, 'Violação das R.de Condução');
+INSERT INTO `adms_crime_militar` VALUES (18, 'Violação das  R.S Guarda');
+
+-- ----------------------------
+-- Table structure for adms_grps_pgs
+-- ----------------------------
+DROP TABLE IF EXISTS `adms_grps_pgs`;
+CREATE TABLE `adms_grps_pgs`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(40) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `ordem` int NOT NULL,
+  `created` datetime NOT NULL,
+  `modified` datetime NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 11 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of adms_grps_pgs
+-- ----------------------------
+INSERT INTO `adms_grps_pgs` VALUES (1, 'Listar', 1, '2018-05-23 00:00:00', '2018-06-29 21:36:41');
+INSERT INTO `adms_grps_pgs` VALUES (2, 'Cadastrar', 2, '2018-05-23 00:00:00', '2018-06-29 22:30:06');
+INSERT INTO `adms_grps_pgs` VALUES (3, 'Editar', 3, '2018-05-23 00:00:00', '2018-06-29 22:30:06');
+INSERT INTO `adms_grps_pgs` VALUES (4, 'Apagar', 4, '2018-05-23 00:00:00', NULL);
+INSERT INTO `adms_grps_pgs` VALUES (5, 'Visualizar', 5, '2018-05-23 00:00:00', NULL);
+INSERT INTO `adms_grps_pgs` VALUES (6, 'Outros', 6, '2018-05-23 00:00:00', NULL);
+INSERT INTO `adms_grps_pgs` VALUES (7, 'Acesso', 7, '2018-05-23 00:00:00', '2018-06-29 21:35:16');
+INSERT INTO `adms_grps_pgs` VALUES (8, 'Alterar Ordem', 8, '2018-06-23 00:00:00', '2018-06-29 21:35:16');
+
+-- ----------------------------
+-- Table structure for adms_menus
+-- ----------------------------
+DROP TABLE IF EXISTS `adms_menus`;
+CREATE TABLE `adms_menus`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(220) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `icone` varchar(40) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `ordem` int NOT NULL,
+  `adms_sit_id` int NOT NULL,
+  `created` datetime NOT NULL,
+  `modified` datetime NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 19 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of adms_menus
+-- ----------------------------
+INSERT INTO `adms_menus` VALUES (1, 'Inicio', 'fas fa-tachometer-alt', 1, 1, '2018-05-23 00:00:00', '2019-10-09 03:18:41');
+INSERT INTO `adms_menus` VALUES (2, 'Usuário', 'fas fa-user', 12, 1, '2018-05-23 00:00:00', '2024-02-05 13:30:22');
+INSERT INTO `adms_menus` VALUES (3, 'Sair', 'fas fa-sign-out-alt', 14, 1, '2018-06-23 00:00:00', '2024-02-05 13:30:17');
+INSERT INTO `adms_menus` VALUES (4, 'Configuração', 'fas fa-cogs', 13, 1, '2018-06-23 00:00:00', '2024-02-05 13:30:20');
+INSERT INTO `adms_menus` VALUES (10, 'Consultar Dados', 'fas fa-search', 3, 1, '2019-01-29 10:17:37', '2024-02-05 11:58:02');
+INSERT INTO `adms_menus` VALUES (9, 'Registar Dados', 'fas fa-edit', 2, 1, '2019-01-28 13:27:21', '2024-02-05 11:57:13');
+INSERT INTO `adms_menus` VALUES (11, 'Relatórios apagar', 'fas fa-print', 6, 1, '2019-02-15 08:07:50', '2024-02-05 13:30:48');
+INSERT INTO `adms_menus` VALUES (12, 'Alterar sua Senha', '-', 11, 1, '2019-05-16 09:40:10', '2024-02-05 13:30:24');
+INSERT INTO `adms_menus` VALUES (13, 'Auditoria', '-', 10, 1, '2019-06-23 15:05:30', '2024-02-05 13:30:26');
+INSERT INTO `adms_menus` VALUES (14, 'Estatísticas apagar', 'fas fa-chart-bar', 8, 1, '2019-10-08 21:42:24', '2024-02-05 13:30:31');
+INSERT INTO `adms_menus` VALUES (15, 'Estatisticas dos Infractores Policiais', 'fas fa-sort-numeric-up', 9, 1, '2019-10-21 11:49:23', '2024-02-05 13:30:28');
+INSERT INTO `adms_menus` VALUES (16, 'Relatorios dos Infractores Policiais', 'fas fa-print', 7, 1, '2019-11-01 14:12:32', '2024-02-05 13:30:45');
+INSERT INTO `adms_menus` VALUES (17, 'Relatórios', 'fas fa-print', 4, 1, '2024-02-05 13:20:49', '2024-02-05 13:29:20');
+INSERT INTO `adms_menus` VALUES (18, 'Estatísticas', 'fas fa-chart-bar', 5, 1, '2024-02-05 13:21:04', '2024-02-05 13:31:03');
+
+-- ----------------------------
+-- Table structure for adms_nivacs_pgs
+-- ----------------------------
+DROP TABLE IF EXISTS `adms_nivacs_pgs`;
+CREATE TABLE `adms_nivacs_pgs`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `permissao` int NOT NULL,
+  `ordem` int NOT NULL,
+  `dropdown` int NOT NULL DEFAULT 2,
+  `lib_menu` int NOT NULL DEFAULT 2,
+  `adms_menu_id` int NOT NULL DEFAULT 4,
+  `adms_niveis_acesso_id` int NOT NULL,
+  `adms_pagina_id` int NOT NULL,
+  `created` datetime NOT NULL,
+  `modified` datetime NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 561 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Fixed;
+
+-- ----------------------------
+-- Records of adms_nivacs_pgs
+-- ----------------------------
+INSERT INTO `adms_nivacs_pgs` VALUES (1, 1, 1, 2, 1, 1, 1, 1, '2018-05-23 00:00:00', '2019-03-12 14:47:33');
+INSERT INTO `adms_nivacs_pgs` VALUES (2, 1, 2, 1, 1, 2, 1, 2, '2018-05-23 00:00:00', '2018-06-25 12:52:11');
+INSERT INTO `adms_nivacs_pgs` VALUES (3, 1, 4, 2, 1, 3, 1, 4, '2018-05-23 00:00:00', '2019-02-06 11:51:08');
+INSERT INTO `adms_nivacs_pgs` VALUES (4, 1, 5, 1, 2, 4, 1, 5, '2018-05-23 00:00:00', '2018-06-25 11:19:19');
+INSERT INTO `adms_nivacs_pgs` VALUES (5, 1, 6, 1, 2, 2, 1, 7, '2018-06-23 00:00:00', '2019-05-16 09:37:25');
+INSERT INTO `adms_nivacs_pgs` VALUES (6, 1, 7, 2, 2, 2, 1, 9, '2018-06-23 00:00:00', '2018-06-25 11:19:16');
+INSERT INTO `adms_nivacs_pgs` VALUES (7, 1, 8, 2, 2, 12, 1, 10, '2018-06-23 00:00:00', '2019-05-16 09:41:15');
+INSERT INTO `adms_nivacs_pgs` VALUES (8, 1, 9, 2, 2, 2, 1, 11, '2018-06-23 00:00:00', '2018-06-25 11:19:13');
+INSERT INTO `adms_nivacs_pgs` VALUES (9, 1, 10, 2, 2, 2, 1, 12, '2018-06-23 00:00:00', '2019-01-28 11:56:29');
+INSERT INTO `adms_nivacs_pgs` VALUES (10, 1, 11, 2, 2, 2, 1, 13, '2018-06-23 00:00:00', '2018-06-28 16:22:00');
+INSERT INTO `adms_nivacs_pgs` VALUES (11, 1, 12, 2, 2, 2, 1, 14, '2018-06-23 00:00:00', '2018-06-25 11:50:15');
+INSERT INTO `adms_nivacs_pgs` VALUES (12, 1, 13, 2, 2, 2, 1, 15, '2018-06-23 00:00:00', '2018-06-25 11:50:15');
+INSERT INTO `adms_nivacs_pgs` VALUES (13, 1, 15, 2, 2, 2, 1, 16, '2018-06-23 00:00:00', '2018-06-25 11:57:33');
+INSERT INTO `adms_nivacs_pgs` VALUES (14, 1, 1, 2, 1, 1, 2, 1, '2018-06-23 00:00:00', '2018-06-25 13:45:41');
+INSERT INTO `adms_nivacs_pgs` VALUES (15, 1, 2, 1, 1, 2, 2, 9, '2018-06-23 00:00:00', '2019-10-16 10:13:12');
+INSERT INTO `adms_nivacs_pgs` VALUES (16, 1, 3, 2, 2, 2, 2, 10, '2018-06-23 00:00:00', '2019-10-16 10:13:04');
+INSERT INTO `adms_nivacs_pgs` VALUES (17, 2, 4, 2, 2, 2, 2, 11, '2018-06-23 00:00:00', '2018-06-24 13:43:42');
+INSERT INTO `adms_nivacs_pgs` VALUES (18, 2, 6, 2, 2, 2, 2, 2, '2018-06-23 00:00:00', '2018-06-25 11:22:05');
+INSERT INTO `adms_nivacs_pgs` VALUES (19, 1, 5, 2, 2, 2, 2, 12, '2018-06-23 00:00:00', '2019-10-16 10:13:01');
+INSERT INTO `adms_nivacs_pgs` VALUES (20, 1, 7, 2, 2, 2, 2, 13, '2018-06-23 00:00:00', '2019-10-16 10:12:47');
+INSERT INTO `adms_nivacs_pgs` VALUES (21, 1, 8, 2, 2, 2, 2, 14, '2018-06-23 00:00:00', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (22, 2, 9, 2, 2, 2, 2, 15, '2018-06-23 00:00:00', '2018-06-24 15:26:17');
+INSERT INTO `adms_nivacs_pgs` VALUES (23, 2, 10, 2, 2, 2, 2, 16, '2018-06-23 00:00:00', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (24, 1, 11, 2, 1, 3, 2, 4, '2018-06-23 00:00:00', '2019-10-16 10:13:26');
+INSERT INTO `adms_nivacs_pgs` VALUES (25, 1, 3, 1, 1, 2, 1, 17, '2018-06-23 00:00:00', '2019-02-06 11:50:54');
+INSERT INTO `adms_nivacs_pgs` VALUES (26, 1, 14, 2, 2, 2, 1, 18, '2018-06-23 00:00:00', '2018-06-25 11:57:33');
+INSERT INTO `adms_nivacs_pgs` VALUES (27, 1, 16, 2, 2, 2, 1, 19, '2018-06-23 00:00:00', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (28, 1, 17, 2, 2, 2, 1, 20, '2018-06-23 00:00:00', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (29, 1, 18, 2, 2, 2, 1, 21, '2018-06-23 00:00:00', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (30, 1, 19, 2, 2, 2, 1, 22, '2018-06-23 00:00:00', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (31, 1, 12, 1, 1, 2, 2, 17, '2018-06-23 00:00:00', '2018-06-24 15:35:48');
+INSERT INTO `adms_nivacs_pgs` VALUES (32, 1, 13, 2, 2, 2, 2, 18, '2018-06-23 00:00:00', '2018-06-24 14:00:50');
+INSERT INTO `adms_nivacs_pgs` VALUES (33, 1, 14, 2, 2, 2, 2, 19, '2018-06-23 00:00:00', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (34, 1, 15, 2, 2, 2, 2, 20, '2018-06-23 00:00:00', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (35, 1, 16, 2, 2, 2, 2, 21, '2018-06-23 00:00:00', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (36, 1, 17, 2, 2, 2, 2, 22, '2018-06-23 00:00:00', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (37, 1, 20, 1, 1, 4, 1, 23, '2018-06-23 00:00:00', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (38, 1, 21, 2, 2, 4, 1, 24, '2018-06-23 00:00:00', '2019-01-28 09:50:18');
+INSERT INTO `adms_nivacs_pgs` VALUES (39, 1, 22, 2, 2, 4, 1, 25, '2018-06-22 14:25:21', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (40, 1, 18, 1, 1, 4, 2, 23, '2018-06-22 14:25:21', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (41, 2, 1, 2, 2, 4, 3, 25, '2018-06-22 14:25:21', '2018-06-24 15:41:31');
+INSERT INTO `adms_nivacs_pgs` VALUES (42, 2, 1, 2, 2, 4, 4, 25, '2018-06-22 14:25:21', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (43, 2, 1, 2, 2, 4, 5, 25, '2018-06-22 14:25:21', '2019-03-13 11:32:14');
+INSERT INTO `adms_nivacs_pgs` VALUES (44, 1, 23, 2, 2, 4, 1, 26, '2018-06-22 14:43:47', '2019-01-28 09:49:33');
+INSERT INTO `adms_nivacs_pgs` VALUES (45, 2, 19, 2, 2, 4, 2, 26, '2018-06-22 14:43:47', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (46, 2, 2, 2, 2, 4, 3, 26, '2018-06-22 14:43:47', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (47, 2, 2, 2, 2, 4, 4, 26, '2018-06-22 14:43:47', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (48, 2, 2, 2, 2, 4, 5, 26, '2018-06-22 14:43:47', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (49, 1, 24, 2, 2, 4, 1, 27, '2018-06-22 19:17:43', '2019-01-28 09:49:43');
+INSERT INTO `adms_nivacs_pgs` VALUES (50, 1, 20, 2, 2, 4, 2, 27, '2018-06-22 19:17:43', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (51, 2, 3, 2, 2, 4, 3, 27, '2018-06-22 19:17:43', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (52, 2, 3, 2, 2, 4, 4, 27, '2018-06-22 19:17:43', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (53, 2, 3, 2, 2, 4, 5, 27, '2018-06-22 19:17:43', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (54, 1, 25, 2, 2, 4, 1, 28, '2018-06-24 11:59:53', '2019-01-28 09:50:34');
+INSERT INTO `adms_nivacs_pgs` VALUES (55, 1, 21, 2, 2, 4, 2, 28, '2018-06-24 11:59:53', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (56, 2, 4, 2, 2, 4, 3, 28, '2018-06-24 11:59:53', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (57, 2, 4, 2, 2, 4, 4, 28, '2018-06-24 11:59:53', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (58, 2, 4, 2, 2, 4, 5, 28, '2018-06-24 11:59:53', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (59, 1, 26, 2, 2, 4, 1, 29, '2018-06-24 12:52:42', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (60, 1, 22, 2, 2, 4, 2, 29, '2018-06-24 12:52:42', '2018-06-24 15:54:01');
+INSERT INTO `adms_nivacs_pgs` VALUES (61, 2, 5, 2, 2, 4, 3, 29, '2018-06-24 12:52:42', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (62, 2, 5, 2, 2, 4, 4, 29, '2018-06-24 12:52:42', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (63, 2, 5, 2, 2, 4, 5, 29, '2018-06-24 12:52:42', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (64, 1, 6, 2, 1, 1, 3, 1, '2018-06-23 00:00:00', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (65, 1, 7, 1, 1, 2, 3, 2, '2018-06-23 00:00:00', '2019-11-26 08:41:09');
+INSERT INTO `adms_nivacs_pgs` VALUES (66, 1, 8, 2, 1, 3, 3, 4, '2018-06-23 00:00:00', '2018-06-24 15:55:16');
+INSERT INTO `adms_nivacs_pgs` VALUES (67, 1, 27, 2, 2, 4, 1, 30, '2018-06-25 09:48:29', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (68, 2, 23, 2, 2, 4, 2, 30, '2018-06-25 09:48:29', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (69, 2, 9, 2, 2, 4, 3, 30, '2018-06-25 09:48:29', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (70, 2, 6, 2, 2, 4, 4, 30, '2018-06-25 09:48:29', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (71, 2, 6, 2, 2, 4, 5, 30, '2018-06-25 09:48:29', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (72, 1, 28, 2, 2, 4, 1, 31, '2018-06-25 10:24:39', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (73, 2, 24, 2, 2, 4, 2, 31, '2018-06-25 10:24:39', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (74, 2, 10, 2, 2, 4, 3, 31, '2018-06-25 10:24:39', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (75, 2, 7, 2, 2, 4, 4, 31, '2018-06-25 10:24:39', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (76, 2, 7, 2, 2, 4, 5, 31, '2018-06-25 10:24:39', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (77, 1, 29, 2, 2, 4, 1, 32, '2018-06-25 10:56:36', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (78, 2, 25, 2, 2, 4, 2, 32, '2018-06-25 10:56:36', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (79, 2, 11, 2, 2, 4, 3, 32, '2018-06-25 10:56:36', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (80, 2, 8, 2, 2, 4, 4, 32, '2018-06-25 10:56:36', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (81, 2, 8, 2, 2, 4, 5, 32, '2018-06-25 10:56:36', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (82, 1, 30, 2, 2, 4, 1, 33, '2018-06-26 12:23:37', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (83, 2, 26, 2, 2, 4, 2, 33, '2018-06-26 12:23:37', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (84, 2, 12, 2, 2, 4, 3, 33, '2018-06-26 12:23:37', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (85, 2, 9, 2, 2, 4, 4, 33, '2018-06-26 12:23:37', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (86, 2, 9, 2, 2, 4, 5, 33, '2018-06-26 12:23:37', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (87, 1, 31, 2, 2, 4, 1, 3, '2018-06-26 13:10:37', '2019-01-28 09:54:57');
+INSERT INTO `adms_nivacs_pgs` VALUES (88, 1, 32, 2, 2, 4, 1, 6, '2018-06-26 13:10:37', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (89, 1, 33, 2, 2, 4, 1, 8, '2018-06-26 13:10:37', '2019-01-28 09:53:47');
+INSERT INTO `adms_nivacs_pgs` VALUES (90, 1, 27, 2, 2, 4, 2, 3, '2018-06-26 13:10:37', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (91, 1, 28, 2, 2, 4, 2, 5, '2018-06-26 13:10:37', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (92, 1, 29, 2, 2, 4, 2, 6, '2018-06-26 13:10:37', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (93, 1, 30, 2, 2, 4, 2, 7, '2018-06-26 13:10:37', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (94, 1, 31, 2, 2, 4, 2, 8, '2018-06-26 13:10:37', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (95, 2, 32, 2, 2, 4, 2, 24, '2018-06-26 13:10:37', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (96, 2, 33, 2, 2, 4, 2, 25, '2018-06-26 13:10:37', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (97, 1, 13, 2, 2, 4, 3, 3, '2018-06-26 13:10:37', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (98, 1, 14, 2, 2, 4, 3, 5, '2018-06-26 13:10:37', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (99, 1, 15, 2, 2, 4, 3, 6, '2018-06-26 13:10:37', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (100, 1, 16, 2, 2, 4, 3, 7, '2018-06-26 13:10:37', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (101, 1, 17, 2, 2, 4, 3, 8, '2018-06-26 13:10:37', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (102, 1, 18, 2, 2, 4, 3, 9, '2018-06-26 13:10:37', '2019-11-26 08:34:46');
+INSERT INTO `adms_nivacs_pgs` VALUES (103, 1, 19, 2, 2, 4, 3, 10, '2018-06-26 13:10:37', '2019-11-26 08:34:54');
+INSERT INTO `adms_nivacs_pgs` VALUES (104, 2, 20, 2, 2, 4, 3, 11, '2018-06-26 13:10:37', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (105, 1, 21, 2, 2, 4, 3, 12, '2018-06-26 13:10:37', '2019-11-22 14:27:02');
+INSERT INTO `adms_nivacs_pgs` VALUES (106, 2, 22, 2, 2, 4, 3, 13, '2018-06-26 13:10:37', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (107, 2, 23, 2, 2, 4, 3, 14, '2018-06-26 13:10:37', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (108, 2, 24, 2, 2, 4, 3, 15, '2018-06-26 13:10:37', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (109, 2, 25, 2, 2, 4, 3, 16, '2018-06-26 13:10:37', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (110, 2, 26, 2, 2, 4, 3, 17, '2018-06-26 13:10:37', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (111, 2, 27, 2, 2, 4, 3, 18, '2018-06-26 13:10:37', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (112, 2, 28, 2, 2, 4, 3, 19, '2018-06-26 13:10:37', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (113, 2, 29, 2, 2, 4, 3, 20, '2018-06-26 13:10:37', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (114, 2, 30, 2, 2, 4, 3, 21, '2018-06-26 13:10:37', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (115, 2, 31, 2, 2, 4, 3, 22, '2018-06-26 13:10:37', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (116, 2, 32, 2, 2, 4, 3, 23, '2018-06-26 13:10:37', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (117, 2, 33, 2, 2, 4, 3, 24, '2018-06-26 13:10:37', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (118, 1, 10, 2, 2, 1, 4, 1, '2018-06-26 13:10:37', '2019-11-28 19:48:12');
+INSERT INTO `adms_nivacs_pgs` VALUES (119, 1, 11, 1, 1, 2, 4, 2, '2018-06-26 13:10:37', '2019-11-26 17:28:27');
+INSERT INTO `adms_nivacs_pgs` VALUES (120, 2, 12, 2, 2, 4, 4, 3, '2018-06-26 13:10:37', '2019-11-26 17:26:38');
+INSERT INTO `adms_nivacs_pgs` VALUES (121, 1, 13, 2, 1, 3, 4, 4, '2018-06-26 13:10:37', '2019-11-26 17:28:36');
+INSERT INTO `adms_nivacs_pgs` VALUES (122, 2, 14, 2, 2, 4, 4, 5, '2018-06-26 13:10:37', '2019-11-26 17:28:09');
+INSERT INTO `adms_nivacs_pgs` VALUES (123, 1, 15, 2, 2, 4, 4, 6, '2018-06-26 13:10:37', '2019-11-26 17:27:35');
+INSERT INTO `adms_nivacs_pgs` VALUES (124, 2, 16, 2, 2, 4, 4, 7, '2018-06-26 13:10:37', '2019-11-26 17:28:13');
+INSERT INTO `adms_nivacs_pgs` VALUES (125, 1, 17, 2, 2, 4, 4, 8, '2018-06-26 13:10:37', '2019-11-26 17:27:59');
+INSERT INTO `adms_nivacs_pgs` VALUES (126, 1, 18, 2, 2, 4, 4, 9, '2018-06-26 13:10:37', '2019-11-26 08:42:59');
+INSERT INTO `adms_nivacs_pgs` VALUES (127, 2, 19, 2, 2, 4, 4, 10, '2018-06-26 13:10:37', '2019-11-28 16:01:50');
+INSERT INTO `adms_nivacs_pgs` VALUES (128, 2, 20, 2, 2, 4, 4, 11, '2018-06-26 13:10:37', '2019-11-28 16:01:39');
+INSERT INTO `adms_nivacs_pgs` VALUES (129, 1, 21, 2, 2, 4, 4, 12, '2018-06-26 13:10:37', '2019-11-26 08:43:43');
+INSERT INTO `adms_nivacs_pgs` VALUES (130, 2, 22, 2, 2, 4, 4, 13, '2018-06-26 13:10:37', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (131, 2, 23, 2, 2, 4, 4, 14, '2018-06-26 13:10:37', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (132, 2, 24, 2, 2, 4, 4, 15, '2018-06-26 13:10:37', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (133, 2, 25, 2, 2, 4, 4, 16, '2018-06-26 13:10:37', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (134, 2, 26, 2, 2, 4, 4, 17, '2018-06-26 13:10:37', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (135, 2, 27, 2, 2, 4, 4, 18, '2018-06-26 13:10:37', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (136, 2, 28, 2, 2, 4, 4, 19, '2018-06-26 13:10:37', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (137, 2, 29, 2, 2, 4, 4, 20, '2018-06-26 13:10:37', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (138, 2, 30, 2, 2, 4, 4, 21, '2018-06-26 13:10:37', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (139, 2, 31, 2, 2, 4, 4, 22, '2018-06-26 13:10:37', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (140, 2, 32, 2, 2, 4, 4, 23, '2018-06-26 13:10:37', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (141, 2, 33, 2, 2, 4, 4, 24, '2018-06-26 13:10:37', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (142, 1, 10, 2, 1, 1, 5, 1, '2018-06-26 13:10:37', '2019-03-13 11:30:54');
+INSERT INTO `adms_nivacs_pgs` VALUES (143, 2, 11, 2, 2, 4, 5, 2, '2018-06-26 13:10:37', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (144, 1, 12, 2, 2, 4, 5, 3, '2018-06-26 13:10:37', '2019-03-13 11:32:50');
+INSERT INTO `adms_nivacs_pgs` VALUES (145, 1, 13, 2, 1, 3, 5, 4, '2018-06-26 13:10:37', '2019-03-13 11:31:14');
+INSERT INTO `adms_nivacs_pgs` VALUES (146, 2, 14, 2, 2, 4, 5, 5, '2018-06-26 13:10:37', '2019-03-13 11:32:35');
+INSERT INTO `adms_nivacs_pgs` VALUES (147, 2, 15, 2, 2, 4, 5, 6, '2018-06-26 13:10:37', '2019-03-13 11:32:27');
+INSERT INTO `adms_nivacs_pgs` VALUES (148, 2, 16, 2, 2, 4, 5, 7, '2018-06-26 13:10:37', '2019-03-13 11:32:45');
+INSERT INTO `adms_nivacs_pgs` VALUES (149, 2, 17, 2, 2, 4, 5, 8, '2018-06-26 13:10:37', '2019-03-13 11:32:39');
+INSERT INTO `adms_nivacs_pgs` VALUES (150, 1, 18, 2, 1, 4, 5, 9, '2018-06-26 13:10:37', '2019-11-25 20:42:42');
+INSERT INTO `adms_nivacs_pgs` VALUES (151, 2, 19, 2, 2, 4, 5, 10, '2018-06-26 13:10:37', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (152, 2, 20, 2, 2, 4, 5, 11, '2018-06-26 13:10:37', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (153, 2, 21, 2, 2, 4, 5, 12, '2018-06-26 13:10:37', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (154, 2, 22, 2, 2, 4, 5, 13, '2018-06-26 13:10:37', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (155, 2, 23, 2, 2, 4, 5, 14, '2018-06-26 13:10:37', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (156, 2, 24, 2, 2, 4, 5, 15, '2018-06-26 13:10:37', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (157, 2, 25, 2, 2, 4, 5, 16, '2018-06-26 13:10:37', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (158, 2, 26, 2, 2, 4, 5, 17, '2018-06-26 13:10:37', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (159, 2, 27, 2, 2, 4, 5, 18, '2018-06-26 13:10:37', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (160, 2, 28, 2, 2, 4, 5, 19, '2018-06-26 13:10:37', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (161, 2, 29, 2, 2, 4, 5, 20, '2018-06-26 13:10:37', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (162, 2, 30, 2, 2, 4, 5, 21, '2018-06-26 13:10:37', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (163, 2, 31, 2, 2, 4, 5, 22, '2018-06-26 13:10:37', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (164, 2, 32, 2, 2, 4, 5, 23, '2018-06-26 13:10:37', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (165, 2, 33, 2, 2, 4, 5, 24, '2018-06-26 13:10:37', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (166, 1, 34, 2, 2, 4, 1, 34, '2018-06-28 16:11:35', '2019-01-28 09:54:15');
+INSERT INTO `adms_nivacs_pgs` VALUES (167, 2, 34, 2, 2, 4, 2, 34, '2018-06-28 16:11:35', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (168, 2, 34, 2, 2, 4, 3, 34, '2018-06-28 16:11:35', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (169, 2, 34, 2, 2, 4, 4, 34, '2018-06-28 16:11:35', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (170, 2, 34, 2, 2, 4, 5, 34, '2018-06-28 16:11:35', '2019-11-25 20:43:08');
+INSERT INTO `adms_nivacs_pgs` VALUES (171, 1, 35, 1, 1, 4, 1, 35, '2018-06-28 16:40:32', '2019-01-28 09:54:22');
+INSERT INTO `adms_nivacs_pgs` VALUES (172, 1, 36, 2, 2, 4, 1, 36, '2018-06-28 16:40:32', '2019-01-28 09:52:42');
+INSERT INTO `adms_nivacs_pgs` VALUES (173, 1, 37, 2, 2, 4, 1, 37, '2018-06-28 16:40:32', '2019-01-28 09:52:48');
+INSERT INTO `adms_nivacs_pgs` VALUES (174, 1, 38, 2, 2, 4, 1, 38, '2018-06-28 16:40:32', '2019-01-28 09:52:50');
+INSERT INTO `adms_nivacs_pgs` VALUES (175, 1, 39, 2, 2, 4, 1, 39, '2018-06-28 16:40:32', '2019-01-28 09:52:56');
+INSERT INTO `adms_nivacs_pgs` VALUES (176, 1, 40, 2, 2, 4, 1, 40, '2018-06-28 16:40:32', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (177, 2, 35, 2, 2, 4, 2, 35, '2018-06-28 16:40:32', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (178, 2, 36, 2, 2, 4, 2, 36, '2018-06-28 16:40:32', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (179, 2, 37, 2, 2, 4, 2, 37, '2018-06-28 16:40:32', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (180, 2, 38, 2, 2, 4, 2, 38, '2018-06-28 16:40:32', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (181, 2, 39, 2, 2, 4, 2, 39, '2018-06-28 16:40:32', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (182, 2, 40, 2, 2, 4, 2, 40, '2018-06-28 16:40:32', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (183, 2, 35, 2, 2, 4, 3, 35, '2018-06-28 16:40:32', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (184, 2, 36, 2, 2, 4, 3, 36, '2018-06-28 16:40:32', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (185, 2, 37, 2, 2, 4, 3, 37, '2018-06-28 16:40:32', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (186, 2, 38, 2, 2, 4, 3, 38, '2018-06-28 16:40:32', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (187, 2, 39, 2, 2, 4, 3, 39, '2018-06-28 16:40:32', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (188, 2, 40, 2, 2, 4, 3, 40, '2018-06-28 16:40:32', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (189, 2, 35, 2, 2, 4, 4, 35, '2018-06-28 16:40:32', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (190, 2, 36, 2, 2, 4, 4, 36, '2018-06-28 16:40:32', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (191, 2, 37, 2, 2, 4, 4, 37, '2018-06-28 16:40:32', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (192, 2, 38, 2, 2, 4, 4, 38, '2018-06-28 16:40:32', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (193, 2, 39, 2, 2, 4, 4, 39, '2018-06-28 16:40:32', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (194, 2, 40, 2, 2, 4, 4, 40, '2018-06-28 16:40:32', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (195, 1, 35, 2, 1, 4, 5, 35, '2018-06-28 16:40:32', '2019-11-25 20:43:10');
+INSERT INTO `adms_nivacs_pgs` VALUES (196, 2, 36, 2, 2, 4, 5, 36, '2018-06-28 16:40:32', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (197, 2, 37, 2, 2, 4, 5, 37, '2018-06-28 16:40:32', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (198, 2, 38, 2, 2, 4, 5, 38, '2018-06-28 16:40:32', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (199, 2, 39, 2, 2, 4, 5, 39, '2018-06-28 16:40:32', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (200, 2, 40, 2, 2, 4, 5, 40, '2018-06-28 16:40:32', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (201, 1, 41, 1, 1, 4, 1, 41, '2018-06-29 18:33:56', '2018-06-29 18:34:12');
+INSERT INTO `adms_nivacs_pgs` VALUES (202, 2, 41, 2, 2, 4, 2, 41, '2018-06-29 18:33:56', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (203, 2, 41, 2, 2, 4, 3, 41, '2018-06-29 18:33:56', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (204, 2, 41, 2, 2, 4, 4, 41, '2018-06-29 18:33:56', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (205, 1, 41, 2, 2, 4, 5, 41, '2018-06-29 18:33:56', '2019-03-13 11:26:51');
+INSERT INTO `adms_nivacs_pgs` VALUES (206, 1, 42, 1, 1, 4, 1, 42, '2018-06-29 18:56:15', '2018-06-29 18:56:30');
+INSERT INTO `adms_nivacs_pgs` VALUES (207, 2, 42, 2, 2, 4, 2, 42, '2018-06-29 18:56:15', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (208, 2, 42, 2, 2, 4, 3, 42, '2018-06-29 18:56:15', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (209, 2, 42, 2, 2, 4, 4, 42, '2018-06-29 18:56:15', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (210, 2, 42, 2, 2, 4, 5, 42, '2018-06-29 18:56:15', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (211, 1, 43, 1, 1, 4, 1, 43, '2018-06-29 19:32:21', '2018-06-29 19:32:33');
+INSERT INTO `adms_nivacs_pgs` VALUES (212, 2, 43, 2, 2, 4, 2, 43, '2018-06-29 19:32:21', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (213, 2, 43, 2, 2, 4, 3, 43, '2018-06-29 19:32:21', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (214, 2, 43, 2, 2, 4, 4, 43, '2018-06-29 19:32:21', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (215, 2, 43, 2, 2, 4, 5, 43, '2018-06-29 19:32:21', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (216, 1, 44, 2, 2, 4, 1, 44, '2018-06-29 19:50:19', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (217, 2, 44, 2, 2, 4, 2, 44, '2018-06-29 19:50:19', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (218, 2, 44, 2, 2, 4, 3, 44, '2018-06-29 19:50:19', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (219, 2, 44, 2, 2, 4, 4, 44, '2018-06-29 19:50:19', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (220, 2, 44, 2, 2, 4, 5, 44, '2018-06-29 19:50:19', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (221, 1, 45, 2, 2, 4, 1, 45, '2018-06-29 19:59:53', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (222, 2, 45, 2, 2, 4, 2, 45, '2018-06-29 19:59:53', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (223, 2, 45, 2, 2, 4, 3, 45, '2018-06-29 19:59:53', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (224, 2, 45, 2, 2, 4, 4, 45, '2018-06-29 19:59:53', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (225, 2, 45, 2, 2, 4, 5, 45, '2018-06-29 19:59:53', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (226, 1, 46, 2, 2, 4, 1, 46, '2018-06-29 20:09:35', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (227, 2, 46, 2, 2, 4, 2, 46, '2018-06-29 20:09:35', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (228, 2, 46, 2, 2, 4, 3, 46, '2018-06-29 20:09:35', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (229, 2, 46, 2, 2, 4, 4, 46, '2018-06-29 20:09:35', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (230, 2, 46, 2, 2, 4, 5, 46, '2018-06-29 20:09:35', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (231, 1, 47, 2, 2, 4, 1, 47, '2018-06-29 20:17:36', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (232, 2, 47, 2, 2, 4, 2, 47, '2018-06-29 20:17:36', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (233, 2, 47, 2, 2, 4, 3, 47, '2018-06-29 20:17:36', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (234, 2, 47, 2, 2, 4, 4, 47, '2018-06-29 20:17:36', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (235, 2, 47, 2, 2, 4, 5, 47, '2018-06-29 20:17:36', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (236, 1, 48, 1, 1, 4, 1, 48, '2018-06-29 20:29:31', '2018-06-29 20:29:45');
+INSERT INTO `adms_nivacs_pgs` VALUES (237, 2, 48, 2, 2, 4, 2, 48, '2018-06-29 20:29:31', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (238, 2, 48, 2, 2, 4, 3, 48, '2018-06-29 20:29:31', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (239, 2, 48, 2, 2, 4, 4, 48, '2018-06-29 20:29:31', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (240, 2, 48, 2, 2, 4, 5, 48, '2018-06-29 20:29:31', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (241, 1, 49, 2, 2, 4, 1, 49, '2018-06-29 20:40:11', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (242, 2, 49, 2, 2, 4, 2, 49, '2018-06-29 20:40:11', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (243, 2, 49, 2, 2, 4, 3, 49, '2018-06-29 20:40:11', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (244, 2, 49, 2, 2, 4, 4, 49, '2018-06-29 20:40:11', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (245, 2, 49, 2, 2, 4, 5, 49, '2018-06-29 20:40:11', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (246, 1, 50, 2, 2, 4, 1, 50, '2018-06-29 20:58:30', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (247, 2, 50, 2, 2, 4, 2, 50, '2018-06-29 20:58:30', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (248, 2, 50, 2, 2, 4, 3, 50, '2018-06-29 20:58:30', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (249, 2, 50, 2, 2, 4, 4, 50, '2018-06-29 20:58:30', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (250, 2, 50, 2, 2, 4, 5, 50, '2018-06-29 20:58:30', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (251, 1, 51, 2, 2, 4, 1, 51, '2018-06-29 21:08:41', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (252, 2, 51, 2, 2, 4, 2, 51, '2018-06-29 21:08:41', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (253, 2, 51, 2, 2, 4, 3, 51, '2018-06-29 21:08:41', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (254, 2, 51, 2, 2, 4, 4, 51, '2018-06-29 21:08:41', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (255, 2, 51, 2, 2, 4, 5, 51, '2018-06-29 21:08:41', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (256, 1, 52, 2, 2, 4, 1, 52, '2018-06-29 21:19:34', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (257, 2, 52, 2, 2, 4, 2, 52, '2018-06-29 21:19:34', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (258, 2, 52, 2, 2, 4, 3, 52, '2018-06-29 21:19:34', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (259, 2, 52, 2, 2, 4, 4, 52, '2018-06-29 21:19:34', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (260, 2, 52, 2, 2, 4, 5, 52, '2018-06-29 21:19:34', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (261, 1, 53, 2, 2, 4, 1, 53, '2018-06-29 21:31:23', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (262, 2, 53, 2, 2, 4, 2, 53, '2018-06-29 21:31:23', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (263, 2, 53, 2, 2, 4, 3, 53, '2018-06-29 21:31:23', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (264, 2, 53, 2, 2, 4, 4, 53, '2018-06-29 21:31:23', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (265, 2, 53, 2, 2, 4, 5, 53, '2018-06-29 21:31:23', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (266, 1, 54, 1, 1, 4, 1, 54, '2018-06-29 21:40:39', '2018-06-29 21:40:53');
+INSERT INTO `adms_nivacs_pgs` VALUES (267, 2, 54, 2, 2, 4, 2, 54, '2018-06-29 21:40:39', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (268, 2, 54, 2, 2, 4, 3, 54, '2018-06-29 21:40:39', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (269, 2, 54, 2, 2, 4, 4, 54, '2018-06-29 21:40:39', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (270, 2, 54, 2, 2, 4, 5, 54, '2018-06-29 21:40:39', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (271, 1, 55, 2, 2, 4, 1, 55, '2018-06-29 21:50:13', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (272, 2, 55, 2, 2, 4, 2, 55, '2018-06-29 21:50:13', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (273, 2, 55, 2, 2, 4, 3, 55, '2018-06-29 21:50:13', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (274, 2, 55, 2, 2, 4, 4, 55, '2018-06-29 21:50:13', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (275, 2, 55, 2, 2, 4, 5, 55, '2018-06-29 21:50:13', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (276, 1, 56, 2, 2, 4, 1, 56, '2018-06-29 22:13:11', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (277, 2, 56, 2, 2, 4, 2, 56, '2018-06-29 22:13:11', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (278, 2, 56, 2, 2, 4, 3, 56, '2018-06-29 22:13:11', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (279, 2, 56, 2, 2, 4, 4, 56, '2018-06-29 22:13:11', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (280, 2, 56, 2, 2, 4, 5, 56, '2018-06-29 22:13:11', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (281, 1, 57, 2, 2, 4, 1, 57, '2018-06-29 22:21:25', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (282, 2, 57, 2, 2, 4, 2, 57, '2018-06-29 22:21:25', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (283, 2, 57, 2, 2, 4, 3, 57, '2018-06-29 22:21:25', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (284, 2, 57, 2, 2, 4, 4, 57, '2018-06-29 22:21:25', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (285, 2, 57, 2, 2, 4, 5, 57, '2018-06-29 22:21:25', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (286, 1, 58, 2, 2, 4, 1, 58, '2018-06-29 22:26:52', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (287, 2, 58, 2, 2, 4, 2, 58, '2018-06-29 22:26:52', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (288, 2, 58, 2, 2, 4, 3, 58, '2018-06-29 22:26:52', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (289, 2, 58, 2, 2, 4, 4, 58, '2018-06-29 22:26:52', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (290, 2, 58, 2, 2, 4, 5, 58, '2018-06-29 22:26:52', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (291, 1, 59, 2, 2, 4, 1, 59, '2018-06-29 22:38:00', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (292, 2, 59, 2, 2, 4, 2, 59, '2018-06-29 22:38:00', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (293, 2, 59, 2, 2, 4, 3, 59, '2018-06-29 22:38:00', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (294, 2, 59, 2, 2, 4, 4, 59, '2018-06-29 22:38:00', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (295, 2, 59, 2, 2, 4, 5, 59, '2018-06-29 22:38:00', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (296, 1, 60, 1, 1, 4, 1, 60, '2018-06-29 22:48:28', '2018-06-29 22:53:30');
+INSERT INTO `adms_nivacs_pgs` VALUES (297, 2, 60, 2, 2, 4, 2, 60, '2018-06-29 22:48:28', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (298, 2, 60, 2, 2, 4, 3, 60, '2018-06-29 22:48:28', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (299, 2, 60, 2, 2, 4, 4, 60, '2018-06-29 22:48:28', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (300, 2, 60, 2, 2, 4, 5, 60, '2018-06-29 22:48:28', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (301, 1, 61, 2, 2, 4, 1, 61, '2018-06-29 23:04:17', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (302, 2, 61, 2, 2, 4, 2, 61, '2018-06-29 23:04:17', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (303, 2, 61, 2, 2, 4, 3, 61, '2018-06-29 23:04:17', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (304, 2, 61, 2, 2, 4, 4, 61, '2018-06-29 23:04:17', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (305, 2, 61, 2, 2, 4, 5, 61, '2018-06-29 23:04:17', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (306, 1, 62, 2, 2, 4, 1, 62, '2018-06-29 23:11:35', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (307, 2, 62, 2, 2, 4, 2, 62, '2018-06-29 23:11:35', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (308, 2, 62, 2, 2, 4, 3, 62, '2018-06-29 23:11:35', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (309, 2, 62, 2, 2, 4, 4, 62, '2018-06-29 23:11:35', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (310, 2, 62, 2, 2, 4, 5, 62, '2018-06-29 23:11:35', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (311, 1, 63, 2, 2, 4, 1, 63, '2018-06-29 23:20:52', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (312, 2, 63, 2, 2, 4, 2, 63, '2018-06-29 23:20:52', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (313, 2, 63, 2, 2, 4, 3, 63, '2018-06-29 23:20:52', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (314, 2, 63, 2, 2, 4, 4, 63, '2018-06-29 23:20:52', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (315, 2, 63, 2, 2, 4, 5, 63, '2018-06-29 23:20:52', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (316, 1, 64, 2, 2, 4, 1, 64, '2018-06-29 23:27:34', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (317, 2, 64, 2, 2, 4, 2, 64, '2018-06-29 23:27:34', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (318, 2, 64, 2, 2, 4, 3, 64, '2018-06-29 23:27:34', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (319, 2, 64, 2, 2, 4, 4, 64, '2018-06-29 23:27:34', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (320, 2, 64, 2, 2, 4, 5, 64, '2018-06-29 23:27:34', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (321, 1, 65, 1, 1, 4, 1, 65, '2018-06-29 23:44:50', '2018-06-29 23:45:00');
+INSERT INTO `adms_nivacs_pgs` VALUES (322, 2, 65, 2, 2, 4, 2, 65, '2018-06-29 23:44:50', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (323, 2, 65, 2, 2, 4, 3, 65, '2018-06-29 23:44:50', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (324, 2, 65, 2, 2, 4, 4, 65, '2018-06-29 23:44:50', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (325, 2, 65, 2, 2, 4, 5, 65, '2018-06-29 23:44:50', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (326, 1, 66, 2, 2, 4, 1, 66, '2018-06-29 23:53:53', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (327, 2, 66, 2, 2, 4, 2, 66, '2018-06-29 23:53:53', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (328, 2, 66, 2, 2, 4, 3, 66, '2018-06-29 23:53:53', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (329, 2, 66, 2, 2, 4, 4, 66, '2018-06-29 23:53:53', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (330, 2, 66, 2, 2, 4, 5, 66, '2018-06-29 23:53:53', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (331, 1, 67, 2, 2, 4, 1, 67, '2018-06-29 23:57:43', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (332, 2, 67, 2, 2, 4, 2, 67, '2018-06-29 23:57:43', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (333, 2, 67, 2, 2, 4, 3, 67, '2018-06-29 23:57:43', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (334, 2, 67, 2, 2, 4, 4, 67, '2018-06-29 23:57:43', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (335, 2, 67, 2, 2, 4, 5, 67, '2018-06-29 23:57:43', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (336, 1, 68, 2, 2, 4, 1, 68, '2018-06-30 00:03:44', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (337, 2, 68, 2, 2, 4, 2, 68, '2018-06-30 00:03:44', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (338, 2, 68, 2, 2, 4, 3, 68, '2018-06-30 00:03:44', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (339, 2, 68, 2, 2, 4, 4, 68, '2018-06-30 00:03:44', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (340, 2, 68, 2, 2, 4, 5, 68, '2018-06-30 00:03:44', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (341, 1, 69, 2, 2, 4, 1, 69, '2018-06-30 00:09:08', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (342, 2, 69, 2, 2, 4, 2, 69, '2018-06-30 00:09:08', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (343, 2, 69, 2, 2, 4, 3, 69, '2018-06-30 00:09:08', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (344, 2, 69, 2, 2, 4, 4, 69, '2018-06-30 00:09:08', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (345, 2, 69, 2, 2, 4, 5, 69, '2018-06-30 00:09:08', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (346, 1, 70, 1, 1, 4, 1, 70, '2018-06-30 00:22:52', '2018-06-30 00:23:08');
+INSERT INTO `adms_nivacs_pgs` VALUES (347, 2, 70, 2, 2, 4, 2, 70, '2018-06-30 00:22:52', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (348, 2, 70, 2, 2, 4, 3, 70, '2018-06-30 00:22:52', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (349, 2, 70, 2, 2, 4, 4, 70, '2018-06-30 00:22:52', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (350, 2, 70, 2, 2, 4, 5, 70, '2018-06-30 00:22:52', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (351, 1, 71, 2, 2, 4, 1, 71, '2018-06-30 00:35:47', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (352, 2, 71, 2, 2, 4, 2, 71, '2018-06-30 00:35:47', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (353, 2, 71, 2, 2, 4, 3, 71, '2018-06-30 00:35:47', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (354, 2, 71, 2, 2, 4, 4, 71, '2018-06-30 00:35:47', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (355, 2, 71, 2, 2, 4, 5, 71, '2018-06-30 00:35:47', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (356, 1, 72, 2, 2, 4, 1, 72, '2018-06-30 00:41:58', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (357, 2, 72, 2, 2, 4, 2, 72, '2018-06-30 00:41:58', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (358, 2, 72, 2, 2, 4, 3, 72, '2018-06-30 00:41:58', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (359, 2, 72, 2, 2, 4, 4, 72, '2018-06-30 00:41:58', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (360, 2, 72, 2, 2, 4, 5, 72, '2018-06-30 00:41:58', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (361, 1, 73, 2, 2, 4, 1, 73, '2018-06-30 00:47:33', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (362, 2, 73, 2, 2, 4, 2, 73, '2018-06-30 00:47:33', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (363, 2, 73, 2, 2, 4, 3, 73, '2018-06-30 00:47:33', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (364, 2, 73, 2, 2, 4, 4, 73, '2018-06-30 00:47:33', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (365, 2, 73, 2, 2, 4, 5, 73, '2018-06-30 00:47:33', '2019-11-25 20:44:22');
+INSERT INTO `adms_nivacs_pgs` VALUES (366, 1, 74, 2, 2, 4, 1, 74, '2018-06-30 00:53:21', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (367, 2, 74, 2, 2, 4, 2, 74, '2018-06-30 00:53:21', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (368, 2, 74, 2, 2, 4, 3, 74, '2018-06-30 00:53:21', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (369, 2, 74, 2, 2, 4, 4, 74, '2018-06-30 00:53:21', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (370, 2, 74, 2, 2, 4, 5, 74, '2018-06-30 00:53:21', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (466, 1, 85, 2, 2, 4, 1, 94, '2019-06-22 19:05:25', '2019-06-25 23:48:15');
+INSERT INTO `adms_nivacs_pgs` VALUES (467, 2, 85, 2, 2, 4, 2, 94, '2019-06-22 19:05:25', '2019-06-25 23:48:15');
+INSERT INTO `adms_nivacs_pgs` VALUES (468, 2, 85, 2, 2, 4, 3, 94, '2019-06-22 19:05:25', '2019-06-25 23:48:15');
+INSERT INTO `adms_nivacs_pgs` VALUES (469, 2, 85, 2, 2, 4, 4, 94, '2019-06-22 19:05:25', '2019-11-28 16:02:50');
+INSERT INTO `adms_nivacs_pgs` VALUES (470, 2, 85, 2, 2, 4, 5, 94, '2019-06-22 19:05:25', '2019-06-25 23:48:15');
+INSERT INTO `adms_nivacs_pgs` VALUES (381, 1, 75, 1, 1, 9, 1, 77, '2019-01-29 08:52:15', '2019-06-06 22:46:05');
+INSERT INTO `adms_nivacs_pgs` VALUES (382, 2, 75, 2, 2, 4, 2, 77, '2019-01-29 08:52:15', '2019-06-22 17:41:46');
+INSERT INTO `adms_nivacs_pgs` VALUES (383, 1, 75, 1, 1, 9, 3, 77, '2019-01-29 08:52:15', '2019-11-26 08:42:14');
+INSERT INTO `adms_nivacs_pgs` VALUES (384, 1, 75, 1, 1, 9, 4, 77, '2019-01-29 08:52:15', '2019-11-26 08:45:00');
+INSERT INTO `adms_nivacs_pgs` VALUES (385, 1, 75, 1, 1, 9, 5, 77, '2019-01-29 08:52:15', '2019-11-25 20:46:15');
+INSERT INTO `adms_nivacs_pgs` VALUES (406, 1, 77, 2, 2, 10, 1, 82, '2019-02-01 08:25:28', '2019-08-13 12:32:59');
+INSERT INTO `adms_nivacs_pgs` VALUES (407, 2, 76, 2, 2, 4, 2, 82, '2019-02-01 08:25:28', '2019-06-24 16:01:45');
+INSERT INTO `adms_nivacs_pgs` VALUES (408, 2, 76, 2, 2, 4, 3, 82, '2019-02-01 08:25:28', '2019-06-24 16:01:45');
+INSERT INTO `adms_nivacs_pgs` VALUES (409, 2, 76, 2, 2, 4, 4, 82, '2019-02-01 08:25:28', '2019-06-24 16:01:45');
+INSERT INTO `adms_nivacs_pgs` VALUES (410, 2, 76, 2, 2, 10, 5, 82, '2019-02-01 08:25:28', '2019-11-25 20:45:01');
+INSERT INTO `adms_nivacs_pgs` VALUES (411, 1, 78, 2, 2, 10, 1, 83, '2019-02-01 10:46:53', '2019-08-28 08:05:37');
+INSERT INTO `adms_nivacs_pgs` VALUES (412, 2, 77, 2, 2, 4, 2, 83, '2019-02-01 10:46:53', '2019-06-24 16:01:45');
+INSERT INTO `adms_nivacs_pgs` VALUES (413, 2, 77, 2, 2, 4, 3, 83, '2019-02-01 10:46:53', '2019-06-24 16:01:45');
+INSERT INTO `adms_nivacs_pgs` VALUES (414, 2, 77, 2, 2, 4, 4, 83, '2019-02-01 10:46:53', '2019-06-24 16:01:45');
+INSERT INTO `adms_nivacs_pgs` VALUES (415, 2, 77, 2, 2, 10, 5, 83, '2019-02-01 10:46:53', '2019-11-25 20:44:26');
+INSERT INTO `adms_nivacs_pgs` VALUES (500, 2, 91, 2, 2, 4, 5, 100, '2019-06-27 12:59:19', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (499, 1, 91, 2, 2, 4, 4, 100, '2019-06-27 12:59:19', '2019-11-26 08:47:17');
+INSERT INTO `adms_nivacs_pgs` VALUES (498, 1, 91, 2, 2, 4, 3, 100, '2019-06-27 12:59:19', '2019-11-26 08:36:52');
+INSERT INTO `adms_nivacs_pgs` VALUES (497, 1, 91, 2, 2, 4, 2, 100, '2019-06-27 12:59:19', '2019-10-16 10:12:01');
+INSERT INTO `adms_nivacs_pgs` VALUES (496, 1, 91, 2, 2, 4, 1, 100, '2019-06-27 12:59:19', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (421, 1, 79, 1, 1, 17, 1, 85, '2019-03-12 09:39:52', '2024-02-05 13:26:37');
+INSERT INTO `adms_nivacs_pgs` VALUES (422, 1, 78, 2, 1, 11, 2, 85, '2019-03-12 09:39:52', '2019-10-16 10:15:53');
+INSERT INTO `adms_nivacs_pgs` VALUES (423, 2, 78, 2, 2, 4, 3, 85, '2019-03-12 09:39:52', '2019-06-25 23:48:15');
+INSERT INTO `adms_nivacs_pgs` VALUES (424, 1, 78, 2, 1, 11, 4, 85, '2019-03-12 09:39:52', '2019-11-26 08:45:25');
+INSERT INTO `adms_nivacs_pgs` VALUES (425, 2, 78, 2, 2, 4, 5, 85, '2019-03-12 09:39:52', '2019-06-25 23:48:15');
+INSERT INTO `adms_nivacs_pgs` VALUES (426, 1, 80, 2, 2, 4, 1, 86, '2019-03-21 10:10:26', '2019-06-25 23:48:15');
+INSERT INTO `adms_nivacs_pgs` VALUES (427, 1, 79, 2, 2, 4, 2, 86, '2019-03-21 10:10:26', '2019-10-16 10:16:02');
+INSERT INTO `adms_nivacs_pgs` VALUES (428, 1, 79, 2, 2, 4, 3, 86, '2019-03-21 10:10:26', '2019-11-26 17:32:27');
+INSERT INTO `adms_nivacs_pgs` VALUES (429, 1, 79, 2, 1, 1, 4, 86, '2019-03-21 10:10:26', '2019-11-28 19:46:13');
+INSERT INTO `adms_nivacs_pgs` VALUES (430, 2, 79, 2, 2, 4, 5, 86, '2019-03-21 10:10:26', '2019-06-25 23:48:15');
+INSERT INTO `adms_nivacs_pgs` VALUES (431, 1, 81, 2, 2, 4, 1, 87, '2019-04-11 10:47:28', '2019-06-25 23:48:15');
+INSERT INTO `adms_nivacs_pgs` VALUES (432, 2, 80, 2, 2, 4, 2, 87, '2019-04-11 10:47:28', '2019-06-25 23:48:15');
+INSERT INTO `adms_nivacs_pgs` VALUES (433, 1, 80, 2, 2, 4, 3, 87, '2019-04-11 10:47:28', '2019-11-22 14:28:16');
+INSERT INTO `adms_nivacs_pgs` VALUES (434, 1, 80, 2, 2, 4, 4, 87, '2019-04-11 10:47:28', '2019-11-26 08:45:41');
+INSERT INTO `adms_nivacs_pgs` VALUES (435, 1, 80, 1, 1, 10, 5, 87, '2019-04-11 10:47:28', '2019-11-25 20:46:46');
+INSERT INTO `adms_nivacs_pgs` VALUES (436, 1, 82, 2, 2, 4, 1, 88, '2019-06-02 11:27:04', '2019-06-25 23:48:15');
+INSERT INTO `adms_nivacs_pgs` VALUES (437, 2, 81, 2, 2, 4, 2, 88, '2019-06-02 11:27:04', '2019-06-25 23:48:15');
+INSERT INTO `adms_nivacs_pgs` VALUES (438, 2, 81, 2, 2, 4, 3, 88, '2019-06-02 11:27:04', '2019-06-25 23:48:15');
+INSERT INTO `adms_nivacs_pgs` VALUES (439, 2, 81, 2, 2, 4, 4, 88, '2019-06-02 11:27:04', '2019-06-25 23:48:15');
+INSERT INTO `adms_nivacs_pgs` VALUES (440, 2, 81, 2, 2, 4, 5, 88, '2019-06-02 11:27:04', '2019-06-25 23:48:15');
+INSERT INTO `adms_nivacs_pgs` VALUES (441, 1, 83, 2, 2, 2, 1, 89, '2019-06-03 12:21:52', '2019-08-28 08:02:07');
+INSERT INTO `adms_nivacs_pgs` VALUES (442, 2, 82, 2, 2, 4, 2, 89, '2019-06-03 12:21:52', '2019-06-25 23:48:15');
+INSERT INTO `adms_nivacs_pgs` VALUES (443, 2, 82, 2, 2, 4, 3, 89, '2019-06-03 12:21:52', '2019-06-25 23:48:15');
+INSERT INTO `adms_nivacs_pgs` VALUES (444, 2, 82, 2, 2, 4, 4, 89, '2019-06-03 12:21:52', '2019-06-25 23:48:15');
+INSERT INTO `adms_nivacs_pgs` VALUES (445, 2, 82, 2, 2, 4, 5, 89, '2019-06-03 12:21:52', '2019-06-25 23:48:15');
+INSERT INTO `adms_nivacs_pgs` VALUES (446, 1, 76, 1, 1, 10, 1, 90, '2019-06-04 18:17:07', '2019-06-24 16:04:43');
+INSERT INTO `adms_nivacs_pgs` VALUES (447, 2, 83, 2, 2, 4, 2, 90, '2019-06-04 18:17:07', '2019-06-25 23:48:15');
+INSERT INTO `adms_nivacs_pgs` VALUES (448, 2, 83, 2, 2, 4, 3, 90, '2019-06-04 18:17:07', '2019-06-25 23:48:15');
+INSERT INTO `adms_nivacs_pgs` VALUES (449, 1, 83, 1, 1, 10, 4, 90, '2019-06-04 18:17:07', '2019-11-26 08:46:19');
+INSERT INTO `adms_nivacs_pgs` VALUES (450, 1, 83, 1, 1, 10, 5, 90, '2019-06-04 18:17:07', '2019-11-25 20:48:26');
+INSERT INTO `adms_nivacs_pgs` VALUES (475, 1, 86, 1, 1, 10, 5, 95, '2019-06-23 13:11:11', '2019-11-25 20:48:11');
+INSERT INTO `adms_nivacs_pgs` VALUES (474, 1, 86, 2, 2, 4, 4, 95, '2019-06-23 13:11:11', '2019-11-26 08:46:44');
+INSERT INTO `adms_nivacs_pgs` VALUES (473, 2, 86, 2, 2, 4, 3, 95, '2019-06-23 13:11:11', '2019-06-25 23:48:15');
+INSERT INTO `adms_nivacs_pgs` VALUES (472, 2, 86, 2, 2, 4, 2, 95, '2019-06-23 13:11:11', '2019-06-25 23:48:15');
+INSERT INTO `adms_nivacs_pgs` VALUES (471, 1, 86, 2, 2, 4, 1, 95, '2019-06-23 13:11:11', '2019-06-25 23:48:15');
+INSERT INTO `adms_nivacs_pgs` VALUES (465, 1, 84, 1, 1, 9, 5, 93, '2019-06-22 15:38:22', '2019-11-25 20:45:58');
+INSERT INTO `adms_nivacs_pgs` VALUES (464, 1, 84, 1, 1, 9, 4, 93, '2019-06-22 15:38:22', '2019-11-26 08:46:37');
+INSERT INTO `adms_nivacs_pgs` VALUES (463, 2, 84, 2, 2, 4, 3, 93, '2019-06-22 15:38:22', '2019-06-25 23:48:15');
+INSERT INTO `adms_nivacs_pgs` VALUES (462, 2, 84, 2, 2, 4, 2, 93, '2019-06-22 15:38:22', '2019-06-25 23:48:15');
+INSERT INTO `adms_nivacs_pgs` VALUES (461, 1, 84, 1, 1, 9, 1, 93, '2019-06-22 15:38:22', '2019-06-25 23:48:15');
+INSERT INTO `adms_nivacs_pgs` VALUES (476, 1, 87, 2, 2, 4, 1, 96, '2019-06-23 14:48:58', '2019-06-25 23:48:15');
+INSERT INTO `adms_nivacs_pgs` VALUES (477, 2, 87, 2, 2, 4, 2, 96, '2019-06-23 14:48:58', '2019-06-25 23:48:15');
+INSERT INTO `adms_nivacs_pgs` VALUES (478, 2, 87, 2, 2, 4, 3, 96, '2019-06-23 14:48:58', '2019-06-25 23:48:15');
+INSERT INTO `adms_nivacs_pgs` VALUES (479, 2, 87, 2, 2, 4, 4, 96, '2019-06-23 14:48:58', '2019-06-25 23:48:15');
+INSERT INTO `adms_nivacs_pgs` VALUES (480, 1, 87, 1, 1, 10, 5, 96, '2019-06-23 14:48:58', '2019-11-25 20:48:42');
+INSERT INTO `adms_nivacs_pgs` VALUES (481, 1, 88, 2, 1, 13, 1, 97, '2019-06-23 15:27:15', '2019-06-25 23:48:15');
+INSERT INTO `adms_nivacs_pgs` VALUES (482, 2, 88, 2, 2, 4, 2, 97, '2019-06-23 15:27:15', '2019-06-25 23:48:15');
+INSERT INTO `adms_nivacs_pgs` VALUES (483, 2, 88, 2, 2, 4, 3, 97, '2019-06-23 15:27:15', '2019-06-25 23:48:15');
+INSERT INTO `adms_nivacs_pgs` VALUES (484, 2, 88, 2, 2, 4, 4, 97, '2019-06-23 15:27:15', '2019-06-25 23:48:15');
+INSERT INTO `adms_nivacs_pgs` VALUES (485, 2, 88, 2, 2, 4, 5, 97, '2019-06-23 15:27:15', '2019-06-25 23:48:15');
+INSERT INTO `adms_nivacs_pgs` VALUES (486, 1, 89, 2, 2, 4, 1, 98, '2019-06-23 21:40:14', '2019-06-25 23:48:15');
+INSERT INTO `adms_nivacs_pgs` VALUES (487, 1, 89, 2, 2, 4, 2, 98, '2019-06-23 21:40:14', '2019-10-16 10:15:22');
+INSERT INTO `adms_nivacs_pgs` VALUES (488, 1, 89, 2, 2, 4, 3, 98, '2019-06-23 21:40:14', '2019-11-26 08:36:16');
+INSERT INTO `adms_nivacs_pgs` VALUES (489, 1, 89, 2, 2, 4, 4, 98, '2019-06-23 21:40:14', '2019-11-26 08:47:00');
+INSERT INTO `adms_nivacs_pgs` VALUES (490, 1, 89, 2, 1, 4, 5, 98, '2019-06-23 21:40:14', '2019-11-25 20:49:10');
+INSERT INTO `adms_nivacs_pgs` VALUES (491, 1, 90, 2, 2, 4, 1, 99, '2019-06-24 12:18:12', '2019-06-25 23:48:15');
+INSERT INTO `adms_nivacs_pgs` VALUES (492, 2, 90, 2, 2, 4, 2, 99, '2019-06-24 12:18:12', '2019-06-25 23:48:15');
+INSERT INTO `adms_nivacs_pgs` VALUES (493, 2, 90, 2, 2, 4, 3, 99, '2019-06-24 12:18:12', '2019-11-26 08:36:36');
+INSERT INTO `adms_nivacs_pgs` VALUES (494, 1, 90, 2, 2, 4, 4, 99, '2019-06-24 12:18:12', '2019-11-26 08:47:05');
+INSERT INTO `adms_nivacs_pgs` VALUES (495, 1, 90, 1, 1, 10, 5, 99, '2019-06-24 12:18:12', '2019-11-25 20:49:37');
+INSERT INTO `adms_nivacs_pgs` VALUES (501, 1, 93, 1, 1, 10, 1, 101, '2019-08-28 08:07:23', '2019-10-16 09:13:37');
+INSERT INTO `adms_nivacs_pgs` VALUES (502, 2, 92, 2, 2, 4, 2, 101, '2019-08-28 08:07:23', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (503, 2, 92, 2, 2, 4, 3, 101, '2019-08-28 08:07:23', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (504, 2, 92, 2, 2, 4, 4, 101, '2019-08-28 08:07:23', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (505, 2, 92, 2, 2, 4, 5, 101, '2019-08-28 08:07:23', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (506, 1, 95, 2, 2, 10, 1, 102, '2019-08-28 08:30:52', '2019-10-16 09:13:27');
+INSERT INTO `adms_nivacs_pgs` VALUES (507, 2, 93, 2, 2, 4, 2, 102, '2019-08-28 08:30:52', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (508, 2, 93, 2, 2, 4, 3, 102, '2019-08-28 08:30:52', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (509, 2, 93, 2, 2, 4, 4, 102, '2019-08-28 08:30:52', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (510, 2, 93, 2, 2, 4, 5, 102, '2019-08-28 08:30:52', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (511, 1, 94, 2, 2, 10, 1, 103, '2019-08-28 08:45:50', '2019-10-16 09:13:32');
+INSERT INTO `adms_nivacs_pgs` VALUES (512, 2, 94, 2, 2, 4, 2, 103, '2019-08-28 08:45:50', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (513, 2, 94, 2, 2, 4, 3, 103, '2019-08-28 08:45:50', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (514, 2, 94, 2, 2, 4, 4, 103, '2019-08-28 08:45:50', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (515, 2, 94, 2, 2, 4, 5, 103, '2019-08-28 08:45:50', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (516, 1, 97, 1, 1, 18, 1, 104, '2019-10-09 03:20:20', '2024-02-05 13:25:12');
+INSERT INTO `adms_nivacs_pgs` VALUES (517, 1, 95, 2, 1, 14, 2, 104, '2019-10-09 03:20:20', '2019-10-16 10:16:19');
+INSERT INTO `adms_nivacs_pgs` VALUES (518, 2, 95, 2, 2, 4, 3, 104, '2019-10-09 03:20:20', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (519, 1, 95, 2, 1, 14, 4, 104, '2019-10-09 03:20:20', '2019-11-26 08:47:44');
+INSERT INTO `adms_nivacs_pgs` VALUES (520, 2, 95, 2, 2, 4, 5, 104, '2019-10-09 03:20:20', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (521, 1, 99, 1, 1, 9, 1, 105, '2019-10-16 08:32:43', '2019-11-01 14:13:52');
+INSERT INTO `adms_nivacs_pgs` VALUES (522, 1, 96, 1, 1, 9, 2, 105, '2019-10-16 08:32:43', '2019-10-16 10:12:15');
+INSERT INTO `adms_nivacs_pgs` VALUES (523, 1, 96, 1, 1, 9, 3, 105, '2019-10-16 08:32:43', '2019-11-26 08:37:14');
+INSERT INTO `adms_nivacs_pgs` VALUES (524, 2, 96, 2, 2, 4, 4, 105, '2019-10-16 08:32:43', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (525, 2, 96, 2, 2, 4, 5, 105, '2019-10-16 08:32:43', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (526, 1, 92, 1, 1, 10, 1, 106, '2019-10-16 09:12:24', '2019-10-16 09:13:37');
+INSERT INTO `adms_nivacs_pgs` VALUES (527, 1, 98, 1, 1, 10, 2, 106, '2019-10-16 09:12:24', '2019-11-01 14:03:20');
+INSERT INTO `adms_nivacs_pgs` VALUES (528, 1, 97, 1, 1, 10, 3, 106, '2019-10-16 09:12:24', '2019-11-26 08:37:26');
+INSERT INTO `adms_nivacs_pgs` VALUES (529, 2, 97, 2, 2, 4, 4, 106, '2019-10-16 09:12:24', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (530, 2, 97, 2, 2, 4, 5, 106, '2019-10-16 09:12:24', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (531, 1, 96, 1, 1, 18, 1, 107, '2019-10-21 11:48:09', '2024-02-05 13:25:09');
+INSERT INTO `adms_nivacs_pgs` VALUES (532, 2, 97, 2, 2, 4, 2, 107, '2019-10-21 11:48:09', '2019-11-01 14:03:20');
+INSERT INTO `adms_nivacs_pgs` VALUES (533, 1, 98, 2, 1, 15, 3, 107, '2019-10-21 11:48:09', '2019-11-26 08:37:49');
+INSERT INTO `adms_nivacs_pgs` VALUES (534, 2, 98, 2, 2, 4, 4, 107, '2019-10-21 11:48:09', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (535, 2, 98, 2, 2, 4, 5, 107, '2019-10-21 11:48:09', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (536, 1, 98, 1, 1, 17, 1, 108, '2019-11-01 14:01:20', '2024-02-05 13:26:56');
+INSERT INTO `adms_nivacs_pgs` VALUES (537, 1, 99, 2, 1, 11, 2, 108, '2019-11-01 14:01:20', '2019-11-01 14:12:04');
+INSERT INTO `adms_nivacs_pgs` VALUES (538, 1, 99, 2, 1, 16, 3, 108, '2019-11-01 14:01:20', '2019-11-26 08:38:26');
+INSERT INTO `adms_nivacs_pgs` VALUES (539, 2, 99, 2, 2, 4, 4, 108, '2019-11-01 14:01:20', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (540, 2, 99, 2, 2, 4, 5, 108, '2019-11-01 14:01:20', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (541, 1, 100, 2, 2, 4, 1, 109, '2019-11-25 13:46:09', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (542, 2, 100, 2, 2, 4, 2, 109, '2019-11-25 13:46:09', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (543, 1, 100, 2, 2, 4, 3, 109, '2019-11-25 13:46:09', '2019-11-26 08:38:32');
+INSERT INTO `adms_nivacs_pgs` VALUES (544, 2, 100, 2, 2, 4, 4, 109, '2019-11-25 13:46:09', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (545, 2, 100, 2, 2, 4, 5, 109, '2019-11-25 13:46:09', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (546, 1, 101, 2, 2, 4, 1, 110, '2019-11-25 13:58:15', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (547, 2, 101, 2, 2, 4, 2, 110, '2019-11-25 13:58:15', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (548, 1, 101, 2, 2, 4, 3, 110, '2019-11-25 13:58:15', '2019-11-26 08:38:41');
+INSERT INTO `adms_nivacs_pgs` VALUES (549, 2, 101, 2, 2, 4, 4, 110, '2019-11-25 13:58:15', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (550, 2, 101, 2, 2, 4, 5, 110, '2019-11-25 13:58:15', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (551, 1, 102, 2, 2, 4, 1, 111, '2019-11-25 14:38:12', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (552, 2, 102, 2, 2, 4, 2, 111, '2019-11-25 14:38:12', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (553, 2, 102, 2, 2, 4, 3, 111, '2019-11-25 14:38:12', '2019-11-26 08:38:47');
+INSERT INTO `adms_nivacs_pgs` VALUES (554, 2, 102, 2, 2, 4, 4, 111, '2019-11-25 14:38:12', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (555, 2, 102, 2, 2, 4, 5, 111, '2019-11-25 14:38:12', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (556, 1, 103, 2, 2, 4, 1, 112, '2019-11-25 16:28:13', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (557, 2, 103, 2, 2, 4, 2, 112, '2019-11-25 16:28:13', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (558, 1, 103, 2, 2, 4, 3, 112, '2019-11-25 16:28:13', '2019-11-26 08:38:51');
+INSERT INTO `adms_nivacs_pgs` VALUES (559, 2, 103, 2, 2, 4, 4, 112, '2019-11-25 16:28:13', NULL);
+INSERT INTO `adms_nivacs_pgs` VALUES (560, 2, 103, 2, 2, 4, 5, 112, '2019-11-25 16:28:13', NULL);
+
+-- ----------------------------
+-- Table structure for adms_niveis_acessos
+-- ----------------------------
+DROP TABLE IF EXISTS `adms_niveis_acessos`;
+CREATE TABLE `adms_niveis_acessos`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `ordem` int NOT NULL,
+  `created` datetime NOT NULL,
+  `modified` datetime NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of adms_niveis_acessos
+-- ----------------------------
+INSERT INTO `adms_niveis_acessos` VALUES (1, 'Super Administrador', 1, '2018-05-23 00:00:00', '2019-11-01 14:13:12');
+INSERT INTO `adms_niveis_acessos` VALUES (2, 'Administrador', 2, '2018-05-23 00:00:00', '2018-06-20 20:06:53');
+INSERT INTO `adms_niveis_acessos` VALUES (3, 'Ãrea de InstruÃ§Ã£o para Policias', 4, '2018-05-23 00:00:00', '2019-11-26 08:34:08');
+INSERT INTO `adms_niveis_acessos` VALUES (4, 'Ãrea de InstruÃ§Ã£o', 3, '2018-05-23 00:00:00', '2019-11-26 08:33:46');
+INSERT INTO `adms_niveis_acessos` VALUES (5, 'Cliente', 5, '2018-05-23 00:00:00', '2019-11-25 20:41:57');
+
+-- ----------------------------
+-- Table structure for adms_paginas
+-- ----------------------------
+DROP TABLE IF EXISTS `adms_paginas`;
+CREATE TABLE `adms_paginas`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `controller` varchar(220) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `metodo` varchar(220) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `menu_controller` varchar(220) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `menu_metodo` varchar(220) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `nome_pagina` varchar(220) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `obs` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `lib_pub` int NOT NULL DEFAULT 2,
+  `icone` varchar(40) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `adms_grps_pg_id` int NOT NULL,
+  `adms_tps_pg_id` int NOT NULL,
+  `adms_sits_pg_id` int NOT NULL,
+  `created` datetime NOT NULL,
+  `modified` datetime NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 113 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of adms_paginas
+-- ----------------------------
+INSERT INTO `adms_paginas` VALUES (1, 'Home', 'index', 'home', 'index', 'Dashboard', 'PÃ¡gina inicial do sistema administrativo             ', 2, 'fas fa-tachometer-alt', 1, 1, 1, '2018-05-23 00:00:00', '2018-06-25 11:27:06');
+INSERT INTO `adms_paginas` VALUES (2, 'Usuarios', 'listar', 'usuarios', 'listar', 'UsuÃ¡rios', 'Pagina para listar os usuÃ¡rios                                ', 2, 'fas fa-users', 1, 1, 1, '2018-05-23 00:00:00', '2019-01-28 14:38:21');
+INSERT INTO `adms_paginas` VALUES (3, 'Login', 'acesso', 'login', 'acesso', 'Acesso', 'PÃ¡gina de login                ', 1, '', 7, 1, 1, '2018-05-23 00:00:00', '2018-06-25 11:29:15');
+INSERT INTO `adms_paginas` VALUES (4, 'Login', 'logout', 'login', 'logout', 'Sair', 'PÃ¡gina para sair do administrativo                ', 1, '', 7, 1, 1, '2018-05-23 00:00:00', '2018-06-25 11:29:25');
+INSERT INTO `adms_paginas` VALUES (5, 'NovoUsuario', 'novoUsuario', 'novo-usuario', 'novo-usuario', 'Novo UsuÃ¡rio', 'PÃ¡gina para cadastrar novo usuÃ¡rio na pagina de login                                                ', 1, '', 2, 1, 1, '2018-05-23 00:00:00', '2018-06-25 11:29:38');
+INSERT INTO `adms_paginas` VALUES (6, 'Confirmar', 'confirmarEmail', 'confirmar', 'confirmar-email', 'Confirmar e-mail', 'PÃ¡gina para confirmar e-mail                ', 1, '', 7, 1, 1, '2018-06-23 00:00:00', '2018-06-25 11:29:56');
+INSERT INTO `adms_paginas` VALUES (7, 'EsqueceuSenha', 'esqueceuSenha', 'esqueceu-senha', 'esqueceu-senha', 'Esqueceu a senha', 'PÃ¡gina para recuperar a senha                ', 1, '', 7, 1, 1, '2018-06-23 00:00:00', '2018-06-25 11:30:08');
+INSERT INTO `adms_paginas` VALUES (8, 'AtualSenha', 'atualSenha', 'atual-senha', 'atual-senha', 'Atualizar a senha', 'PÃ¡gina para atualizar a senha                ', 1, '', 7, 1, 1, '2018-06-23 00:00:00', '2018-06-25 11:30:22');
+INSERT INTO `adms_paginas` VALUES (9, 'VerPerfil', 'perfil', 'ver-perfil', 'perfil', 'Ver Perfil', 'PÃ¡gina para o usuÃ¡rio ver o seu perfil                ', 2, '', 5, 1, 1, '2018-06-23 00:00:00', '2018-06-25 11:33:03');
+INSERT INTO `adms_paginas` VALUES (10, 'AlterarSenha', 'altSenha', 'alterar-senha', 'alt-senha', 'Alterar Senha', 'PÃ¡gina para o prÃ³prio usuÃ¡rio alterar a sua senha                ', 2, '', 3, 1, 1, '2018-06-23 00:00:00', '2018-06-25 11:32:45');
+INSERT INTO `adms_paginas` VALUES (11, 'EditarPerfil', 'altPerfil', 'editar-perfil', 'alt-perfil', 'Editar Perfil', 'PÃ¡gina para o prÃ³prio usuÃ¡rio editar os dados do seu perfil                ', 2, '', 3, 1, 1, '2018-06-23 00:00:00', '2018-06-25 11:33:41');
+INSERT INTO `adms_paginas` VALUES (12, 'VerUsuario', 'verUsuario', 'ver-usuario', 'ver-usuario', 'Ver UsuÃ¡rio', 'PÃ¡gina para ver detalhes do usuÃ¡rio                ', 2, '', 5, 1, 1, '2018-06-23 00:00:00', '2018-06-25 11:31:52');
+INSERT INTO `adms_paginas` VALUES (13, 'EditarSenha', 'editSenha', 'editar-senha', 'edit-senha', 'Editar Senha', 'PÃ¡gina para o administrador altera a senha do usuÃ¡rio.                ', 2, '', 3, 1, 1, '2018-06-23 00:00:00', '2018-06-25 11:31:09');
+INSERT INTO `adms_paginas` VALUES (14, 'EditarUsuario', 'editUsuario', 'editar-usuario', 'edit-usuario', 'Editar UsuÃ¡rio', 'PÃ¡gina para editar os dados do usuÃ¡rio                ', 2, '', 3, 1, 1, '2018-06-23 00:00:00', '2018-06-25 11:31:33');
+INSERT INTO `adms_paginas` VALUES (15, 'CadastrarUsuario', 'cadUsuario', 'cadastrar-usuario', 'cad-usuario', 'Cadastrar UsuÃ¡rio', 'PÃ¡gina para cadastrar novo usuÃ¡rio                ', 2, '', 2, 1, 1, '2018-06-23 00:00:00', '2018-06-25 11:34:31');
+INSERT INTO `adms_paginas` VALUES (16, 'ApagarUsuario', 'apagarUsuario', 'apagar-usuario', 'apagar-usuario', 'Apagar UsuÃ¡rio', 'PÃ¡gina para apagar usuÃ¡rio                ', 2, '', 4, 1, 1, '2018-06-23 00:00:00', '2018-06-25 11:34:49');
+INSERT INTO `adms_paginas` VALUES (17, 'NivelAcesso', 'listar', 'nivel-acesso', 'listar', 'NÃ­vel de Acesso', 'PÃ¡gina para listar nÃ­vel de acesso                ', 2, 'fas fa-key', 1, 1, 1, '2018-06-23 00:00:00', '2018-06-25 11:35:16');
+INSERT INTO `adms_paginas` VALUES (18, 'CadastrarNivAc', 'cadNivAc', 'cadastrar-niv-ac', 'cad-niv-ac', 'Cadastrar NÃ­vel de Acesso', 'PÃ¡gina para cadastrar nÃ­vel de acesso                ', 2, '', 2, 1, 1, '2018-06-23 00:00:00', '2018-06-25 11:35:40');
+INSERT INTO `adms_paginas` VALUES (19, 'VerNivAc', 'VerNivAc', 'ver-niv-ac', 'ver-niv-ac', 'Detalhes do NÃ­vel de Acesso', 'PÃ¡gina para ver detalhes do nÃ­vel de acesso                ', 2, '', 5, 1, 1, '2018-06-23 00:00:00', '2018-06-25 11:36:05');
+INSERT INTO `adms_paginas` VALUES (20, 'EditarNivAc', 'editNivAc', 'editar-niv-ac', 'edit-niv-ac', 'Editar NÃ­vel de Acesso', 'PÃ¡gina para editar nÃ­vel de acesso                ', 2, '', 3, 1, 1, '2018-06-23 00:00:00', '2018-06-25 11:36:30');
+INSERT INTO `adms_paginas` VALUES (21, 'ApagarNivAc', 'apagarNivAc', 'apagar-niv-ac', 'apagar-niv-ac', 'Apagar NÃ­vel de Acesso', 'PÃ¡gina para apagar nÃ­vel de acesso                ', 2, '', 4, 1, 1, '2018-06-23 00:00:00', '2018-06-25 11:36:56');
+INSERT INTO `adms_paginas` VALUES (22, 'AltOrdemNivAc', 'altOrdemNivAc', 'alt-ordem-niv-ac', 'alt-ordem-niv-ac', 'Alterar ordem nÃ­vel de acesso', 'PÃ¡gina para alterar ordem do nÃ­vel de acesso                ', 2, '', 8, 1, 1, '2018-06-23 00:00:00', '2018-06-25 11:37:24');
+INSERT INTO `adms_paginas` VALUES (23, 'Pagina', 'listar', 'pagina', 'listar', 'Listar PÃ¡ginas', 'PÃ¡gina para listar as paginas do administrativo                ', 2, 'fas fa-file-alt', 1, 1, 1, '2018-06-23 00:00:00', '2018-06-25 11:37:43');
+INSERT INTO `adms_paginas` VALUES (24, 'CadastrarPagina', 'cadPagina', 'cadastrar-pagina', 'cad-pagina', 'Cadastrar Pagina', 'FormulÃ¡rio para cadastrar pagina                ', 2, '', 2, 1, 1, '2018-06-23 00:00:00', '2018-06-25 11:37:59');
+INSERT INTO `adms_paginas` VALUES (25, 'VerPagina', 'verPagina', 'ver-pagina', 'ver-pagina', 'Visualizar PÃ¡gina', 'PÃ¡gina para ver detalhes da pÃ¡gina', 2, '', 5, 1, 1, '2018-06-22 14:25:21', NULL);
+INSERT INTO `adms_paginas` VALUES (26, 'EditarPagina', 'editPagina', 'editar-pagina', 'edit-pagina', 'Editar PÃ¡gina', 'FormulÃ¡rio para editar a pÃ¡gina                                                                                ', 2, '', 3, 1, 1, '2018-06-22 14:43:47', '2018-06-22 15:40:01');
+INSERT INTO `adms_paginas` VALUES (27, 'ApagarPagina', 'apagarPagina', 'apagar-pagina', 'apagar-pagina', 'Apagar PÃ¡gina', 'PÃ¡gina para apagar pÃ¡gina                ', 2, '', 4, 1, 1, '2018-06-22 19:17:43', NULL);
+INSERT INTO `adms_paginas` VALUES (28, 'Permissoes', 'listar', 'permissoes', 'listar', 'PermissÃ£o', 'PÃ¡gina para listar as permissÃµes do nÃ­vel de acesso                ', 2, '', 1, 1, 1, '2018-06-24 11:59:53', NULL);
+INSERT INTO `adms_paginas` VALUES (29, 'LibPermi', 'libPermi', 'lib-permi', 'lib-permi', 'Liberar PermissÃ£o', 'PÃ¡gina para liberar permissÃ£o                                ', 2, '', 3, 1, 1, '2018-06-24 12:52:42', '2018-06-24 12:54:14');
+INSERT INTO `adms_paginas` VALUES (30, 'LibMenu', 'libMenu', 'lib-menu', 'lib-menu', 'Liberar no menu', 'PÃ¡gina para liberar ou bloquear a pÃ¡gina no menu                ', 2, '', 3, 1, 1, '2018-06-25 09:48:29', NULL);
+INSERT INTO `adms_paginas` VALUES (31, 'LibDropdown', 'libDropdown', 'lib-dropdown', 'lib-dropdown', 'Liberar Dropdown', 'PÃ¡gina para liberar ou bloquear a pÃ¡gina a ser apresentado como dropdown no menu                ', 2, '', 3, 1, 1, '2018-06-25 10:24:39', '2018-06-25 10:29:10');
+INSERT INTO `adms_paginas` VALUES (32, 'AltOrdemMenu', 'altOrdemMenu', 'alt-ordem-menu', 'alt-ordem-menu', 'Alterar Ordem Menu', 'PÃ¡gina para alterar a ordem das pÃ¡ginas no menu                ', 2, '', 3, 1, 1, '2018-06-25 10:56:36', NULL);
+INSERT INTO `adms_paginas` VALUES (33, 'SincroPgNivAc', 'sincroPgNivAc', 'sincro-pg-niv-ac', 'sincro-pg-niv-ac', 'Sincronizar PermissÃµes', 'PÃ¡gina para sincronizar as permissÃµes de acesso a cada nÃ­vel de acesso para as pÃ¡ginas do sistema.                ', 2, '', 3, 1, 1, '2018-06-26 12:23:37', NULL);
+INSERT INTO `adms_paginas` VALUES (34, 'EditarNivAcPgMenu', 'editNivAcPgMenu', 'editar-niv-ac-pg-menu', 'edit-niv-ac-pg-menu', 'Editar Item de Menu da PÃ¡gina', 'FormulÃ¡rio para editar o item de menu que a pÃ¡gina pertence para um determinado nÃ­vel de acesso', 2, '', 3, 1, 1, '2018-06-28 16:11:35', NULL);
+INSERT INTO `adms_paginas` VALUES (35, 'Menu', 'listar', 'menu', 'listar', 'Itens de Menu', 'Listar os itens do menu', 2, 'fab fa-elementor', 1, 1, 1, '2018-06-28 01:05:34', NULL);
+INSERT INTO `adms_paginas` VALUES (36, 'CadastrarMenu', 'cadMenu', 'cadastrar-menu', 'cad-menu', 'Cadastrar Item de Menu', 'FormulÃ¡rio para cadastrar item de menu', 2, '', 2, 1, 1, '2018-06-28 01:20:26', NULL);
+INSERT INTO `adms_paginas` VALUES (37, 'VerMenu', 'verMenu', 'ver-menu', 'ver-menu', 'Ver item de menu', 'PÃ¡gina para ver detalhes do item de menu', 2, '', 5, 1, 1, '2018-06-28 01:23:25', NULL);
+INSERT INTO `adms_paginas` VALUES (38, 'EditarMenu', 'editMenu', 'editar-menu', 'edit-menu', 'Editar item de menu', 'FormulÃ¡rio para editar o item de menu', 2, '', 3, 1, 1, '2018-06-28 01:32:29', NULL);
+INSERT INTO `adms_paginas` VALUES (39, 'ApagarMenu', 'apagarMenu', 'apagar-menu', 'apagar-menu', 'Apagar Item de Menu', 'PÃ¡gina para apagar item de menu', 2, '', 4, 1, 1, '2018-06-28 01:44:13', NULL);
+INSERT INTO `adms_paginas` VALUES (40, 'AltOrdemItemMenu', 'altOrdemItemMenu', 'alt-ordem-item-menu', 'alt-ordem-item-menu', 'Alterar Ordem Item de Menu', 'PÃ¡gina para alterar a ordem do itens no menu', 2, '', 8, 1, 1, '2018-06-28 01:58:16', NULL);
+INSERT INTO `adms_paginas` VALUES (41, 'EditarFormCadUsuario', 'editFormCadUsuario', 'editar-form-cad-usuario', 'edit-form-cad-usuario', 'Cadastro de Login', 'FormulÃ¡rio para editar as informaÃ§Ãµes do formulÃ¡rio cadastrar usuÃ¡rio na pÃ¡gina de login                ', 2, 'fas fa-edit', 3, 1, 1, '2018-06-29 18:33:56', '2018-06-29 18:35:03');
+INSERT INTO `adms_paginas` VALUES (42, 'EditarConfEmail', 'editConfEmail', 'editar-conf-email', 'edit-conf-email', 'ConfiguraÃ§Ã£o de E-mail', 'FormulÃ¡rio para editar as configuraÃ§Ã£o do servidor de envio de e-mail', 2, 'fas fa-at', 2, 1, 1, '2018-06-29 18:56:15', NULL);
+INSERT INTO `adms_paginas` VALUES (43, 'Cor', 'listar', 'cor', 'listar', 'Cores', 'Listar as cores dos botÃµes                                                                                ', 2, 'fas fa-tint', 1, 1, 1, '2018-06-29 19:32:21', '2018-06-29 19:45:56');
+INSERT INTO `adms_paginas` VALUES (44, 'VerCor', 'verCor', 'ver-cor', 'ver-cor', 'Ver Cores', 'PÃ¡gina para ver detalhes da cor do botÃ£o', 2, '', 5, 1, 1, '2018-06-29 19:50:19', NULL);
+INSERT INTO `adms_paginas` VALUES (45, 'EditarCor', 'editCor', 'editar-cor', 'edit-cor', 'Editar a Cor', 'FormulÃ¡rio para editar as cores dos botÃµes', 2, '', 3, 1, 1, '2018-06-29 19:59:53', NULL);
+INSERT INTO `adms_paginas` VALUES (46, 'CadastrarCor', 'cadCor', 'cadastrar-cor', 'cad-cor', 'Cadastrar Cor', 'FormulÃ¡rio para cadastrar a cor do botÃ£o', 2, '', 2, 1, 1, '2018-06-29 20:09:35', NULL);
+INSERT INTO `adms_paginas` VALUES (47, 'ApagarCor', 'apagarCor', 'apagar-cor', 'apagar-cor', 'Apagar a Cor', 'PÃ¡gina para apagar a cor do botÃ£o', 2, '', 4, 1, 1, '2018-06-29 20:17:36', NULL);
+INSERT INTO `adms_paginas` VALUES (48, 'GrupoPg', 'listar', 'grupo-pg', 'listar', 'Grupo de PÃ¡gina', 'Listar os grupos das pÃ¡ginas', 2, 'fas fa-file-alt', 1, 1, 1, '2018-06-29 20:29:31', NULL);
+INSERT INTO `adms_paginas` VALUES (49, 'VerGrupoPg', 'verGrupoPg', 'ver-grupo-pg', 'ver-grupo-pg', 'Ver Grupo de PÃ¡gina', 'PÃ¡gina para ver detalhes do grupo de pÃ¡gina', 2, '', 5, 1, 1, '2018-06-29 20:40:11', NULL);
+INSERT INTO `adms_paginas` VALUES (50, 'CadastrarGrupoPg', 'cadGrupoPg', 'cadastrar-grupo-pg', 'cad-grupo-pg', 'Cadastro Grupo de PÃ¡gina', 'FormulÃ¡rio para cadastrar novo grupo de pÃ¡gina', 2, '', 2, 1, 1, '2018-06-29 20:58:30', NULL);
+INSERT INTO `adms_paginas` VALUES (51, 'EditarGrupoPg', 'editGrupoPg', 'editar-grupo-pg', 'edit-grupo-pg', 'Editar Grupo de PÃ¡gina', 'FormulÃ¡rio para editar os dados do grupo de pÃ¡gina', 2, '', 3, 1, 1, '2018-06-29 21:08:41', NULL);
+INSERT INTO `adms_paginas` VALUES (52, 'ApagarGrupoPg', 'apagarGrupoPg', 'apagar-grupo-pg', 'apagar-grupo-pg', 'Apagar Grupo de PÃ¡gina', 'PÃ¡gina para apagar grupo de pÃ¡gina', 2, '', 4, 1, 1, '2018-06-29 21:19:33', NULL);
+INSERT INTO `adms_paginas` VALUES (53, 'AltOrdemGrupoPg', 'altOrdemGrupoPg', 'alt-ordem-grupo-pg', 'alt-ordem-grupo-pg', 'Alterar Ordem Grupo Pg', 'Altera a ordem do grupo de pÃ¡gina', 2, '', 8, 1, 1, '2018-06-29 21:31:23', NULL);
+INSERT INTO `adms_paginas` VALUES (54, 'TipoPg', 'listar', 'tipo-pg', 'listar', 'Tipo de PÃ¡gina', 'Listar os tipos de pÃ¡ginas', 2, 'fas fa-list-ol', 1, 1, 1, '2018-06-29 21:40:39', NULL);
+INSERT INTO `adms_paginas` VALUES (55, 'CadastrarTipoPg', 'cadTipoPg', 'cadastrar-tipo-pg', 'cad-tipo-pg', 'Cadastrar Tipo de PÃ¡gina', 'FormulÃ¡rio para cadastrar o tipo de pÃ¡gina', 2, '', 2, 1, 1, '2018-06-29 21:50:13', NULL);
+INSERT INTO `adms_paginas` VALUES (56, 'EditarTipoPg', 'editTipoPg', 'editar-tipo-pg', 'edit-tipo-pg', 'Editar Tipo de PÃ¡gina', 'FormulÃ¡rio para editar o tipo de pÃ¡gina', 2, '', 3, 1, 1, '2018-06-29 22:13:11', NULL);
+INSERT INTO `adms_paginas` VALUES (57, 'VerTipoPg', 'verTipoPg', 'ver-tipo-pg', 'ver-tipo-pg', 'Ver Tipo de PÃ¡gina', 'PÃ¡gina para ver detalhes do tipo de pÃ¡gina', 2, '', 5, 1, 1, '2018-06-29 22:21:25', NULL);
+INSERT INTO `adms_paginas` VALUES (58, 'ApagarTipoPg', 'apagarTipoPg', 'apagar-tipo-pg', 'apagar-tipo-pg', 'Apagar Tipo de PÃ¡gina', 'PÃ¡gina para apagar o tipo de pÃ¡gina', 2, '', 4, 1, 1, '2018-06-29 22:26:52', NULL);
+INSERT INTO `adms_paginas` VALUES (59, 'AltOrdemTipoPg', 'altOrdemTipoPg', 'alt-ordem-tipo-pg', 'alt-ordem-tipo-pg', 'Alterar Ordem Tipo Pg', 'PÃ¡gina para alterar a ordem do tipo de pÃ¡ginas        ', 2, '', 8, 1, 1, '2018-06-29 22:38:00', NULL);
+INSERT INTO `adms_paginas` VALUES (60, 'Situacao', 'listar', 'situacao', 'listar', 'SituaÃ§Ã£o', 'PÃ¡gina para listar as situaÃ§Ãµes                ', 2, 'fas fa-exclamation-triangle', 1, 1, 1, '2018-06-29 22:48:28', '2018-06-29 22:53:17');
+INSERT INTO `adms_paginas` VALUES (61, 'VerSit', 'verSit', 'ver-sit', 'ver-sit', 'Ver SituaÃ§Ã£o', 'PÃ¡gina para ver detalhes da situaÃ§Ã£o', 2, '', 5, 1, 1, '2018-06-29 23:04:17', NULL);
+INSERT INTO `adms_paginas` VALUES (62, 'CadastrarSit', 'cadSit', 'cadastrar-sit', 'cad-sit', 'Cadastrar SituaÃ§Ã£o', 'FormulÃ¡rio para cadastrar situaÃ§Ã£o', 2, '', 2, 1, 1, '2018-06-29 23:11:35', NULL);
+INSERT INTO `adms_paginas` VALUES (63, 'EditarSit', 'editSit', 'editar-sit', 'edit-sit', 'Editar a situaÃ§Ã£o', 'FormulÃ¡rio para editar a situaÃ§Ã£o', 2, '', 3, 1, 1, '2018-06-29 23:20:52', NULL);
+INSERT INTO `adms_paginas` VALUES (64, 'ApagarSit', 'apagarSit', 'apagar-sit', 'apagar-sit', 'Apagar SituaÃ§Ã£o', 'PÃ¡gina para apagar situaÃ§Ã£o', 2, '', 3, 1, 1, '2018-06-29 23:27:34', NULL);
+INSERT INTO `adms_paginas` VALUES (65, 'SituacaoUser', 'listar', 'situacao-user', 'listar', 'SituaÃ§Ã£o dos UsuÃ¡rios', 'Listar as situaÃ§Ã£o de usuÃ¡rio                ', 2, 'far fa-id-badge', 1, 1, 1, '2018-06-29 23:44:50', '2018-06-29 23:46:55');
+INSERT INTO `adms_paginas` VALUES (66, 'VerSitUser', 'verSitUser', 'ver-sit-user', 'ver-sit-user', 'Ver SituaÃ§Ã£o de UsuÃ¡rio', 'PÃ¡gina para ver detalhes da situaÃ§Ã£o de usuÃ¡rio', 2, '', 5, 1, 1, '2018-06-29 23:53:53', NULL);
+INSERT INTO `adms_paginas` VALUES (67, 'CadastrarSitUser', 'cadSitUser', 'cadastrar-sit-user', 'cad-sit-user', 'Cadastrar SituaÃ§Ã£o de UsuÃ¡rio', 'PÃ¡gina para cadastrar situaÃ§Ã£o de usuÃ¡rio', 2, '', 2, 1, 1, '2018-06-29 23:57:43', NULL);
+INSERT INTO `adms_paginas` VALUES (68, 'EditarSitUser', 'editSitUser', 'editar-sit-user', 'edit-sit-user', 'Editar SituaÃ§Ã£o de UsuÃ¡rio', 'FormulÃ¡rio para editar situaÃ§Ã£o de usuÃ¡rio', 2, '', 3, 1, 1, '2018-06-30 00:03:44', NULL);
+INSERT INTO `adms_paginas` VALUES (69, 'ApagarSitUser', 'apagarSitUser', 'apagar-sit-user', 'apagar-sit-user', 'Apagar SituaÃ§Ã£o de UsuÃ¡rio', 'PÃ¡gina para apagar situaÃ§Ã£o de usuÃ¡rio', 2, '', 4, 1, 1, '2018-06-30 00:09:08', NULL);
+INSERT INTO `adms_paginas` VALUES (70, 'SituacaoPg', 'listar', 'situacao-pg', 'listar', 'SituaÃ§Ã£o de PÃ¡gina', 'Listar as situaÃ§Ãµes de pÃ¡ginas                                ', 2, 'fas fa-exclamation', 1, 1, 1, '2018-06-30 00:22:52', '2018-06-30 00:29:39');
+INSERT INTO `adms_paginas` VALUES (71, 'VerSitPg', 'verSitPg', 'ver-sit-pg', 'ver-sit-pg', 'Ver SituaÃ§Ã£o de PÃ¡gina', 'PÃ¡gina para ver detalhes da situaÃ§Ã£o de pÃ¡gina      ', 2, '', 5, 1, 1, '2018-06-30 00:35:47', NULL);
+INSERT INTO `adms_paginas` VALUES (72, 'CadastrarSitPg', 'cadSitPg', 'cadastrar-sit-pg', 'cad-sit-pg', 'Cadastrar SituaÃ§Ã£o de PÃ¡gina', 'FormulÃ¡rio para cadastrar situaÃ§Ã£o de pÃ¡gina', 2, '', 2, 1, 1, '2018-06-30 00:41:58', NULL);
+INSERT INTO `adms_paginas` VALUES (73, 'EditarSitPg', 'editSitPg', 'editar-sit-pg', 'edit-sit-pg', 'Editar situaÃ§Ã£o de pÃ¡gina', 'FormulÃ¡rio para editar situaÃ§Ã£o de pÃ¡gina                ', 2, '', 3, 1, 1, '2018-06-30 00:47:33', '2018-06-30 00:47:57');
+INSERT INTO `adms_paginas` VALUES (74, 'ApagarSitPg', 'apagarSitPg', 'apagar-sit-pg', 'apagar-sit-pg', 'Apagar SituaÃ§Ã£o de PÃ¡gina', 'PÃ¡gina para apagar situaÃ§Ã£o de pÃ¡gina', 2, '', 4, 1, 1, '2018-06-30 00:53:21', NULL);
+INSERT INTO `adms_paginas` VALUES (94, 'EditarInfractor', 'editInfractor', 'editar-infractor', 'edit-infractor', 'Editar Infractor', 'Alterar dados do Infractor                ', 2, '', 3, 1, 1, '2019-06-22 19:05:25', NULL);
+INSERT INTO `adms_paginas` VALUES (95, 'VerInfractor', 'verInfractor', 'ver-infractor', 'ver-infractor', 'Ver Infractor', 'Detalhes do Infractor                ', 2, '', 5, 1, 1, '2019-06-23 13:11:11', NULL);
+INSERT INTO `adms_paginas` VALUES (77, 'CadastrarProcesso', 'cadProcesso', 'cadastrar-processo', 'cad-processo', 'Registrar o Processo', 'Cadastrar Processo                                                  ', 1, 'fas fa-file-alt', 2, 1, 1, '2019-01-29 08:52:15', '2019-11-28 15:12:39');
+INSERT INTO `adms_paginas` VALUES (100, 'Tempo_sessao', 'inicializa_sessao', 'tempo-sessao', 'inicializa-sessao', 'Terminar sessÃ£o', 'Sessao                       ', 2, '', 7, 1, 1, '2019-06-27 12:59:19', NULL);
+INSERT INTO `adms_paginas` VALUES (82, 'ConsultaUnidade', 'pesquisarUnidade', 'consulta-unidade', 'pesquisar-unidade', 'Consultar Infractor Por Unidade', 'Consultar Infra', 2, '', 1, 1, 1, '2019-02-01 08:25:28', NULL);
+INSERT INTO `adms_paginas` VALUES (83, 'ConsultaPatente', 'pesquisarPatente', 'consulta-patente', 'pesquisar-patente', 'Consultar Infractor Por Patente', 'Consultar Infractor Por Patente                ', 2, '', 1, 1, 1, '2019-02-01 10:46:53', '2019-02-01 11:00:43');
+INSERT INTO `adms_paginas` VALUES (85, 'MapaGeral', 'fichaReportGeral', 'mapa-geral', 'ficha-report-geral', 'Relatórios de Infractores', 'RelatÃ³rio de Infractor Nip                                                                                ', 1, 'fas fa-print', 5, 1, 1, '2019-03-12 09:39:52', '2024-02-05 13:36:31');
+INSERT INTO `adms_paginas` VALUES (86, 'ControleHome', 'index', 'controle-home', 'index', 'home', 'Home                                ', 1, '-', 5, 1, 1, '2019-03-21 10:10:26', '2019-03-21 10:10:37');
+INSERT INTO `adms_paginas` VALUES (87, 'DetalhesInfractor', 'detalhesInfra', 'detalhes-infractor', 'detalhes-infra', 'Detalhes do Infractor', 'Detalhes do Infractor', 1, '-', 5, 1, 1, '2019-04-11 10:47:28', NULL);
+INSERT INTO `adms_paginas` VALUES (88, 'PesqUsuarios', 'listar', 'pesq-usuarios', 'listar', 'Pesquisar UsuÃ¡risos', 'Pesquisar UsuÃ¡rios          ', 2, '', 1, 1, 1, '2019-06-02 11:27:04', NULL);
+INSERT INTO `adms_paginas` VALUES (89, 'CarregarUsuariosJs', 'listar', 'Carregar-usuarios-js', 'listar', 'UsuÃ¡rios JS', 'Listar UsuÃ¡rios Com JS                ', 2, 'fas fa-users', 1, 2, 1, '2019-06-03 12:21:52', NULL);
+INSERT INTO `adms_paginas` VALUES (90, 'CarregarInfractoresJs', 'listarInfractoresJs', 'carregar-infractores-js', 'listarInfractoresJs', 'Listar Infractores', 'Listar InfractorJS                                                                                ', 2, '', 1, 2, 1, '2019-06-04 18:17:06', '2024-02-05 13:35:38');
+INSERT INTO `adms_paginas` VALUES (96, 'ApagarInfractor', 'apagarInfractor', 'apagar-infractor', 'apagar-infractor', 'Apagar Infractor', 'Apagar Infractor', 2, '', 4, 1, 1, '2019-06-23 14:48:58', NULL);
+INSERT INTO `adms_paginas` VALUES (93, 'RegistInfractor', 'regInfractor', 'regist-infractor', 'reg-infractor', 'Registrar Infractor', 'Registro do Infractor                                                                                                                ', 2, 'fa fa-male', 2, 1, 1, '2019-06-22 15:38:22', '2024-02-05 12:02:48');
+INSERT INTO `adms_paginas` VALUES (97, 'Auditoria', 'listar', 'auditoria', 'listar', 'Auditoria', 'Listar Auditoria        ', 2, '', 1, 1, 1, '2019-06-23 15:27:15', NULL);
+INSERT INTO `adms_paginas` VALUES (98, 'Splash', 'index', 'splash', 'index', 'Splash', 'Splash                ', 2, '', 7, 1, 1, '2019-06-23 21:40:14', NULL);
+INSERT INTO `adms_paginas` VALUES (99, 'DetalhePdf', 'detalhesPdf', 'detalhe-pdf', 'detalhes-pdf', 'Ficha Infractor Pdf', 'Ficha do Infractor PDF                                ', 2, '', 1, 1, 1, '2019-06-24 12:18:12', '2019-06-24 12:32:51');
+INSERT INTO `adms_paginas` VALUES (101, 'ConsultaProcesso', 'pesquisarProcesso', 'consulta-processo', 'pesquisar-processo', 'Consultar Arguidos Por Processo', 'Pesquisar Arguidos por processo                ', 2, '', 5, 1, 1, '2019-08-28 08:07:23', NULL);
+INSERT INTO `adms_paginas` VALUES (102, 'ConsultaporcrimeComum', 'pesquisarcrimeComum', 'consultaporcrime-comum', 'pesquisarcrime-comum', 'Consultar Arguidos Por Crimes Comuns', 'Pesquisar Arguidos por crimes Comuns                ', 2, '', 5, 1, 1, '2019-08-28 08:30:52', NULL);
+INSERT INTO `adms_paginas` VALUES (103, 'ConsultaporcrimeMilitar', 'pesquisarcrimeMilitar', 'consultaporcrime-militar', 'pesquisarcrime-militar', 'Consultar Arguidos Por Crimes Militar', 'Consultar Arguido Por Crime Militar           ', 2, '', 5, 1, 1, '2019-08-28 08:45:50', NULL);
+INSERT INTO `adms_paginas` VALUES (104, 'Estatistica', 'estatistica', 'estatistica', 'estatistica', 'Infractores', 'Estatistica                                ', 2, '-', 5, 1, 1, '2019-10-09 03:20:20', '2024-02-05 13:33:06');
+INSERT INTO `adms_paginas` VALUES (105, 'RegistInfractorPoli', 'regInfractorPoli', 'regist-infractor-poli', 'reg-infractor-poli', 'Registrar Infractor Policial', 'Registro de Policial                ', 2, 'fa fa-male', 2, 1, 1, '2019-10-16 08:32:43', '2024-02-05 12:03:37');
+INSERT INTO `adms_paginas` VALUES (106, 'InfraPolicia', 'listar', 'infra-policia', 'listar', 'Listar Infractores Policias', 'Listar Policia', 2, '-', 1, 1, 1, '2019-10-16 09:12:24', NULL);
+INSERT INTO `adms_paginas` VALUES (107, 'RegistInfractorPoli', 'estatistica', 'RegistInfractorPoli', 'estatistica', 'Infractores Policiais', '                                estatistica dos policiais                                                ', 1, '', 1, 1, 1, '2019-10-21 11:48:09', '2024-02-05 13:32:10');
+INSERT INTO `adms_paginas` VALUES (108, 'MapageralPolicia', 'fichaReportGeral', 'MapageralPolicia', 'fichaReportGeral', 'Relatórios de Infratores Policiais', '                        Relatorio dos Policias                                                                                                        ', 2, 'fas fa-print', 1, 1, 1, '2019-11-01 14:01:20', '2024-02-05 13:36:10');
+INSERT INTO `adms_paginas` VALUES (109, 'VerInfractorPoli', 'verInfractorPoli', 'ver-infractor-poli', 'verInfractorPoli', 'Ver Perfil Policia', '                Ver Infrator Policia', 1, '-', 5, 1, 1, '2019-11-25 13:46:09', NULL);
+INSERT INTO `adms_paginas` VALUES (110, 'DetalhePoliPdf', 'detalhesPoliPdf', 'detalhe-poli-pdf', 'detalhesPoliPdf', 'Detalhes Do Policial', '                                Detalhe Do Policial', 1, '-', 1, 1, 1, '2019-11-25 13:58:15', NULL);
+INSERT INTO `adms_paginas` VALUES (111, 'ApagarInfractorPoli', 'apagarInfractorPoli', 'apagar-infractor-poli', 'apagarInfractorPoli', 'Apagar Dados do Policial', '                                Apagar Dados do Policial', 1, '-', 4, 1, 1, '2019-11-25 14:38:12', NULL);
+INSERT INTO `adms_paginas` VALUES (112, 'EditarInfractorPoli', 'editInfractorPoli', 'editar-infractor-poli', 'editInfractorPoli', 'Editar Infrator Policial', '                Editar Infrator Policial', 1, '-', 3, 1, 1, '2019-11-25 16:28:13', NULL);
+
+-- ----------------------------
+-- Table structure for adms_postos_policia
+-- ----------------------------
+DROP TABLE IF EXISTS `adms_postos_policia`;
+CREATE TABLE `adms_postos_policia`  (
+  `id` int NOT NULL,
+  `patente_policia` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `ordenador` int NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of adms_postos_policia
+-- ----------------------------
+INSERT INTO `adms_postos_policia` VALUES (0, 'Inspetor', NULL);
+INSERT INTO `adms_postos_policia` VALUES (1, 'Comissario Geral', NULL);
+INSERT INTO `adms_postos_policia` VALUES (2, 'Comissario Chefe', NULL);
+INSERT INTO `adms_postos_policia` VALUES (3, 'Comissario', NULL);
+INSERT INTO `adms_postos_policia` VALUES (4, 'Sub Comissario', NULL);
+INSERT INTO `adms_postos_policia` VALUES (5, 'Supertendente Chefe', NULL);
+INSERT INTO `adms_postos_policia` VALUES (6, 'Supertendente', NULL);
+INSERT INTO `adms_postos_policia` VALUES (7, 'Intendende', NULL);
+INSERT INTO `adms_postos_policia` VALUES (8, 'Inspetor Chefe', NULL);
+INSERT INTO `adms_postos_policia` VALUES (10, 'Sub Inspetor', NULL);
+INSERT INTO `adms_postos_policia` VALUES (11, 'Primeiro Sub Chefe', NULL);
+INSERT INTO `adms_postos_policia` VALUES (12, 'Segundo Sub Chefe', NULL);
+INSERT INTO `adms_postos_policia` VALUES (13, 'Terceiro Sub Chefe', NULL);
+INSERT INTO `adms_postos_policia` VALUES (14, 'Agente de Primeira', NULL);
+INSERT INTO `adms_postos_policia` VALUES (15, 'Agente de Segunda', NULL);
+INSERT INTO `adms_postos_policia` VALUES (16, 'Agente de Terceira', NULL);
+INSERT INTO `adms_postos_policia` VALUES (17, 'Agente', NULL);
+
+-- ----------------------------
+-- Table structure for adms_sits
+-- ----------------------------
+DROP TABLE IF EXISTS `adms_sits`;
+CREATE TABLE `adms_sits`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(40) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `adms_cor_id` int NOT NULL,
+  `created` datetime NOT NULL,
+  `modified` datetime NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of adms_sits
+-- ----------------------------
+INSERT INTO `adms_sits` VALUES (1, 'Ativo', 3, '2018-05-23 00:00:00', NULL);
+INSERT INTO `adms_sits` VALUES (2, 'Inativo', 4, '2018-05-23 00:00:00', NULL);
+INSERT INTO `adms_sits` VALUES (3, 'Analise', 1, '2018-05-23 00:00:00', NULL);
+
+-- ----------------------------
+-- Table structure for adms_sits_pgs
+-- ----------------------------
+DROP TABLE IF EXISTS `adms_sits_pgs`;
+CREATE TABLE `adms_sits_pgs`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `cor` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `created` datetime NOT NULL,
+  `modified` datetime NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of adms_sits_pgs
+-- ----------------------------
+INSERT INTO `adms_sits_pgs` VALUES (1, 'Ativo', 'success', '2018-03-23 00:00:00', NULL);
+INSERT INTO `adms_sits_pgs` VALUES (2, 'Inativo', 'danger', '2018-03-23 00:00:00', NULL);
+INSERT INTO `adms_sits_pgs` VALUES (3, 'Analise', 'primary', '2018-03-23 00:00:00', NULL);
+
+-- ----------------------------
+-- Table structure for adms_sits_usuarios
+-- ----------------------------
+DROP TABLE IF EXISTS `adms_sits_usuarios`;
+CREATE TABLE `adms_sits_usuarios`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(220) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `adms_cor_id` int NOT NULL,
+  `created` datetime NOT NULL,
+  `modified` datetime NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of adms_sits_usuarios
+-- ----------------------------
+INSERT INTO `adms_sits_usuarios` VALUES (1, 'Ativo', 3, '2018-05-23 00:00:00', NULL);
+INSERT INTO `adms_sits_usuarios` VALUES (2, 'Inativo', 5, '2018-05-23 00:00:00', NULL);
+INSERT INTO `adms_sits_usuarios` VALUES (3, 'Aguardando confirmaÃ§Ã£o', 1, '2018-05-23 00:00:00', '2018-06-30 00:32:45');
+INSERT INTO `adms_sits_usuarios` VALUES (4, 'Spam', 4, '2018-06-30 00:17:08', '2019-01-28 13:12:06');
+
+-- ----------------------------
+-- Table structure for adms_tps_pgs
+-- ----------------------------
+DROP TABLE IF EXISTS `adms_tps_pgs`;
+CREATE TABLE `adms_tps_pgs`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `tipo` varchar(40) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `nome` varchar(120) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `obs` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `ordem` int NOT NULL,
+  `created` datetime NOT NULL,
+  `modified` datetime NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of adms_tps_pgs
+-- ----------------------------
+INSERT INTO `adms_tps_pgs` VALUES (1, 'adms', 'Administrativo', 'Core do Administrativo', 1, '2018-05-23 00:00:00', '2018-06-29 22:41:45');
+INSERT INTO `adms_tps_pgs` VALUES (2, 'cpadms', 'Complemento do Administrativo', 'Complementos', 2, '2019-06-03 11:59:54', NULL);
+
+-- ----------------------------
+-- Table structure for adms_unidade_policial
+-- ----------------------------
+DROP TABLE IF EXISTS `adms_unidade_policial`;
+CREATE TABLE `adms_unidade_policial`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `unidade_policial` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `ordem` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of adms_unidade_policial
+-- ----------------------------
+INSERT INTO `adms_unidade_policial` VALUES (1, '8ª Esquadra', NULL);
+INSERT INTO `adms_unidade_policial` VALUES (2, 'Comando Provincial', NULL);
+
+-- ----------------------------
+-- Table structure for adms_usuarios
+-- ----------------------------
+DROP TABLE IF EXISTS `adms_usuarios`;
+CREATE TABLE `adms_usuarios`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(220) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `apelido` varchar(220) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `email` varchar(220) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `usuario` varchar(220) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `senha` varchar(220) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `recuperar_senha` varchar(220) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `chave_descadastro` varchar(220) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `conf_email` varchar(120) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `imagem` varchar(220) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+  `adms_niveis_acesso_id` int NOT NULL,
+  `adms_sits_usuario_id` int NOT NULL,
+  `created` datetime NOT NULL,
+  `modified` datetime NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 30 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of adms_usuarios
+-- ----------------------------
+INSERT INTO `adms_usuarios` VALUES (1, 'FÃ¡bio Calixto', 'Calixto', 'fabiocalixto16@gmail.com', 'devilar', '$2y$10$79R2Dpv4nwPuxBU5RrrZSeUlsfmHIIbir1yOkHjbH.XiUz7h42xYW', NULL, NULL, NULL, '', 1, 1, '2019-01-28 09:33:56', NULL);
+INSERT INTO `adms_usuarios` VALUES (27, 'Jacinto Katimba', 'Augusto', 'jacinto@prog.com', 'jacinto', '$2y$10$RpVBq.wAfXt1Oah7ujmA7.KvOAFZE/WA120OAtvd9/NKWLUDZCiNy', NULL, NULL, NULL, '', 3, 1, '2019-10-16 10:14:41', '2019-11-26 17:24:26');
+INSERT INTO `adms_usuarios` VALUES (28, 'Augusto ', 'Augusto', 'jackatemba@hotmail.com', 'augusto', '$2y$10$o62I4bQGMoSPCarXweYhK.Scs15ogfmmpLSDD/Hx/gGXTGt0pZ2Da', NULL, NULL, NULL, '', 4, 1, '2019-11-26 17:23:51', NULL);
+INSERT INTO `adms_usuarios` VALUES (29, 'Isaac ', 'Macosso', 'nuchomiguel@hotmail.com', 'isaac', '$2a$10$TjF7FwpShKX50rcuMkW4Auq2kHgVtbNF4BvzqBy5koy21Hg.rUs96', NULL, NULL, NULL, NULL, 1, 1, '0000-00-00 00:00:00', NULL);
+
+-- ----------------------------
+-- Table structure for tab_infraccoes
+-- ----------------------------
+DROP TABLE IF EXISTS `tab_infraccoes`;
+CREATE TABLE `tab_infraccoes`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `designacao_infraccao` varchar(255) CHARACTER SET utf8 COLLATE utf8_croatian_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 55 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of tab_infraccoes
+-- ----------------------------
+INSERT INTO `tab_infraccoes` VALUES (17, 'Artigo 5 Nº 1 da NRDM');
+INSERT INTO `tab_infraccoes` VALUES (18, 'Artigo 5 Nº 2 da NRDM');
+INSERT INTO `tab_infraccoes` VALUES (19, 'Artigo 5 Nº 3 da NRDM');
+INSERT INTO `tab_infraccoes` VALUES (20, 'Artigo 5 Nº 4 da NRDM');
+INSERT INTO `tab_infraccoes` VALUES (21, 'Artigo 5 Nº 5 da NRDM');
+INSERT INTO `tab_infraccoes` VALUES (23, 'Artigo 5 Nº 6 da NRDM');
+INSERT INTO `tab_infraccoes` VALUES (24, 'Artigo 5 Nº 7 da NRDM');
+INSERT INTO `tab_infraccoes` VALUES (25, 'Artigo 5 Nº 8 da NRDM');
+INSERT INTO `tab_infraccoes` VALUES (26, 'Artigo 5 Nº 9 da NRDM');
+INSERT INTO `tab_infraccoes` VALUES (27, 'Artigo 5 Nº 10 da NRDM');
+INSERT INTO `tab_infraccoes` VALUES (28, 'Artigo 5 Nº 11 da NRDM');
+INSERT INTO `tab_infraccoes` VALUES (29, 'Artigo 5 Nº 12 da NRDM');
+INSERT INTO `tab_infraccoes` VALUES (30, 'Artigo 5 Nº 13 da NRDM');
+INSERT INTO `tab_infraccoes` VALUES (31, 'Artigo 5 Nº 14 da NRDM');
+INSERT INTO `tab_infraccoes` VALUES (32, 'Artigo 5 Nº 15 da NRDM');
+INSERT INTO `tab_infraccoes` VALUES (33, 'Artigo 5 Nº 16 da NRDM');
+INSERT INTO `tab_infraccoes` VALUES (34, 'Artigo 5 Nº 17 da NRDM');
+INSERT INTO `tab_infraccoes` VALUES (35, 'Artigo 5 Nº 18 da NRDM');
+INSERT INTO `tab_infraccoes` VALUES (36, 'Artigo 5 Nº 19 da NRDM');
+INSERT INTO `tab_infraccoes` VALUES (37, 'Artigo 5 Nº 20 da NRDM');
+INSERT INTO `tab_infraccoes` VALUES (38, 'Artigo 5 Nº 21 da NRDM');
+INSERT INTO `tab_infraccoes` VALUES (39, 'Artigo 5 Nº 22 da NRDM');
+INSERT INTO `tab_infraccoes` VALUES (40, 'Artigo 5 Nº 23 da NRDM');
+INSERT INTO `tab_infraccoes` VALUES (41, 'Artigo 5 Nº 24 da NRDM');
+INSERT INTO `tab_infraccoes` VALUES (42, 'Artigo 5 Nº 25 da NRDM');
+INSERT INTO `tab_infraccoes` VALUES (43, 'Decreto 33/91-Artigo 4º -Nº 1');
+INSERT INTO `tab_infraccoes` VALUES (44, 'Decreto 33/91-Artigo 4º -Nº 2');
+INSERT INTO `tab_infraccoes` VALUES (45, 'Decreto 33/91-Artigo 4º -Nº 3');
+INSERT INTO `tab_infraccoes` VALUES (46, 'Decreto 33/91-Artigo 4º -Nº 4');
+INSERT INTO `tab_infraccoes` VALUES (47, 'Decreto 33/91-Artigo 4º -Nº 5');
+INSERT INTO `tab_infraccoes` VALUES (48, 'Decreto 33/91-Artigo 4º -Nº 6');
+INSERT INTO `tab_infraccoes` VALUES (49, 'Decreto 33/91-Artigo 4º -Nº 7');
+INSERT INTO `tab_infraccoes` VALUES (50, 'Decreto 33/91-Artigo 4º -Nº 8');
+INSERT INTO `tab_infraccoes` VALUES (51, 'Decreto 33/91-Artigo 4º -Nº 9');
+INSERT INTO `tab_infraccoes` VALUES (52, 'Decreto 33/91-Artigo 4º -Nº 10');
+INSERT INTO `tab_infraccoes` VALUES (53, 'Decreto 33/91-Artigo 4º -Nº 11');
+INSERT INTO `tab_infraccoes` VALUES (54, 'Decreto 33/91-Artigo 4º -Nº 12');
+
+-- ----------------------------
+-- Table structure for tab_infratores
+-- ----------------------------
+DROP TABLE IF EXISTS `tab_infratores`;
+CREATE TABLE `tab_infratores`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `adms_condicao_id` int NULL DEFAULT NULL,
+  `nome_infractor` varchar(255) CHARACTER SET utf8 COLLATE utf8_croatian_ci NULL DEFAULT NULL,
+  `n_processo` int NULL DEFAULT NULL,
+  `nome_pai` varchar(255) CHARACTER SET utf8 COLLATE utf8_croatian_ci NULL DEFAULT NULL,
+  `nome_mae` varchar(255) CHARACTER SET utf8 COLLATE utf8_croatian_ci NULL DEFAULT NULL,
+  `numero_bi` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `data_nascimento` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `sexo` int NULL DEFAULT NULL,
+  `nip` int NULL DEFAULT NULL,
+  `cod_patente` int NULL DEFAULT NULL,
+  `cod_Unidade` int NULL DEFAULT NULL,
+  `id_ramo` int NULL DEFAULT NULL,
+  `id_crime_comum` int NULL DEFAULT NULL,
+  `id_crime_militar` int NULL DEFAULT NULL,
+  `id_infracao` int NULL DEFAULT NULL,
+  `data_infracao` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `nome_denuciante` varchar(255) CHARACTER SET utf8 COLLATE utf8_croatian_ci NULL DEFAULT NULL,
+  `esta_preso` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `imagem` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `created` date NULL DEFAULT NULL,
+  `modified` date NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE INDEX `numero_bi`(`numero_bi` ASC) USING BTREE,
+  UNIQUE INDEX `nip`(`nip` ASC) USING BTREE,
+  INDEX `id_infraccoes`(`id_crime_comum` ASC) USING BTREE,
+  INDEX `id_ramo`(`id_ramo` ASC) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 48 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
+
+-- ----------------------------
+-- Records of tab_infratores
+-- ----------------------------
+INSERT INTO `tab_infratores` VALUES (42, 2, 'Madaleno Gloria Augusto', 3, 'Adao Tiago', 'Jaciara Francisco', '121221234LA067', '1992-08-12', 1, 404157922, 23, 10, 3, 12, 16, 18, '2011-03-11', 'Adão Gomes', NULL, '', '2019-11-04', '2019-11-27');
+INSERT INTO `tab_infratores` VALUES (44, 1, 'Maria da Silva JosÃ© ', 2, 'Adao Tiago', 'Jandira Maria Dias', '320451432LA044', '1967-11-03', 2, 324810011, 13, 15, 2, 2, 9, 20, '2017-11-04', 'Orgel', NULL, '', '2019-11-27', '2019-11-28');
+INSERT INTO `tab_infratores` VALUES (45, 1, 'Adolfo  Maria Muteba', 1, 'Adao Tiago', 'Maria Tiago', '984365432CA201', '1987-04-03', 1, 901813215, 18, 17, 1, 9, 15, 34, '2018-09-13', 'Maria', NULL, '', '2019-11-28', '2019-12-01');
+INSERT INTO `tab_infratores` VALUES (46, 1, 'José André Gomes', 2, 'Amarildo Arnold', 'Joana Viera', '212165432CA201', '1989-06-16', 2, 123456789, 18, 12, 4, 1, 2, 25, '2016-09-13', 'Mário Francisco', NULL, NULL, NULL, NULL);
+INSERT INTO `tab_infratores` VALUES (47, 2, 'Adriano Maria Rosa', 3, 'Celestino Maria', 'Maria Rosa', '212165432CA432', '1984-01-24', 1, 321321321, 23, 12, 2, 12, 4, 32, '2016-09-14', 'Francisco André', NULL, NULL, NULL, NULL);
+
+-- ----------------------------
+-- Table structure for tab_infratores_aud
+-- ----------------------------
+DROP TABLE IF EXISTS `tab_infratores_aud`;
+CREATE TABLE `tab_infratores_aud`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `aud_id` int NULL DEFAULT NULL,
+  `acao` int NULL DEFAULT NULL,
+  `aud_nome_infractor` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `aud_n_processo` int NULL DEFAULT NULL,
+  `aud_nome_pai` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `aud_nome_mae` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `aud_numero_bi` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `aud_data_nascimento` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `aud_sexo` int NULL DEFAULT NULL,
+  `aud_nip` int NULL DEFAULT NULL,
+  `aud_cod_patente` int NULL DEFAULT NULL,
+  `aud_cod_Unidade` int NULL DEFAULT NULL,
+  `aud_id_infraccoes` int NULL DEFAULT NULL,
+  `aud_data_infracao` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `aud_nome_ofendido` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `aud_nome_instrutor` varchar(11) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `aud_usuario` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `created` datetime NULL DEFAULT NULL,
+  `modified` datetime NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE INDEX `aud_numero_bi`(`aud_numero_bi` ASC) USING BTREE,
+  UNIQUE INDEX `aud_nip`(`aud_nip` ASC) USING BTREE,
+  INDEX `id_infraccoes`(`aud_id_infraccoes` ASC) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 27 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
+
+-- ----------------------------
+-- Records of tab_infratores_aud
+-- ----------------------------
+INSERT INTO `tab_infratores_aud` VALUES (8, 3, 2, 'fabio mario de vilar calixt', 1, 'yw', 'dfgdfgdfg', '788686868675576', '2001-01-01', NULL, 987654321, NULL, NULL, NULL, NULL, NULL, NULL, 'root@localhost', '2019-06-24 14:26:16', '2019-06-24 14:26:16');
+INSERT INTO `tab_infratores_aud` VALUES (10, 4, 1, 'Jose Raimundo calixto lufafgdf', 1, 'jklsdfjklasdfjklasdfkl', 'sjkljklsdfjklsfgjkl', '309485048509348', '2000-12-31', NULL, 123456789, NULL, NULL, NULL, NULL, NULL, NULL, 'root@localhost', '2019-06-24 14:27:32', '2019-06-24 14:27:32');
+INSERT INTO `tab_infratores_aud` VALUES (11, 6, 2, 'Andre Zamba Filipe', 1, 'Jose', 'Ana', '789378923489234', '2000-12-31', NULL, 990978078, NULL, NULL, NULL, NULL, NULL, NULL, 'root@localhost', '2019-06-24 14:50:32', '2019-06-24 14:50:32');
+INSERT INTO `tab_infratores_aud` VALUES (12, 7, 2, 'Pedro Jose Gomes', 1, 'kljasdfjkl', 'klsdjklasd', 'sdfkl3434093408', '2000-12-31', NULL, 232234234, NULL, NULL, NULL, NULL, NULL, NULL, 'root@localhost', '2019-06-26 10:06:09', '2019-06-26 10:06:09');
+INSERT INTO `tab_infratores_aud` VALUES (14, 2, 1, 'aaaaaaaaaaaaaa', 2, 'dssadf', 'dsaaf', '345453sdf', NULL, NULL, 4343, NULL, NULL, NULL, NULL, NULL, NULL, 'root@localhost', '2019-08-27 23:02:37', '2019-08-27 23:02:37');
+INSERT INTO `tab_infratores_aud` VALUES (18, 8, 1, 'Jose Raimundo calixto luzinery', 1, 'Germano Freitas de Matos', 'Zulmira Artur Barbosa', '023984230942039', '2001-01-01', NULL, 100977407, NULL, NULL, NULL, NULL, NULL, NULL, 'root@localhost', '2019-10-16 07:43:32', '2019-10-16 07:43:32');
+INSERT INTO `tab_infratores_aud` VALUES (20, 9, 1, 'Jacinto Augusto Catimba', 1, 'Germano Freitas de Matos', 'Zulmira Artur Barbosa', '000378298HA093', '', NULL, 939349343, NULL, NULL, NULL, NULL, NULL, NULL, 'root@localhost', '2019-10-16 08:23:03', '2019-10-16 08:23:03');
+INSERT INTO `tab_infratores_aud` VALUES (21, 9, 2, 'Jacinto Katimba', 1, 'TomÃ¡s Katimba', 'NoÃ©mia Katimba', '00498118NE043', '2000-02-02', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, 'root@localhost', '2019-10-21 12:15:28', '2019-10-21 12:15:28');
+INSERT INTO `tab_infratores_aud` VALUES (23, 11, 1, 'Adolfo  Maria Muteba', 2, 'Joaquim Pedro', 'Jandira Maria', '00321356UG032', '1967-03-12', NULL, 209813456, NULL, NULL, NULL, NULL, NULL, NULL, 'root@localhost', '2019-10-25 07:35:48', '2019-10-25 07:35:48');
+INSERT INTO `tab_infratores_aud` VALUES (26, 13, 1, 'Daniel Sitalo Tiago', 2, 'Adao Tiago', 'Maria Tiago', '00241452LA043', '1992-05-11', NULL, 100998134, NULL, NULL, NULL, NULL, NULL, NULL, 'root@localhost', '2019-10-25 07:38:25', '2019-10-25 07:38:25');
+
+-- ----------------------------
+-- Table structure for tab_infratores_policia
+-- ----------------------------
+DROP TABLE IF EXISTS `tab_infratores_policia`;
+CREATE TABLE `tab_infratores_policia`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nome_infractor` varchar(255) CHARACTER SET utf8 COLLATE utf8_croatian_ci NULL DEFAULT NULL,
+  `n_processo` int NULL DEFAULT NULL,
+  `nome_pai` varchar(255) CHARACTER SET utf8 COLLATE utf8_croatian_ci NULL DEFAULT NULL,
+  `nome_mae` varchar(255) CHARACTER SET utf8 COLLATE utf8_croatian_ci NULL DEFAULT NULL,
+  `numero_bi` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `data_nascimento` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `sexo` int NULL DEFAULT NULL,
+  `nip` int NULL DEFAULT NULL,
+  `cod_posto_policia` int NULL DEFAULT NULL,
+  `cod_unidade_policial` int NULL DEFAULT NULL,
+  `id_crime_comum` int NULL DEFAULT NULL,
+  `id_crime_militar` int NULL DEFAULT NULL,
+  `id_infracao` int NULL DEFAULT NULL,
+  `data_infracao` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `nome_denuciante` varchar(255) CHARACTER SET utf8 COLLATE utf8_croatian_ci NULL DEFAULT NULL,
+  `esta_preso` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `imagem` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `created` date NULL DEFAULT NULL,
+  `modified` date NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE INDEX `numero_bi`(`numero_bi` ASC) USING BTREE,
+  UNIQUE INDEX `nip`(`nip` ASC) USING BTREE,
+  INDEX `id_infraccoes`(`id_crime_comum` ASC) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
+
+-- ----------------------------
+-- Records of tab_infratores_policia
+-- ----------------------------
+INSERT INTO `tab_infratores_policia` VALUES (12, 'Mariano da Siva Zacarias', 3, 'Henriques José Zacarias', 'Mariza Madalena da Siva Zacarias', '00498118NE043', '1999-03-12', 1, 101010101, 4, 1, 2, 16, 25, '2017-03-12', 'Andrea', NULL, '', '2019-10-21', NULL);
+INSERT INTO `tab_infratores_policia` VALUES (13, 'Argelina Madalena Maria', 1, 'Adao Tiago', 'Maria Tiago', '123414562LA341', '1994-02-12', 2, 432810043, 17, 2, 12, 15, 38, '2016-05-23', 'AntÃ³nio Martins', NULL, '', '2019-12-02', NULL);
+INSERT INTO `tab_infratores_policia` VALUES (14, 'Gelson Chivinda', 6, 'Manuel Teus', 'Silva Teus', '006542323BA224', '2004-01-16', 1, 10102634, 11, 2, 10, 11, 29, '2024-02-07', 'Ana Campos Mimanda', NULL, '', '2024-02-16', NULL);
+
+-- ----------------------------
+-- Table structure for tb_ano_instrucao
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_ano_instrucao`;
+CREATE TABLE `tb_ano_instrucao`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `ano` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 22 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of tb_ano_instrucao
+-- ----------------------------
+INSERT INTO `tb_ano_instrucao` VALUES (1, '2010');
+INSERT INTO `tb_ano_instrucao` VALUES (2, '2011');
+INSERT INTO `tb_ano_instrucao` VALUES (3, '2012');
+INSERT INTO `tb_ano_instrucao` VALUES (4, '2013');
+INSERT INTO `tb_ano_instrucao` VALUES (5, '2014');
+INSERT INTO `tb_ano_instrucao` VALUES (6, '2015');
+INSERT INTO `tb_ano_instrucao` VALUES (7, '2016');
+INSERT INTO `tb_ano_instrucao` VALUES (8, '2017');
+INSERT INTO `tb_ano_instrucao` VALUES (9, '2018');
+INSERT INTO `tb_ano_instrucao` VALUES (10, '2019');
+INSERT INTO `tb_ano_instrucao` VALUES (11, '2020');
+INSERT INTO `tb_ano_instrucao` VALUES (12, '2021');
+INSERT INTO `tb_ano_instrucao` VALUES (13, '2022');
+INSERT INTO `tb_ano_instrucao` VALUES (14, '2023');
+INSERT INTO `tb_ano_instrucao` VALUES (15, '2024');
+INSERT INTO `tb_ano_instrucao` VALUES (16, '2025');
+INSERT INTO `tb_ano_instrucao` VALUES (17, '2026');
+INSERT INTO `tb_ano_instrucao` VALUES (18, '2027');
+INSERT INTO `tb_ano_instrucao` VALUES (19, '2028');
+INSERT INTO `tb_ano_instrucao` VALUES (20, '2029');
+INSERT INTO `tb_ano_instrucao` VALUES (21, '20230');
+
+-- ----------------------------
+-- Table structure for tb_auditoria
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_auditoria`;
+CREATE TABLE `tb_auditoria`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `usuario` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `codigo_infractor` int NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of tb_auditoria
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for tb_estado_processo
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_estado_processo`;
+CREATE TABLE `tb_estado_processo`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `descricao_proc` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `data` datetime NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `id_militar` int NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 9 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of tb_estado_processo
+-- ----------------------------
+INSERT INTO `tb_estado_processo` VALUES (1, 'Em Instrucao', NULL, NULL);
+INSERT INTO `tb_estado_processo` VALUES (2, 'Concluso', NULL, NULL);
+INSERT INTO `tb_estado_processo` VALUES (3, 'Arquivado', NULL, NULL);
+INSERT INTO `tb_estado_processo` VALUES (4, 'Remetido', '2018-10-17 08:25:34', NULL);
+INSERT INTO `tb_estado_processo` VALUES (5, 'Aguarda Producao de melhor prova', NULL, NULL);
+INSERT INTO `tb_estado_processo` VALUES (7, 'Decidido', '2018-10-17 08:25:54', NULL);
+INSERT INTO `tb_estado_processo` VALUES (8, 'Remessa a Orgãos', NULL, NULL);
+
+-- ----------------------------
+-- Table structure for tb_patente
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_patente`;
+CREATE TABLE `tb_patente`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `patente` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `Cod_Classe` int NOT NULL,
+  `Cod_Tipo_Forca` int NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 24 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of tb_patente
+-- ----------------------------
+INSERT INTO `tb_patente` VALUES (1, 'General de Exercito', 1, 1);
+INSERT INTO `tb_patente` VALUES (2, 'General CEMR/CAdEMG', 1, 1);
+INSERT INTO `tb_patente` VALUES (3, ' General/Almirante', 1, 1);
+INSERT INTO `tb_patente` VALUES (4, 'Tenente General/Vice Almirante', 1, 1);
+INSERT INTO `tb_patente` VALUES (5, 'Brigadeiro/Contra Almirante', 1, 1);
+INSERT INTO `tb_patente` VALUES (6, ' Coronel/Capitao de Mar e Guerra', 2, 1);
+INSERT INTO `tb_patente` VALUES (7, 'Tenente Coronel/Capitao de Fragata', 2, 1);
+INSERT INTO `tb_patente` VALUES (8, 'Major/Capitao de Corveta', 2, 1);
+INSERT INTO `tb_patente` VALUES (9, 'Capitao/Tenente de Navio', 3, 1);
+INSERT INTO `tb_patente` VALUES (10, 'Tenente/Tenente de Fragata', 4, 1);
+INSERT INTO `tb_patente` VALUES (11, 'SubTenente/Tenente de Corveta', 4, 1);
+INSERT INTO `tb_patente` VALUES (12, 'Aspirante/Guarda Marinha', 4, 1);
+INSERT INTO `tb_patente` VALUES (13, 'Sargento Maior', 5, 1);
+INSERT INTO `tb_patente` VALUES (14, 'Sargento Chefe', 5, 1);
+INSERT INTO `tb_patente` VALUES (15, 'Sargento Ajudante', 5, 1);
+INSERT INTO `tb_patente` VALUES (16, 'Primeiro Sargento', 5, 1);
+INSERT INTO `tb_patente` VALUES (17, 'Segundo Sargento', 5, 1);
+INSERT INTO `tb_patente` VALUES (18, 'Sub-sargento', 5, 1);
+INSERT INTO `tb_patente` VALUES (19, 'Primeiro Cabo/Cabo', 6, 1);
+INSERT INTO `tb_patente` VALUES (20, 'Segundo Cabo/Marinheiro', 6, 1);
+INSERT INTO `tb_patente` VALUES (21, 'Soldado/Grumete', 6, 1);
+INSERT INTO `tb_patente` VALUES (22, 'Recruta', 6, 1);
+INSERT INTO `tb_patente` VALUES (23, 'Civil', 0, NULL);
+
+-- ----------------------------
+-- Table structure for tb_processo
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_processo`;
+CREATE TABLE `tb_processo`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `processo` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `situacaoprocesso_id` int NULL DEFAULT NULL,
+  `anoinstrucao_id` int NULL DEFAULT NULL,
+  `instrutor` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `created` datetime NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `modified` datetime NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE INDEX `processo`(`processo` ASC) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of tb_processo
+-- ----------------------------
+INSERT INTO `tb_processo` VALUES (1, '2323', 1, 1, NULL, '2019-01-29 09:41:04', NULL);
+INSERT INTO `tb_processo` VALUES (2, '1001', 3, 3, 'Jacinto', '2019-10-23 08:51:47', NULL);
+INSERT INTO `tb_processo` VALUES (3, '1000', 4, 1, 'Jair Fonseca', '2019-10-25 11:34:44', NULL);
+INSERT INTO `tb_processo` VALUES (4, '12344321', 1, 2, 'Teste2024', '2024-02-05 14:55:37', NULL);
+INSERT INTO `tb_processo` VALUES (6, '123443', 2, 14, 'Isaac Holiver', '2024-02-16 08:38:52', NULL);
+
+-- ----------------------------
+-- Table structure for tb_processo_historico
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_processo_historico`;
+CREATE TABLE `tb_processo_historico`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `processo` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `user` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `created` datetime NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `modified` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of tb_processo_historico
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for tb_ramo
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_ramo`;
+CREATE TABLE `tb_ramo`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `descricao_ramo` varchar(55) CHARACTER SET utf8 COLLATE utf8_croatian_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_croatian_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of tb_ramo
+-- ----------------------------
+INSERT INTO `tb_ramo` VALUES (1, 'Estado Maior General');
+INSERT INTO `tb_ramo` VALUES (2, 'Exército');
+INSERT INTO `tb_ramo` VALUES (3, 'Força Aéria');
+INSERT INTO `tb_ramo` VALUES (4, 'Marinha de Gerra');
+INSERT INTO `tb_ramo` VALUES (5, NULL);
+
+-- ----------------------------
+-- Table structure for tb_sexo
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_sexo`;
+CREATE TABLE `tb_sexo`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `sexo` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of tb_sexo
+-- ----------------------------
+INSERT INTO `tb_sexo` VALUES (1, 'Masculino');
+INSERT INTO `tb_sexo` VALUES (2, 'Feminino');
+
+-- ----------------------------
+-- Table structure for tb_text
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_text`;
+CREATE TABLE `tb_text`  (
+  `id` int NULL DEFAULT NULL,
+  `text` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of tb_text
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for tb_u_e_o
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_u_e_o`;
+CREATE TABLE `tb_u_e_o`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `designacao_Unidade` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `Cod_Ramo` int NOT NULL,
+  `Cod_DIRPrincipal` int NOT NULL,
+  `cod_classificacao` int NOT NULL,
+  `cod_municipio` int NULL DEFAULT NULL,
+  `cod_regiao` int NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `cod_municipio`(`cod_municipio` ASC) USING BTREE,
+  INDEX `Cod_Ramo`(`Cod_Ramo` ASC) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 415 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of tb_u_e_o
+-- ----------------------------
+INSERT INTO `tb_u_e_o` VALUES (1, 'GAB.CEMGFAA', 1, 8, 3, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (2, 'GAB.CEMGADJ.ED.PAT', 1, 8, 3, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (3, 'GAB.CEMGADJ.OP', 1, 8, 3, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (4, 'GAB.CONSELHEIROS', 1, 8, 3, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (5, 'TRIBUNAL SUPREMO', 1, 8, 3, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (6, 'PROCURADORIA', 1, 8, 3, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (7, 'INSPECCAO EMG', 1, 8, 3, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (8, 'GAB.VCEMG.LOGISTICO', 1, 8, 3, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (9, 'GAB.VCEMG.SOCIAL', 1, 8, 3, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (10, 'CSDM', 1, 8, 3, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (11, 'DPEP', 1, 1, 3, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (12, 'DPPO', 1, 2, 3, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (13, 'DPPQ', 1, 3, 3, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (14, 'DPPTE', 1, 4, 3, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (15, 'DPO', 1, 5, 3, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (16, 'DSGCM', 1, 8, 3, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (17, 'DPAT-Direccao Principal de Armamento e Tecnica', 1, 6, 3, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (18, 'ESG-Escola Superior de Guerra', 1, 8, 3, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (19, 'DSS', 1, 0, 3, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (20, 'HMP-Hospital Militar Principal', 1, 8, 3, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (21, 'DPL', 1, 7, 3, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (22, 'BCA NUMERO2', 1, 0, 3, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (23, 'BCA NUMERO3', 1, 0, 3, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (24, 'DAF', 1, 8, 3, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (25, 'DPJM', 1, 0, 3, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (26, 'DPM-Direcao de Policia Militar', 1, 0, 3, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (27, 'DSP', 1, 8, 3, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (28, 'DTLECOM-Direcao de Telecomunicacao', 1, 8, 3, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (29, 'CENTRO PERMANENTE.TELECOM', 1, 8, 3, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (30, 'Centro de Correio  Militar', 1, 8, 3, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (31, 'Deposito Central de  Meios de Telecomunicoes-DCMT', 1, 8, 3, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (32, '6 DIRECCAO', 1, 8, 3, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (33, 'ISTM-Instituto Superior Tecnico Militar', 1, 8, 3, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (34, 'DOI', 1, 8, 3, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (35, 'D.G.PSICOL', 1, 8, 3, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (36, 'GICI', 1, 8, 3, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (37, 'DEIM', 1, 8, 3, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (38, 'Museu Nacional de Historia Militar', 1, 8, 3, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (39, 'Gabinente Juridico', 1, 8, 3, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (40, 'DI-Direccao de Informatica', 1, 8, 3, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (41, 'UA', 1, 8, 3, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (42, 'ARQUIVO GERAL MILITAR', 1, 8, 3, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (43, 'BRIFE-Brigada de Forcas Especiais', 1, 8, 3, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (44, 'EFFE-Escola de Formacao de Forcas Especiais', 1, 8, 3, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (45, 'Estado-Maior General', 1, 0, 3, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (46, 'Comando da RegiÃ£o Militar de Luanda', 1, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (47, 'Centro Permanente de Telecomunicacoes', 1, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (48, 'BATOP-Brigada de Apoio Tactico Operacional ', 1, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (49, 'Regimento de Destinacao Especial', 1, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (50, 'Cologio Militar', 1, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (51, 'Escola de Especialistas Menores de Logistica', 1, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (52, ' Presidio Militar ', 1, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (53, 'Centro de Criptologia', 1, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (54, 'Centro de Radio Escuta', 1, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (55, 'Junta Medica Militar Central', 1, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (56, 'Laboratorio Militar de Produtos Quimicos e Farma', 1, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (57, 'Centro Militar de Higiene e Epidemiologia', 1, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (58, 'Farmacia Central', 1, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (59, 'BCA-Base Central de Abastecimento Numero 1', 1, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (60, 'Batalhao de Transporte Rodoviario', 1, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (61, 'Batalhao de Apoio Medico', 1, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (62, 'Unidade Penitenciaria de Prisao Preventiva', 1, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (63, 'Unidade de Cuidados Continuados da Regiao Militar', 1, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (64, 'Laboratorio Central de Metrologia', 1, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (65, 'Regimento de Policia Militar', 1, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (66, 'Comando e Estado-Maior do Exercito', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (67, 'Comando da Servidao Militar de Maria Teresa', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (68, 'Campo Militar do Grafanil', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (69, 'DPCIM-Direcao Principal de Contra Inteligencia Militar', 1, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (70, 'SISM', 1, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (71, 'DPIMO', 1, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (72, 'DEIM', 1, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (73, 'RMAT', 1, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (74, 'DMRI', 1, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (75, 'BRIFE-Brigada de Forcas Especiais_FN', 1, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (76, 'EFFE-Escola de Formacao de Forcas Especiais_FN', 1, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (77, 'MINDEN', 1, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (78, 'Museu do Exercito', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (79, 'Messe Central do Exercito', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (80, 'Clube Central do Exercito', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (81, 'Regimento de Manutencao de Armamento e Tecnica', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (82, 'Oficinas Gerais de Reparacao', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (83, 'Batalhao de Operacoes de Manutencao de Paz', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (84, 'Batalhao de Telecomunicacoes', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (85, 'Batalhao de Inteligencia Militar Operativa', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (86, 'Batalhao de Inteligencia Radiotecnica e Guerra ', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (87, 'Batalhao de Protecao Nuclear, Biologico e Quimica', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (88, 'Base de Reparacao Geral de Armamento, Artilharia', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (89, 'Deposito Central de Abastecimento (Luanda)', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (90, 'Deposito Central de Abastecimento (Lobito)', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (91, 'DepositoCentral de Abastecimento (Namibe)', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (92, 'Clinica do Exercito', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (93, 'Deposito Principal de Material de Guerra', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (94, 'Servicos Funerarioss Centrais das FAA', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (95, 'Academia do Exercito', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (96, 'Instituto Superior do Exercito', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (97, 'Escola Inter-armas de Oficiais (Ntola)', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (98, 'Escola Inter-armas de Sargentos', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (99, 'Escola de Formacao de Condutores', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (100, 'Escola Pratica de Saude', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (101, 'Escola Pratica de Armamento e Electromecanica', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (102, 'Escola de Especializacao de Artilharia e DAA', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (103, 'Escola Pratica de Construcao', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (104, 'Centro de Instrucao de Tropas (Santa EulÃ¡lia)', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (105, 'Centro de Instrucao de Tropas (Luena)', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (106, 'Centro de Instrucao de Tropas (Matala)', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (107, 'Poligono Central do Exercito', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (108, 'Comando do 1º Corpo de Exercito', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (109, 'Comando do 2º Corpo de Exercito', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (110, 'Comando da Regiao Militar Cabinda', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (111, 'Grupo de Artilharia de Campanha', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (112, 'Grupo de Defesa Antiaerea', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (113, 'Companhia de Engenharia e Sapadores', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (114, 'Companhia de Reconhecimento', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (115, 'Companhia de Telecomunicacoes', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (116, 'Companhia de Logistica', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (117, 'Companhia de Manutencao', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (118, 'Companhia de Policia Militar', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (119, 'Hospital Militar Regional', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (120, 'Deposito de Material de Guerra', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (121, 'Deposito Regional de Produtos Quimicos e Farmacia', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (122, 'Poligono de Instrucao Inter-armas', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (123, 'Banda de Musica', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (124, 'Unidade de Prisao Preventiva', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (125, '1ª Divisao de Infantaria', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (126, 'Comando da 1ª Divisao de Infantaria', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (127, '10ª Brigada de Infantaria Motorizada', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (128, '11ª Brigada de Infantaria', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (129, '12ª Brigada de Infantaria', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (130, 'Regimento de Artilharia de Campanha', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (131, 'Regimento de Defesa Antiaerea', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (132, 'Grupo de Artilharia Antitanque', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (133, 'Batalhao de Inteligencia Militar Operativa', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (134, 'Batalhao de Engenharia e Sapadores', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (135, 'Batalhao de Protecao Nuclear, Biologica e Qua', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (136, 'Batalhao de Logistica', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (137, 'Batalhao de Reparacao', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (138, 'Batalhao Medico', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (139, 'Deposito de Material de Guerra', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (140, 'Companhia de Comando e Servicos', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (141, 'Comando da Regiao Militar Norte', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (142, '20ª Brigada de Infantaria Motorizada', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (143, '51ª Brigada de Infantaria', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (144, '70ª Brigada de Infantaria Motorizada', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (145, 'Grupo de Artilharia de Campanha', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (146, 'Grupo de Defesa Antiaerea', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (147, 'Batalhao de Engenharia e Sapadores', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (148, 'Companhia de Reconhecimento', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (151, 'Batalhao de Manutencao de Armamento e Tecnica', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (152, 'Batalhao de Policia Militar', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (153, 'Enfermaria Militar Regional', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (159, '2ª Divisao de Infantaria', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (160, 'Comando da 2ª Divisao de Infantaria', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (161, '22ª Brigada de Infantaria', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (162, '42ª Brigada de Infantaria', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (163, '52ª Brigada de Infantaria', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (164, '71ª Brigada de Infantaria', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (165, 'Regimento de Artilharia de Campanha', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (166, 'Regimento de Defesa Antiaerea', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (167, 'Grupo de Artilharia Anti-tanque', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (176, 'Comando da Regiao Militar Leste', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (177, '30ª Brigada de Infantaria Motorizada', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (178, '62ª Brigada de Infantaria', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (179, '72ª Brigada de Infantaria Motorizada', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (180, 'Grupo de Artilharia de Campanha', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (181, 'Grupo de Defesa Antiaerea', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (182, 'Batalhao de Engenharia e Sapadores', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (183, 'Companhia de Reconhecimento', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (190, 'Poligono de Instrucao Inter-armas', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (192, 'Presidio Militar do Luena', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (193, '3ª Divisao de Infantaria', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (194, 'Comando da 3ª Divisao de Infantaria', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (195, '31ª Brigada de Infantaria', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (196, '32ª Brigada de Infantaria', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (197, '75ª Brigada de Infantaria Motorizada', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (198, 'Regimento de Artilharia de Campanha', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (199, 'Regimento de Defesa Antiaerea', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (200, 'Grupo de Artilharia Anti-tanque', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (201, 'Batalhao de Inteligencia Militar Operativa', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (202, 'Batalhao de Engenharia e Sapadores', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (203, 'Batalhao de Protecao Nuclear, Biologica e Quimica', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (204, 'Batalhao de Logistica', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (208, 'Companhia de Comando e Servisos', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (209, 'Comando da Regiao Militar Centro', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (210, '73ª Brigada de Infantaria Motorizada', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (211, '74ª Brigada de Infantaria Motorizada', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (212, 'Grupo de Artilharia de Campanha', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (213, 'Grupo de Defesa Antiaerea', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (214, 'Batalhao de Engenharia e Sapadores', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (215, 'Companhia de Reconhecimento', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (216, 'Companhia de Telecomunicacoes', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (217, 'Batalhao de Logistica', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (218, 'Batalhao de Manutencao de Armamento e Tecnica', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (219, 'Batalhao de Policia Militar', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (220, 'Deposito de Material de Guerra', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (221, 'Deposito Regional de Produtos Quimicos e Farmacia', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (222, 'PolÃ­gono de Instrucao  Inter-armas', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (223, 'Banda de Musica', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (224, 'Presidio Militar do Huambo', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (225, '4ª Divisao de Infantaria', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (226, 'Comando da 4ª Divisao de Infantaria', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (227, '40ª Brigada de Infantaria', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (228, '41ª Brigada de Infantaria Motorizada', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (229, 'Regimento de Artilharia de Campanha', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (230, 'Regimento de Defesa Antiaerea', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (231, 'Grupo de Artilharia Anti-tanque', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (232, 'Batalhao de Inteligencia Militar Operativa', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (233, 'Batalhao de Engenharia e Sapadores', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (234, 'Batalhao de Protecao Nuclear, Biologica e Quimica', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (235, 'Batalhao de Logistica', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (236, 'Batalhao de Reparacao', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (237, 'Batalhao Medico', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (238, 'Deposito de Material de Guerra', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (239, 'Companhia de Comando e Servisos', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (240, 'Comando da Regiao  Militar Sul', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (241, 'Grupo de Artilharia de Campanha', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (242, 'Grupo de Defesa Antiaerea', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (243, 'Batalhao de Engenharia e Sapadores', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (244, 'Companhia de Reconhecimento', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (245, 'Companhia de Telecomunicacoes', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (246, 'Batalhao de Logistica', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (247, 'Batalhao de Manutencao de Armamento e Tecnica', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (248, 'Batalhao de Policia Militar', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (249, 'Hospital Militar Regional', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (250, 'Deposito de Material de Guerra', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (251, 'Deposito Regional de Produtos Quimicos e Farmacia', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (252, 'Poligono de Instrucao Inter-armas', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (253, 'Banda de Musica', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (254, '5ª Divisao de Infantaria', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (255, 'Comando da 5ª Divisao de Infantaria', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (256, '21ª Brigada de Infantaria', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (257, '50ª Brigada de Infantaria Motorizada', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (258, 'Regimento de Artilharia de Campanha', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (259, 'Regimento de Defesa Antiaerea', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (260, 'Grupo de Artilharia Anti-tanque', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (261, 'Batalhao de Inteligencia Militar Operativa', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (262, 'Batalhao de Engenharia e Sapadores', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (263, 'Batalhao de Protecao Nuclear, Biologica e Quimica', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (264, 'Batalhao de Logistica', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (265, 'Batalhao de Reparacao', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (266, 'Batalhao Medico', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (267, 'Deposito de Material de Guerra', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (268, 'Companhia de Comando e Servisos', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (269, '6ª Divisao de Infantaria', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (270, 'Comando da 6ª Divisao de Infantaria', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (271, '60ª Brigada de Infantaria Motorizada', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (272, '61ª Brigada de Infantaria Motorizada', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (273, 'Regimento de Artilharia de Campanha', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (274, 'Regimento de Defesa Antiaerea', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (275, 'Grupo de Artilharia Anti-tanque', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (276, 'Batalhao de Inteligencia Militar Operativa', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (277, 'Batalhao de Engenharia e Sapadores', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (278, 'Batalhao de Protecao  Nuclear, Biologica e Quimica', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (279, 'Batalhao de Logistica', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (280, 'Batalhao de Reparacao', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (281, 'Batalhao Medico', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (282, 'Deposito de Material de Guerra', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (283, 'Companhia de Comando e Servisos', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (284, 'Comando e Estado-Maior da Forca Aerea', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (285, 'Centro de Criptologia da Forca Aerea', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (286, 'Deposito Central de Abastecimento', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (287, 'Brigada de Engenharia de Aerodromo', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (288, 'Esquadra Independente de Helicopteros', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (289, 'Esquadra de Reconhecimento e Assalto', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (290, 'Centro de Psicologia', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (291, 'Clinica da Forca Aerea', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (292, 'Centro de Medicina Aeronautica', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (293, 'Laboratorio Central de Combustiveis e Lubrifican', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (294, 'Centro Principal de Telecomunicacoes da Forca Aerea', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (295, 'Banda de Musica', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (296, 'Museu da Forca Aerea', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (297, 'Companhia de Serviso de Pessoal', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (298, 'Companhia de Transportes', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (299, 'Centro de Uniformizacao e Treino', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (300, 'Deposito Central de Material', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (301, 'Messe Central da Forca Aerea', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (302, 'Instituto Superior da Forca Aerea', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (303, 'Academia Militar da Forca Aerea', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (304, 'Escola Militar de Aeronautica', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (305, 'Escola de Armas e Servisos da Forca Aerea', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (306, 'Centro de Instrucao de Tropas da Forca  Aerea', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (307, 'Oficina de Reparacao Auto', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (308, 'Oficinas Gerais de Reparacao Tecnica de DAA e T', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (309, 'Oficina de Manutencao Tecnica de Aviacao', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (310, 'Comando e Estado-Maior da Regiao Aerea Norte', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (311, 'Comando Operacional de Aviacao de Transporte \"CO', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (312, 'Regimento Aereo de Helicopteros', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (313, 'Regimento de Defesa Antiaerea  (Luanda)', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (314, 'Regimento de Defesa Antiaerea (Cabinda)', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (315, 'Regimento de Defesa Antiaerea  (Soyo)', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (316, 'Regimento de Tropas Radiotecnico', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (317, 'Grupo Independente de Defesa Antiaerea (Capanda)', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (318, 'Grupo Independente de Defesa Antiaerea  (Dundo)', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (319, 'Grupo Independente de Defesa Antiaerea  (Saurimo)', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (320, 'Grupo Independente de Defesa Antiaerea  (Luena)', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (321, 'Base Aerea (Luanda)', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (322, 'Base Aerea (Saurimo)', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (323, 'Base Aerea (Nzeto)', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (324, 'Aerodromos de Manobra (Luena)', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (325, 'Aerodromos de Manobra (Cabinda)', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (326, 'Aerodromos de Manobra (Malanje)', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (327, 'Aerodromos de Manobra (Cazombo)', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (328, 'Batalhao de Engenharia de Aerodromos', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (329, 'Centro de Telecomunicacoes da Regiao Aerea', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (330, 'Enfermaria Regional', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (331, 'Messe Regional', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (332, 'Comando e Estado-Maior da Regiao Aerea Sul', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (333, 'Regimento Aereo de Casa', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (334, 'Regimento Aereo de Casa Bombardeiro', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (335, 'Regimento de Defesa Antiaerea (Lobito)', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (336, 'Regimento de Defesa Antiaerea (Lubango)', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (337, 'Regimento de Defesa Antiaerea (Namibe)', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (338, 'Regimento de Tropas Radiotecnico', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (339, 'Grupo Independente de Defesa Antiaerea (Cahama)', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (340, 'Grupo Independente de Defesa Antiaerea (Menongue)', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (341, 'Aerodromos de Manobra (Huambo)', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (342, 'Aerodromos de Manobra (Menongue)', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (343, 'Aerodromos de Manobra (Namibe)', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (344, 'Aerodromos de Manobra (Cahama)', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (345, 'Batalhao de Engenharia de Aerodromos', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (346, 'Centro de Telecomunicacoes da Regiao Aerea', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (347, 'Enfermaria Regional', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (348, 'Messe Regional', 3, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (349, 'Comando e Estado-Maior da Marinha de Guerra', 4, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (350, 'Esquadra Naval Operacional', 4, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (351, 'Brigada de Fuzileiros Navais', 4, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (352, 'Brigada de Navios de Luanda', 4, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (353, 'Esquadrilha Independente de Submarinos', 4, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (354, 'Esquadrilha Independente de Navios Hidrografia', 4, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (355, 'Esquadrilha Independente de Navios de Reconhecimen', 4, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (356, 'Esquadra de Aviacao Naval', 4, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (357, 'Centro de Telecomunicacoes da Marinha', 4, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (358, 'Centro de Criptologia da Marinha', 4, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (359, 'Oficina de Armamento Submarino', 4, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (360, 'Oficina de Misseis', 4, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (361, 'Companhia de Transporte', 4, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (362, 'Deposito Central de Abastecimento', 4, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (363, 'Unidade Naval de Destinacao Especial', 4, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (364, 'Clinica da Marinha', 4, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (365, 'Estaleiro Naval', 4, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (366, 'Estaleiro de Engenharia e Infra-estruturas', 4, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (367, 'Banda de Musica', 4, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (368, 'Museu da Marinha de Guerra', 4, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (369, 'Instituto Superior da Marinha de Guerra', 4, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (370, 'Academia Naval', 4, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (371, 'Escola de Especialistas Navais', 4, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (372, 'Escola de Fuzileiros Navais', 4, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (373, 'Escola de Oficiais da Marinha de Guerra', 4, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (374, 'Escola de Tecnologias Navais', 4, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (375, 'Comando da Regiao Naval Norte', 4, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (376, 'Comando Naval Cabinda', 4, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (377, 'Base Naval Norte (Kinkakala)', 4, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (378, 'Brigada de Navios do Soyo', 4, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (379, 'Esquadrilha de Navios e Lanchas de Patrulha e Fisc', 4, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (380, 'Base Costeira (Cabinda)', 4, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (381, 'Base Costeira (Soyo)', 4, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (382, 'Regimento de Defesa Costeira', 4, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (383, 'Centro Fixo de Telecomunicacoes', 4, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (384, 'Centro de Inteligencia Radio-Electronica', 4, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (385, 'Batalhao Radiotecnico de Observacao Costeira', 4, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (386, 'Companhia de Protecao Nuclear, Bioligica e Quimica', 4, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (387, 'Unidade de Mergulhadores (Kinkakala)', 4, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (388, 'Banda de Musica', 4, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (389, 'Enfermaria Militar', 4, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (390, 'Comando da Regiao Naval Sul', 4, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (391, 'Base Naval Sul (Namibe)', 4, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (392, 'Brigada de Navios do Namibe', 4, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (393, 'Base Costeira (Lobito)', 4, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (394, 'Base de Manobra (BaÃ­a dos Tigres)', 4, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (395, 'Regimento de Defesa Costeira (Namibe)', 4, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (396, 'Centro Fixo de Telecomunicacoes', 4, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (397, 'Centro de Inteligencia Radio-Electronica', 4, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (398, 'Batalhao Radiotecnico de Observacao Costeira', 4, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (399, 'Companhia de Protecao Nuclear, Biologica e Quimica', 4, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (400, 'Unidade de Mergulhadores (Namibe)', 4, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (401, 'Banda de Musica', 4, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (402, 'Enfermaria Militar', 4, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (403, '101ª Brigada de Tanques', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (404, 'Brigada de Artilharia de Campanha', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (405, 'Regimento de Defesa Antiaerea', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (406, 'Regimento de Engenharia de Construcao', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (407, 'Regimento de Engenharia', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (408, 'Banda de Musica das Forcas Armada', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (409, 'Centro de Criptologia', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (410, 'Centro de Classificacao e Selecao', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (411, 'Companhia de Servico de Pessoal', 2, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (412, 'Terminal Aereo de Cargas Militar', 1, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (413, 'Terminal Maritmo de Cargas Militar', 1, 0, 0, NULL, 0);
+INSERT INTO `tb_u_e_o` VALUES (414, 'Região Militar Luanda', 1, 0, 0, NULL, 0);
+
+SET FOREIGN_KEY_CHECKS = 1;

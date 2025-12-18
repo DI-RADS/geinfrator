@@ -1,0 +1,255 @@
+.space-between-elements {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bg-nav {
+    background-color: #d42d2d;
+}
+
+.sb-sidenav-five {
+    background-color: #f9fafc;
+    box-shadow: 0 8px 14px rgba(0, 0, 0, 0.1), 0 8px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+.sb-sidenav-five .sb-sidenav-menu .sb-sidenav-menu-heading {
+    color: rgba(41, 41, 41, 0.5);
+}
+
+/* aqui  */
+.sb-sidenav-five .sb-sidenav-menu .nav-link {
+   /* color: rgba(41, 41, 41, 0.9);*/
+    color: rgba(252, 250, 250, 0.9);
+}
+
+/* Icones
+.sb-sidenav-five .sb-sidenav-menu .nav-link .sb-nav-link-icon {
+   /* color: rgba(41, 41, 41, 0.9);
+}*/
+
+.sb-sidenav-five .sb-sidenav-menu .nav-link .sb-sidenav-collapse-arrow {
+    color: rgba(41, 41, 41, 0.25);
+}
+
+.sb-sidenav-five .sb-sidenav-menu .nav-link:hover {
+    color: #181818;
+   /* background-color: #f0efef;*/
+    background-color: #999393;
+}
+
+.sb-sidenav-five .sb-sidenav-menu .nav-link.active {
+    color: #181818;
+    background-color: #f0efef;
+}
+
+.sb-sidenav-five .sb-sidenav-menu .nav-link.active .sb-nav-link-icon {
+    color: #181818;
+    background-color: #f0efef;
+}
+
+.sb-sidenav-five .sb-sidenav-footer {
+    background-color: #eeeded;
+}
+
+/*--------------------------------------------------------------
+# Estilo personalizado para formulários CRUD
+--------------------------------------------------------------*/
+.pagetitle h1 {
+    color: var(--default-color) !important;
+}
+
+.pagetitle {
+    margin-bottom: 10px;
+}
+
+.pagetitle h1 {
+    font-size: 24px;
+    margin-bottom: 0;
+    font-weight: 600;
+    color: #012970;
+}
+
+.form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold !important;
+}
+
+.form input:disabled,
+.form select:disabled,
+.form textarea:disabled {
+    background-color: #ededed;
+}
+
+.form input,
+.form select,
+.form textarea,
+.datatable-input,
+.datatable-selector {
+    background-color: #fafafa;
+    border: thin solid #c4c4c4;
+    border-radius: 10px;
+    width: 100%;
+    padding: 10px 1rem;
+}
+
+.form textarea {
+    resize: none;
+}
+
+.form-check-input:focus {
+    border-color: #b41911;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem #b419111f;
+}
+
+.form-check-input:checked {
+    background-color: var(--secundary-color);
+    border-color: var(--secundary-color);
+}
+
+.datatable-selector {
+    width: auto !important;
+}
+
+.form input:focus,
+.form textarea:focus,
+.datatable-input:focus,
+.datatable-selector:focus {
+    background-color: #e6e9ec;
+    outline: 0;
+}
+
+.form input::placeholder,
+.form textarea::placeholder {
+    font-size: 14px !important;
+    font-weight: normal;
+}
+
+/* Estilo do botão togue para alterar registo Online e Ofline */
+.toggle-button {
+    display: flex;
+    align-items: center;
+    width: 80px;
+    background: #ddd;
+    border-radius: 25px;
+    padding: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+    position: relative;
+}
+
+.toggle-button.active {
+    background: #4caf50; /* Verde quando ativado */
+}
+
+.label-on,
+.label-off {
+    flex: 1;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    color: black;
+}
+
+.switch {
+    width: 30px;
+    height: 20px;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+    transition: transform 0.3s;
+    left: 5px;
+}
+
+.toggle-button.active .switch {
+    transform: translateX(35px);
+}
+
+/**  Estilo do dashboard IniciL */
+.dashboard .cima .card {
+    border-top: thick solid #303c16 !important;
+}
+.dashboard .cima .card .card-title {
+    padding-bottom: 0 !important;
+    color: #303c16;
+    font-weight: bold !important;
+}
+.dashboard .cima .card strong {
+    font-size: 1.5rem;
+}
+.dashboard .cima .card .icone {
+    background-color: #303c16 !important;
+    color: #fff;
+    border-radius: 50%;
+    margin: auto;
+    padding: 1rem;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.7rem;
+    margin-bottom: 0.5rem;
+}
+
+.dashboard .cima .card .icone i {
+    font-size: 20px !important;
+}
+
+.breadcrumb {
+    margin-top: 10px !important;
+    background-color: #fff !important;
+    padding: 0;
+}
+
+.btn-default {
+    background-color: #303c16 !important;
+    color: #fff;
+    font-weight: bold;
+}
+.btn-default:hover {
+    background-color: #212617;
+}
+
+/* Estilo da imagem nos */
+
+.image-preview-container {
+    width: 150px;
+    height: 150px;
+    border: 2px dashed #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.image-preview-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* estilo imagem na modal listar reclusos*/
+
+
+.modal-de-listagem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-de-listagem img.foto-da-modal-index {
+    max-width: 100%;        /* nunca ultrapassa a largura da modal */
+    max-height: 70vh;       /* nunca ultrapassa 70% da altura da tela */
+    object-fit: contain;    /* mantém proporção sem cortar */
+    border-radius: 8px;
+    box-shadow: 0px 2px 6px rgba(0,0,0,0.3);
+}
+
+
+
+

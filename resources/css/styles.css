@@ -1,0 +1,162 @@
+:root {
+    --primary: #2563eb;
+}
+
+/* Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.98);
+    height: 80px; /* Aumentado de ~64px */
+    padding: 1rem 0; /* Padding vertical aumentado */
+}
+
+.navbar .navbar-brand {
+    font-size: 1.75rem; /* Logo maior */
+}
+
+.navbar .nav-link {
+    font-size: 1.1rem; /* Links do menu maiores */
+    padding: 0.75rem 1.25rem; /* Mais espaço ao redor dos links */
+}
+
+.navbar .btn {
+    padding: 0.75rem 1.25rem; /* Botões maiores */
+    font-size: 1.1rem;
+}
+
+.navbar.scrolled {
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.mega-menu {
+    width: 800px; /* Menu dropdown mais largo */
+    padding: 2rem; /* Mais padding interno */
+}
+
+.mega-menu h6 {
+    font-size: 1.1rem; /* Títulos maiores no dropdown */
+    margin-bottom: 1rem;
+}
+
+.mega-menu .dropdown-item {
+    font-size: 1rem; /* Items do dropdown maiores */
+    padding: 0.75rem 1rem;
+}
+
+/* Ajuste para o conteúdo não ficar embaixo do navbar fixo */
+body {
+    padding-top: 80px; /* Ajustado para o novo tamanho do navbar */
+}
+
+/* Carousel */
+.carousel-item {
+    height: 600px;
+}
+
+.carousel-item img {
+    object-fit: cover;
+    height: 100%;
+}
+
+.carousel-caption {
+    background: linear-gradient(90deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    text-align: left;
+    padding: 40px;
+}
+
+/* Categories */
+.category-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    background: #f8f9fa;
+}
+
+.category-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* Products */
+.product-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.product-card img {
+    height: 250px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover img {
+    transform: scale(1.05);
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+.btn-primary:hover {
+    background-color: #1d4ed8;
+    border-color: #1d4ed8;
+}
+
+/* Testimonials */
+.testimonial-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
+}
+
+.testimonial-avatar {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+}
+
+.testimonial-card .card {
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.testimonial-card .bi-star-fill {
+    font-size: 18px;
+    margin-right: 2px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.6s ease forwards;
+}
