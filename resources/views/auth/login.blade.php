@@ -1,7 +1,7 @@
 @extends('layouts.login')
 
 @section('content')
-    <h1 class="title-login">Gráfica MIOP</h1>
+    <h1 class="title-login">Gestão de Infratores</h1>
 
     <x-alert />
 

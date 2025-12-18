@@ -21,11 +21,11 @@ class UserSeeder extends Seeder
         // Capturar possíveis exceções durante a execução do seeder. 
         try {
             // Verificar se o usuário está cadastrado no banco de dados
-            if (!User::where('email', 'academiadesoftwares@gmail.com')->first()) {
+            if (!User::where('email', 'rads@gmail.com')->first()) {
                 // Cadastrar o usuário
                 $superAdmin = User::create([
-                    'name' => 'Academia de Softwares',
-                    'email' => 'academiadesoftwares@gmail.com',
+                    'name' => 'RadsDIEMG',
+                    'email' => 'rads@gmail.com',
                     'password' => bcrypt('123456a')
                 ]);
 
@@ -50,7 +50,7 @@ class UserSeeder extends Seeder
                 // Se não encontrar o registro com o e-mail, cadastra o registro no BD
                 $gestor = User::firstOrCreate(
                     ['email' => 'gestor@gmail.com'],
-                    ['name' => 'Gestor de Estoque', 
+                    ['name' => 'Oficial Gestor', 
                     'email' => 'gestor@gmail.com', 
                     'password' => bcrypt('123456a')
                     ]
@@ -63,7 +63,7 @@ class UserSeeder extends Seeder
                 // Se não encontrar o registro com o e-mail, cadastra o registro no BD
                 $funcionario = User::firstOrCreate(
                     ['email' => 'funcionario@gmail.com'],
-                    ['name' => 'Funcionário', 
+                    ['name' => 'Oficial Técnico', 
                     'email' => 'funcionario@gmail.com', 
                     'password' => bcrypt('123456a')
                     ]
@@ -75,7 +75,7 @@ class UserSeeder extends Seeder
                 // Se não encontrar o registro com o e-mail, cadastra o registro no BD
                 $cliente = User::firstOrCreate(
                     ['email' => 'cliente@gmail.com'],
-                    ['name' => 'Cliente', 
+                    ['name' => 'Sargento Técnico', 
                     'email' => 'cliente@gmail.com', 
                     'password' => bcrypt('123456a')
                     ]

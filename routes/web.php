@@ -23,10 +23,11 @@ use App\Http\Controllers\VendaController;
 use Illuminate\Support\Facades\Route;
 
 // Página inicial do site
-Route::get('/', [HomeController::class, 'index'])->name('home');
+// Se o sitema tiver site, descomente esse escript
+//Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Tela de login
-Route::get('/login', [AuthController::class, 'index'])->name('login');
+Route::get('/', [AuthController::class, 'index'])->name('login');
 
 // Processar os dados do login
 Route::post('/login', [AuthController::class, 'loginProcess'])->name('login.process');

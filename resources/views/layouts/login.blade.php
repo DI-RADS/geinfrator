@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Gráfica Miop</title>
+    <title>Sistema de gestão de infratores</title>
 
     @vite(['resources/css/app.css', 'resources/js/app_auth.js'])
 </head>
@@ -13,16 +13,25 @@
 <body class="bg-login">
 
     <div class="card-login">
+        <!-- Lado esquerdo -->
         <div class="logo-wrapper-login">
             <a href="{{ route('login') }}">
                 <img src="{{ asset('images/logo-define-500x500_v3.png') }}" alt="Logo" class="logo-login">
             </a>
         </div>
 
-        @yield('content')
+        <!-- Lado direito -->
+        <div class="form-container-login">
+            @yield('content')
+        </div>
 
+       
     </div>
-
+ <footer>
+            <div class="div-footer">
+                <p style="text-transform: uppercase;">&copy Copyright - Direcção de Informática/E.M.G - <?php echo date('Y'); ?> </p>
+            </div>
+        </footer>
 </body>
 
 </html>

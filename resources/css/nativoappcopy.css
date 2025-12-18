@@ -30,55 +30,29 @@
 
 @layer components {
     /****** Início Login ******/
-    /* Estilização do fundo com gradiente vermelho */
+    /* Estilização do fundo */
     .bg-login {
-        @apply min-h-screen flex flex-col justify-center items-center;
-        background: linear-gradient(
-            to right,
-            #530d0d,
-            #dc2626,
-            #520808
-        ); /* vermelho escuro nas laterais, vermelho mais claro no centro */
+        @apply bg-gray-50 min-h-screen flex flex-col justify-center items-center dark:bg-zinc-950;
     }
 
     /* Container principal do formulário */
     .card-login {
-        @apply bg-white mt-6 w-full max-w-2xl overflow-hidden shadow-md sm:rounded-lg flex flex-col sm:flex-row  border border-red-700;
+        @apply bg-gray-100 mt-6 w-full overflow-hidden px-6 py-4 shadow-md sm:max-w-md sm:rounded-lg dark:bg-zinc-900;
     }
 
-    /* Lado esquerdo (logo) */
     /* Wrapper da logo */
     .logo-wrapper-login {
-        @applyflex flex justify-center items-center p-6 sm:flex-[1]; /* ocupa 0.5 do total (1 parte) */
-        background-color: #7f1d1d; /* vermelho escuro */
+        @apply flex justify-center mb-4;
     }
+
     /* Estilização da logo */
     .logo-login {
-        @apply h-32 w-32 sm:h-90 sm:w-70 bg-red-800;
+        @apply h-20 w-20;
     }
 
-    /* Lado direito (formulário) */
-    .form-container-login {
-        @apply flex flex-col justify-center p-6 sm:flex-[3]; /* ocupa 1.5 do total (3 partes) */
-      
-    
-    }
-
-    /* Responsividade */
-    @media (max-width: 640px) {
-        .card-login {
-            @apply flex-col;
-        }
-        .logo-wrapper-login {
-            @apply w-full py-6;
-        }
-        .form-container-login {
-            @apply w-full;
-        }
-    }
     /* Estilização do título */
     .title-login {
-        @apply text-2xl font-semibold text-center text-red-500 mb-4;
+        @apply text-2xl font-semibold text-center text-red-500;
     }
 
     /* Margem superior para os campos */
@@ -456,7 +430,7 @@
 
     .form-personalized:focus {
         background-color: #e6e9ec;
-        border-color: #2b7fff;
+        border-color: #2b7fff; 
         box-shadow: 0 0 0 0.25rem #0c08461f;
     }
 
@@ -475,4 +449,5 @@
     }
 
     /*********  fim Formularios para registos *****************/
+
 }
