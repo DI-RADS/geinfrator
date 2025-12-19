@@ -13,6 +13,7 @@ use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\MarketingController;
 use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\ProcessoController;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
@@ -53,6 +54,24 @@ Route::post('/reset-password', [ForgotPasswordController::class, 'reset'])->name
 Route::group(['middleware' => 'auth'], function () {
     // Página inicial do administrativo
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index')->middleware('permission:dashboard');
+
+    // GESTÃO DO PROCESSO
+    Route::prefix('processo')->group(function () {
+        Route::get('/', [ProcessoController::class, 'index'])->name('processos.index')->middleware('permission:index-processos');
+        Route::get('/create', [ProcessoController::class, 'create'])->name('processo.create')->middleware('permission:create-processo');
+        Route::get('/{processo}', [ProcessoController::class, 'show'])->name('processo.show')->middleware('permission:show-processo');
+        Route::post('/', [ProcessoController::class, 'store'])->name('processo.store')->middleware('permission:create-processo');
+        Route::get('/{processo}/edit', [ProcessoController::class, 'edit'])->name('processo.edit')->middleware('permission:edit-processo');
+        Route::put('/{processo}', [ProcessoController::class, 'update'])->name('processo.update')->middleware('permission:edit-processo');
+        Route::delete('/{processo}', [ProcessoController::class, 'destroy'])->name('processo.destroy')->middleware('permission:destroy-processo');
+
+        Route::get('/pdf-show-processo/{processo}', [ProcessoController::class, 'pdfshowprocesso'])->name('processos.pdfshowprocesso')->middleware('permission:pdfshowprocesso');
+        Route::get('/pdf-index-processos/processos', [ProcessoController::class, 'pdfIndexprocessos'])->name('processos.pdfindexprocessos')->middleware('permission:pdfindexprocessos');
+
+        Route::get('/csv-index/processos', [ProcessoController::class, 'csvindexprocessos'])->name('processos.csv-index-processos')->middleware('permission:csvindexprocessos');
+    });
+
+
 
     // GESTÃO DO PRODUTO
     Route::prefix('produto')->group(function () {

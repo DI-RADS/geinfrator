@@ -276,3 +276,7 @@ Este projeto foi desenvolvido por [Cesar Szpak](https://github.com/cesarszpak) e
 ## Licença
 
 Este projeto está licenciado sob a licença MIT - veja o arquivo [LICENSE](LICENSE.txt) para mais detalhes.
+
+
+## Rodar Uma Seed Particular
+php artisan db:seed --class=SituacaoProcessoSeeder

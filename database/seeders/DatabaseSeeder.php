@@ -44,6 +44,11 @@ class DatabaseSeeder extends Seeder
                 CategoriaSeeder::class,
                 MarcaSeeder::class,
                 EstadoSeeder::class,
+
+
+                //Seed do sistema do Infractor
+                EntidadeSeeder::class,
+                SituacaoProcessoSeeder::class
             ]);
         }
     }

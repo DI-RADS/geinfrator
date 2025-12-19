@@ -25,13 +25,14 @@
             @yield('content')
         </div>
 
-       
+
     </div>
- <footer>
-            <div class="div-footer">
-                <p style="text-transform: uppercase;">&copy Copyright - Direcção de Informática/E.M.G - <?php echo date('Y'); ?> </p>
-            </div>
-        </footer>
+    <footer class="w-full py-4 text-center text-white">
+        <p class="uppercase text-sm">
+            &copy; {{ now()->year }} – Direcção de Informática / E.M.G
+        </p>
+    </footer>
+
 </body>
 
 </html>

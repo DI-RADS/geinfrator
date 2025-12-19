@@ -9,6 +9,12 @@ window.$ = window.jQuery = $;
 import * as bootstrap from "bootstrap";
 window.bootstrap = bootstrap;
 
+import Choices from "choices.js";
+import "choices.js/public/assets/styles/choices.min.css";
+
+import "select2";
+import "select2/dist/css/select2.css";
+
 // DataTables (deve vir **após o jQuery**)
 import "datatables.net";
 import "datatables.net-bs5";
@@ -318,4 +324,85 @@ document.addEventListener("DOMContentLoaded", function () {
         seriesList.splice(index, 1);
         atualizarTabela();
     };
+});
+
+//SCRIPT PARA GERIR SELECT DE INPUT COM CHOISE
+document.addEventListener("DOMContentLoaded", function () {
+    const anoSelect = document.getElementById("anoInscricao");
+
+    if (anoSelect) {
+        new Choices(anoSelect, {
+            searchEnabled: true,
+            searchPlaceholderValue: "Digite o Ano ...",
+            shouldSort: false,
+            itemSelectText: "",
+            allowHTML: false,
+        });
+    }
+});
+//SCRIPT PARA GERIR SELECT DE INPUT COM SELECT2
+document.addEventListener("DOMContentLoaded", function () {
+    $("#tanoInscricao").select2({
+        placeholder: "Digite ou selecione o ano",
+        allowClear: true,
+        width: "100%", // ocupa todo o espaço
+        dropdownAutoWidth: true,
+        theme: "classic",
+    });
+});
+
+//SCRIPT PARA GERIR SITUACAO DO PROCESSO E MOSTRA A SUA DESCRIÇÃO AO USER
+document
+    .getElementById("situacaoSelect")
+    .addEventListener("change", function () {
+        const selectedOption = this.options[this.selectedIndex];
+        const descricao = selectedOption.getAttribute("data-descricao");
+
+        const descricaoEl = document.getElementById("descricaoSituacao");
+
+        if (descricao) {
+            descricaoEl.textContent = descricao;
+            descricaoEl.classList.remove("hidden");
+        } else {
+            descricaoEl.textContent = "";
+            descricaoEl.classList.add("hidden");
+        }
+    });
+
+//SCRIPT PARA GERIR SITUACAO DO PROCESSO E MOSTRA A SUA DESCRIÇÃO AO USER
+document
+    .getElementById("entidadejudidical")
+    .addEventListener("change", function () {
+        const selectedOption = this.options[this.selectedIndex];
+        const descricao = selectedOption.getAttribute("data-descricao");
+
+        const descricaoEl = document.getElementById("descricaoentidade");
+
+        if (descricao) {
+            descricaoEl.textContent = descricao;
+            descricaoEl.classList.remove("hidden");
+        } else {
+            descricaoEl.textContent = "";
+            descricaoEl.classList.add("hidden");
+        }
+    });
+
+// SELECIONAR O TIPO DE INFRAÇÃO E MOSTRAR INFRAÇOES
+document.addEventListener("DOMContentLoaded", function () {
+    const tipoSelect = document.getElementById("tipo_infracao");
+    const infracaoSelect = document.getElementById("selected_infracao");
+
+    tipoSelect.addEventListener("change", function () {
+        const infractions = JSON.parse(this.selectedOptions[0].dataset.infracoes || '[]');
+
+        // Limpa o select
+        infracaoSelect.innerHTML = '<option value="" selected disabled>Selecione uma opção</option>';
+
+        infractions.forEach(inf => {
+            const opt = document.createElement("option");
+            opt.value = inf.id;
+            opt.textContent = inf.designacao_infracao;
+            infracaoSelect.appendChild(opt);
+        });
+    });
 });

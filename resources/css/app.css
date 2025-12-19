@@ -43,39 +43,47 @@
 
     /* Container principal do formulário */
     .card-login {
-        @apply bg-white mt-6 w-full max-w-2xl overflow-hidden shadow-md sm:rounded-lg flex flex-col sm:flex-row  border border-red-700;
+        @apply bg-white w-full max-w-2xl rounded-lg shadow-lg overflow-hidden;
+
+        display: grid;
+        grid-template-columns: 2fr 3fr; /* 🔥 50% | 50% SEM DEPENDER DE CONTEÚDO */
     }
 
     /* Lado esquerdo (logo) */
     /* Wrapper da logo */
     .logo-wrapper-login {
-        @applyflex flex justify-center items-center p-6 sm:flex-[1]; /* ocupa 0.5 do total (1 parte) */
-        background-color: #7f1d1d; /* vermelho escuro */
+        @apply flex flex items-center justify-center bg-red-800;
+        min-height: 100%;
     }
-    /* Estilização da logo */
-    .logo-login {
-        @apply h-32 w-32 sm:h-90 sm:w-70 bg-red-800;
+
+    .logo-wrapper-login a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     /* Lado direito (formulário) */
     .form-container-login {
-        @apply flex flex-col justify-center p-6 sm:flex-[3]; /* ocupa 1.5 do total (3 partes) */
-      
-    
+        @apply flex flex-col justify-center  p-6;
     }
 
+    /* Estilização da logo */
+    .logo-login {
+        width: 180px;
+        max-width: 70%;
+        height: auto;
+    }
     /* Responsividade */
     @media (max-width: 640px) {
         .card-login {
-            @apply flex-col;
+            grid-template-columns: 1fr;
         }
+
         .logo-wrapper-login {
-            @apply w-full py-6;
-        }
-        .form-container-login {
-            @apply w-full;
+            min-height: 160px;
         }
     }
+
     /* Estilização do título */
     .title-login {
         @apply text-2xl font-semibold text-center text-red-500 mb-4;
@@ -475,4 +483,15 @@
     }
 
     /*********  fim Formularios para registos *****************/
+
+    /* +          Novo estilo para choices                  +                 */
+    /* =========================================================
+   CHOICES.JS – integração perfeita com form-personalized
+   ========================================================= */
+    /* =========================================================
+   CHOICES PERSONALIZADO — baseado no form-personalized
+   ========================================================= */
+   
+
+    
 }

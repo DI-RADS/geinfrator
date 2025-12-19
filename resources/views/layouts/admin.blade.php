@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Gráfica Miop</title>
+    <title>Sistema de gestão de infratores</title>
 
     <script>
         // Executar logo no início, antes de carregar o CSS e evitar o piscar na tela
@@ -35,7 +35,11 @@
 <body class="bg-dashboard">
 
     <!-- Navbar -->
-    <nav class="navbar">
+    <nav class="navbar sb-topnav navbar-expand navbar-dark bg-nav"
+        style="background-image: url('{{ asset('images/bandeira/agorave.png'); }}');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;">
         <div class="navbar-container">
             <button id="toggleSidebar" class="menu-button">
                 <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
@@ -94,7 +98,7 @@
                     </svg>
                 </button>
                 <div class="sidebar-header">
-                    <span class="sidebar-title">Gráfica MIOP</span>
+                    <span class="sidebar-title">infratores</span>
                 </div>
                 <nav class="sidebar-nav">
                     @can('dashboard')
@@ -113,7 +117,7 @@
                     <!-- ===================== -->
                     <!--     DROPMENU FIXO     -->
                     <!-- ===================== -->
-                    {{-- MENU PRINCIPAL: Produtos --}}
+                    {{-- MENU PRINCIPAL: Processo --}}
                     <div>
                         <a @class(['sidebar-link', 'drop-btn' ]) href="#" data-target="menu-produto">
                             <div class="flex items-center justify-between w-full">
@@ -123,7 +127,7 @@
                                         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M3 7h18M3 12h18M3 17h18" />
                                     </svg>
-                                    <span>Produtos</span>
+                                    <span>Processos</span>
                                 </div>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                     viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
@@ -139,7 +143,7 @@
                                     stroke-width="1.5" stroke="currentColor" class="size-4">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                                 </svg>
-                                <span>Adicionar Produto</span>
+                                <span>Registar Processo</span>
                             </a>
                             <a @class(['sidebar-link' , 'active'=> isset($menu) && $menu == 'produtos',]) href="{{ route('produtos.index')}}">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -147,23 +151,16 @@
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                                 </svg>
-                                <span>Listar Produtos</span>
+                                <span>Listar Processos</span>
                             </a>
-                            <a @class(['sidebar-link']) href="#">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" class="size-4">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M4 6h16M4 10h16M4 14h16" />
-                                </svg>
-                                <span>Categorias de Produtos</span>
-                            </a>
+                      
                             <a @class(['sidebar-link']) href="#">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke-width="1.5" stroke="currentColor" class="size-4">
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M5 3v4h14V3M5 21v-4h14v4" />
                                 </svg>
-                                <span>Marcas / Fornecedores</span>
+                                <span>Emitir Relatórios</span>
                             </a>
                             <a @class(['sidebar-link']) href="#">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -171,7 +168,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M3 3h18v4H3V3zm0 7h18v4H3v-4zm0 7h18v4H3v-4z" />
                                 </svg>
-                                <span>Estoque (entrada/saída)</span>
+                                <span>Emitir Estatísticas</span>
                             </a>
                             <a @class(['sidebar-link']) href="#">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"

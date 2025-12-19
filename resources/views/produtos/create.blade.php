@@ -41,114 +41,93 @@
                     @csrf
                     @method('POST')
                     <div class="p-5 bg-white rounded-md shadow-sm space-y-8">
+                        <div class="col-12 mb-3 alert alert-warning text-center">
+                            <strong><span class="text-danger">*</span>Campo obrigatório</strong>
+                        </div>
 
                         <!-- GRID PRINCIPAL -->
                         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+
                             <div>
-                                <label class="label-personalized">Designação</label>
+                                <label class="label-personalized">Número do Processo</label>
                                 <input type="text" name="descricao_produto" class="form-personalized" placeholder="Digite o nome do produto">
                             </div>
 
                             <div>
-                                <label class="label-personalized">Categoria</label>
-                                <select id="categoriaSelect" name="" class="form-personalized">
-                                    <option value="" selected disabled>Selecione</option>
-                                    @foreach($list_categorias as $categoria)
-                                    <option value="{{ $categoria->id }}">{{ $categoria->designacao_categoria }}</option>
+                                <label class="label-personalized">Estado do Processo</label>
+                                <select id="situacaoSelect" name="situacao_processo_id" class="form-personalized">
+                                    <option value="" selected disabled>Selecione uma opção</option>
+                                    @foreach($list_situacao_processos as $situacao)
+                                    <option
+                                        value="{{ $situacao->id }}"
+                                        data-descricao="{{ $situacao->descricao_situacao }}">
+                                        {{ $situacao->designacao_situacao }}
+                                    </option>
                                     @endforeach
                                 </select>
+                                {{-- Descrição da situação --}}
+                                <p id="descricaoSituacao"
+                                    class="mt-0 m-1 text-sm text-gray-800 italic hidden">
+                                </p>
                             </div>
 
                             <div>
-                                <label class="label-personalized">Marca</label>
-                                <select id="marcaSelect" name="marca_id" class="form-personalized">
-                                    <option value="" selected disabled>Selecione uma categoria primeiro</option>
-                                    @foreach($list_marcas as $marca)
-                                    <option value="{{ $marca->id }}" data-categoria="{{ $marca->categoria_id }}" style="display:none;">
-                                        {{ $marca->designacao_marca }}
+                                <label class="label-personalized">Ano de Instrução</label>
+                                <select id="anoInscricao" name="ano_inscricao" class="form-personalized">
+                                    <option value="">Selecione o ano</option>
+                                    @for ($ano = now()->year; $ano >= 1975; $ano--)
+                                    <option value="{{ $ano }}">{{ $ano }}</option>
+                                    @endfor
+                                </select>
+                            </div>
+                            <div>
+                                <label class="label-personalized"> Data de Entrada</label>
+                                <input type="datetime-local" name="" id="" class="form-personalized">
+                            </div>
+
+
+                            <div>
+                                <label class="label-personalized">Entidade Judicial</label>
+                                <select id="entidadejudidical" name="entidadejudidical_id" class="form-personalized">
+                                    <option value="" selected disabled>Selecione uma opção</option>
+                                    @foreach($list_entidades as $entidade)
+                                    <option
+                                        value="{{ $entidade->id }}"
+                                        data-descricao="{{ $entidade->descricao_entidade }}">
+                                        {{ $entidade->designacao_entidade }}
+                                    </option>
+                                    @endforeach
+                                </select>
+                                {{-- Descrição da situação --}}
+                                <p id="descricaoentidade"
+                                    class="mt-0 m-1 text-sm text-gray-800 italic hidden">
+                                </p>
+                            </div>
+
+                            <div>
+                                <label class="label-personalized" for="tipo_infracao">Tipo de Infração</label>
+                                <select id="tipo_infracao" name="tipo_infracao_id" class="form-personalized">
+                                    <option value="" selected disabled>Selecione uma opção</option>
+                                    @foreach($list_tipo_infracoes as $tipo)
+                                    <option value="{{ $tipo->id }}" data-descricao="{{ $tipo->descricao_tipo_infracao }}">
+                                        {{ $tipo->designacao_tipo_infracao }}
                                     </option>
                                     @endforeach
                                 </select>
                             </div>
 
                             <div>
-                                <label class="label-personalized">Preço</label>
-                                <input type="text" name="preco_kwanza" class="form-personalized preco_kwanza" placeholder="KZ$ 0,00">
-                            </div>
-                        </div>
-
-                        <!-- GRID QUANTIDADE + ESTADO GERAL + CHECKBOX -->
-                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 items-end">
-
-                            <div id="quantidadeBox">
-                                <label for="quantidade_prod" class="label-personalized">Quantidade</label>
-                                <input type="number" min="1" name="quantidade_prod" class="form-personalized" placeholder="Ex: 5">
-                            </div>
-
-                            <div id="estadoGeralBox">
-                                <label class="label-personalized">Estado</label>
-                                <select name="estado_produto" class="form-personalized">
-                                    <option value="" selected disabled>Selecione</option>
-                                    @foreach($list_estados as $estado)
-                                    <option value="{{ $estado->id }}">{{ $estado->designacao_estado }}</option>
-                                    @endforeach
+                                <label class="label-personalized" for="selected_infracao">Infração específica</label>
+                                <select id="selected_infracao" name="infracao_id" class="form-personalized">
+                                    <option value="" selected disabled>Selecione uma opção</option>
+                                    <!-- Opções serão carregadas via JS -->
                                 </select>
                             </div>
 
-                            <!-- Checkbox ocupa linha inteira em telas pequenas -->
-                            <div class="col-span-1 sm:col-span-2 md:col-span-3 lg:col-span-4 flex items-center gap-3">
-                                <label class="flex items-center space-x-3">
-                                    <input type="checkbox" id="hasSeriesCheckbox" name="has_series" value="1">
-                                    <span>Este produto tem número de série?</span>
-                                </label>
-                            </div>
+
                         </div>
 
-                        <!-- GRID SÉRIE + ESTADO POR SÉRIE -->
-                        <div id="boxSerie" style="display:none;" class="space-y-5">
 
-                            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 items-end">
-
-                                <div>
-                                    <label class="label-personalized">Nº de Série</label>
-                                    <input type="text" id="inputSerie" class="form-personalized" placeholder="Digite a série">
-                                </div>
-
-                                <div>
-                                    <label class="label-personalized">Estado</label>
-                                    <select id="inputEstadoSerie" class="form-personalized">
-                                        <option value="" selected disabled>Selecione</option>
-                                        @foreach($list_estados as $estado)
-                                        <option value="{{ $estado->id }}">{{ $estado->designacao_estado }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-
-                                <div class="flex sm:col-span-2 md:col-span-1">
-                                    <button type="button" id="btnAddSerie"
-                                        class="px-4 py-2 bg-gray-700 hover:bg-gray-800 text-white rounded w-full sm:w-auto mt-6">
-                                        +
-                                    </button>
-                                </div>
-                            </div>
-
-                            <!-- TABELA -->
-                            <div class="overflow-x-auto">
-                                <table class="w-full border-collapse text-left">
-                                    <thead>
-                                        <tr class="bg-gray-100">
-                                            <th class="p-2">#</th>
-                                            <th class="p-2">Número de Série</th>
-                                            <th class="p-2">Estado</th>
-                                            <th class="p-2">Ações</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="seriesTableBody"></tbody>
-                                </table>
-                            </div>
-
-                            <input type="hidden" name="series_json" id="seriesJson">
-                        </div>
 
                         <!-- BOTÃO FINAL -->
                         <div class="flex justify-end">
@@ -163,7 +142,8 @@
             </div>
         </div>
     </div>
+    <script>
+
+    </script>
 </div>
 @endsection
-
-
