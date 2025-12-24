@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\ModelCategoria;
 use App\Models\ModelEntidadeJudicial;
 use App\Models\ModelEstado;
+use App\Models\ModelInfracao;
 use App\Models\ModelMarca;
 use App\Models\ModelProduto;
 use App\Models\ModelSituacaoProcesso;
@@ -31,28 +32,22 @@ class AppServiceProvider extends ServiceProvider
     {
         // Define tamanho padrão das colunas string para evitar erro 1071
         Schema::defaultStringLength(191);
-
+        
         // Super Admin tem acesso a todas as páginas
         Gate::before(function ($user, $ability) {
             return $user->hasRole('Super Admin') ? true : null;
         });
-
-
         // --------------------------------------------------------------
         // 🔥  VARIÁVEIS GLOBAIS 
         // --------------------------------------------------------------
-
         // 🔥 Só executar se as tabelas EXISTIREM
         if ($this->tabelasExistem()) {
-            View::share('list_categorias', ModelCategoria::all());
-            View::share('list_estados', ModelEstado::all());
-            View::share('list_marcas', ModelMarca::all());
-            View::share('list_produtos', ModelProduto::all());
-
             /*SISTEMA DE GESTÃO DE INFRACTORES*/
+            View::share('list_tipo_infracoes', ModelTipoInfracao::with('relation_infracoes')->get());
             View::share('list_situacao_processos', ModelSituacaoProcesso::all());
             View::share('list_entidades', ModelEntidadeJudicial::all());
-            View::share('list_tipo_infracoes', ModelTipoInfracao::all());
+            //View::share('list_tipo_infracoes', ModelTipoInfracao::all());
+            View::share('list_infracoes', ModelInfracao::all());
         }
     }
 
@@ -60,13 +55,9 @@ class AppServiceProvider extends ServiceProvider
     // 👉 Método para verificar se todas as tabelas existem
     private function tabelasExistem()
     {
-        return Schema::hasTable('tb_categorias')
-            && Schema::hasTable('tb_estados')
-            && Schema::hasTable('tb_marcas')
-            && Schema::hasTable('tb_produtos')
-
-            && Schema::hasTable('tb_tipo_infracoes')
+        return Schema::hasTable('tb_tipo_infracoes')
             && Schema::hasTable('tb_entidades')
-            && Schema::hasTable('tb_situacao_processos');
+            && Schema::hasTable('tb_situacao_processos')
+            && Schema::hasTable('tb_infracoes');
     }
 }

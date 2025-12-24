@@ -1,7 +1,6 @@
-// Importação do seu bootstrap.js (axios, SweetAlert, Chart.js)
 import "./bootstrap";
 
-// jQuery - deve vir antes do DataTables
+// jQuery
 import $ from "jquery";
 window.$ = window.jQuery = $;
 
@@ -9,48 +8,53 @@ window.$ = window.jQuery = $;
 import * as bootstrap from "bootstrap";
 window.bootstrap = bootstrap;
 
+// Plugins
 import Choices from "choices.js";
 import "choices.js/public/assets/styles/choices.min.css";
 
 import "select2";
 import "select2/dist/css/select2.css";
 
-// DataTables (deve vir **após o jQuery**)
+// ✅ DataTables + Tailwind
+// DataTables core
 import "datatables.net";
-import "datatables.net-bs5";
 
-//window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+// DataTables
+//import "datatables.net";
+//import "datatables.net-bs5";
+//import "datatables.net-bs5/css/dataTables.bootstrap5.min.css";
 
-// Inicializar DataTables após o carregamento do DOM
-document.addEventListener("DOMContentLoaded", function () {
-    if ($.fn.DataTable) {
-        $(".datatable").DataTable({
-            language: {
-                info: "Mostrando _START_ até _END_ de _TOTAL_ registros",
-                infoEmpty: "Nenhum registro disponível",
-                infoFiltered: "(filtrado de _MAX_ registros totais)",
-                lengthMenu: "Mostrar _MENU_ registros por página",
-                search: "Pesquisar:",
-                zeroRecords: "Nenhum resultado encontrado",
-                paginate: {
-                    first: "Primeiro",
-                    last: "Último",
-                    next: "Próximo",
-                    previous: "Anterior",
-                },
-            },
-            responsive: true, // Para melhor exibição em dispositivos móveis
-            autoWidth: false, // Evita problemas de largura das colunas
-            order: [], // Remove a ordenação automática da primeira coluna´
-            columnDefs: [
-                { targets: "_all", defaultContent: "-" }, // Evita erro se algum dado estiver faltando
-                { targets: "no-sort", orderable: false }, // Classe CSS para desativar a ordenação em colunas específicas
-                { targets: "text-start", className: "text-start" }, // Força alinhamento à esquerda onde necessário
-            ],
-        });
-    } else {
-        console.error("DataTables não foi carregado corretamente.");
+// Init
+document.addEventListener("DOMContentLoaded", () => {
+    if (!$.fn.DataTable) {
+        console.error("DataTables não carregado");
+        return;
     }
+
+    $(".datatable").DataTable({
+        responsive: true,
+        autoWidth: false,
+        order: [],
+
+        language: {
+            info: "Mostrando _START_ até _END_ de _TOTAL_ registros",
+            infoEmpty: "Nenhum registro disponível",
+            infoFiltered: "(filtrado de _MAX_ registros totais)",
+            lengthMenu: "Mostrar _MENU_ registros",
+            search: "Pesquisar:",
+            zeroRecords: "Nenhum resultado encontrado",
+            paginate: {
+                first: "Primeiro",
+                last: "Último",
+                next: "Próximo",
+                previous: "Anterior",
+            },
+        },
+
+        columnDefs: [
+            { targets: "no-sort", orderable: false },
+        ],
+    });
 });
 
 /**** Script para abrir/fechar o dropdown ****/
@@ -387,18 +391,42 @@ document
         }
     });
 
+// ======================== FOTO PREVIEW ========================
+document.addEventListener("DOMContentLoaded", function () {
+    const inputFile = document.getElementById("tfoto");
+    const previewImg = document.getElementById("timagePreview");
+    if (inputFile && previewImg) {
+        const defaultImg = previewImg.src;
+        inputFile.addEventListener("change", function (event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => (previewImg.src = e.target.result);
+                reader.readAsDataURL(file);
+            } else {
+                previewImg.src = defaultImg;
+            }
+        });
+    }
+});
 // SELECIONAR O TIPO DE INFRAÇÃO E MOSTRAR INFRAÇOES
 document.addEventListener("DOMContentLoaded", function () {
     const tipoSelect = document.getElementById("tipo_infracao");
     const infracaoSelect = document.getElementById("selected_infracao");
 
+    // Segurança: se não existir, não executa
+    if (!tipoSelect || !infracaoSelect) return;
     tipoSelect.addEventListener("change", function () {
-        const infractions = JSON.parse(this.selectedOptions[0].dataset.infracoes || '[]');
+        // Lê as infrações do atributo data-infracoes
+        const infractions = JSON.parse(this.selectedOptions[0].dataset.infracoes || "[]");
+           
+   
 
         // Limpa o select
-        infracaoSelect.innerHTML = '<option value="" selected disabled>Selecione uma opção</option>';
+        infracaoSelect.innerHTML = '<option value="" selected disabled>Selecione uma t opção</option>';
+            
 
-        infractions.forEach(inf => {
+        infractions.forEach((inf) => {
             const opt = document.createElement("option");
             opt.value = inf.id;
             opt.textContent = inf.designacao_infracao;

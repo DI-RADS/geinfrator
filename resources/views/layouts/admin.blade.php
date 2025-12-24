@@ -30,6 +30,8 @@
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.5/css/dataTables.tailwindcss.css">
+
 </head>
 
 <body class="bg-dashboard">
@@ -119,10 +121,10 @@
                     <!-- ===================== -->
                     {{-- MENU PRINCIPAL: Processo --}}
                     <div>
-                        <a @class(['sidebar-link', 'drop-btn' ]) href="#" data-target="menu-produto">
+                        <a @class(['sidebar-link', 'drop-btn' ]) href="#" data-target="menu-processo">
                             <div class="flex items-center justify-between w-full">
                                 <div class="flex items-center gap-2">
-                                    <!-- Ícone Produtos -->
+                                    <!-- Ícone processos -->
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M3 7h18M3 12h18M3 17h18" />
@@ -136,16 +138,16 @@
                                 </svg>
                             </div>
                         </a>
-                        <div id="menu-produto" class="drop-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
-                            <a @class(['sidebar-link' , 'active'=> isset($menu) && $menu == 'produtos',
-                            ]) href="{{ route('produto.create') }}">
+                        <div id="menu-processo" class="drop-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                            <a @class(['sidebar-link' , 'active'=> isset($menu) && $menu == 'processos',
+                            ]) href="{{ route('processo.create') }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke-width="1.5" stroke="currentColor" class="size-4">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                                 </svg>
                                 <span>Registar Processo</span>
                             </a>
-                            <a @class(['sidebar-link' , 'active'=> isset($menu) && $menu == 'produtos',]) href="{{ route('produtos.index')}}">
+                            <a @class(['sidebar-link' , 'active'=> isset($menu) && $menu == 'processos',]) href="{{ route('processos.index')}}">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke-width="1.5" stroke="currentColor" class="size-4">
                                     <path stroke-linecap="round" stroke-linejoin="round"

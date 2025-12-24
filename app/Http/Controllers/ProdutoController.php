@@ -13,10 +13,11 @@ use Illuminate\Support\Facades\Log;
 class ProdutoController extends Controller
 {
     //Listagem
-    public function iindex1(Request $request){
-     
+    public function iindex1(Request $request)
+    {
 
-      $produtos = ModelProduto::all();
+
+        $produtos = ModelProduto::all();
         return view('produtos.index', [
             'menu' => 'produtos',
             '$produtos' => '$produtos'
@@ -35,14 +36,14 @@ class ProdutoController extends Controller
         ]);
     }
 
-     public function create()
+    public function create()
     {
         return view('produtos.create', ['menu' => 'produtos']);
     }
 
     public function store(ProdutoRequest $request)
     {
-         DB::beginTransaction(); // Inicia a transação
+        DB::beginTransaction(); // Inicia a transação
         try {
             // Tratar quantidade
             $quantidade = $request->has_series && $request->series_json
@@ -77,10 +78,9 @@ class ProdutoController extends Controller
             }
 
 
-        DB::commit(); // Confirma a transação
+            DB::commit(); // Confirma a transação
             return redirect()->route('produto.show', $produto->id)
-                             ->with('success', 'Produto cadastrado com sucesso!');
-
+                ->with('success', 'Produto cadastrado com sucesso!');
         } catch (\Throwable $th) {
             DB::rollBack(); // Reverte tudo em caso de erro
             Log::error('Erro ao cadastrar produto', ['error' => $th->getMessage()]);
@@ -92,27 +92,12 @@ class ProdutoController extends Controller
     public function show(ModelProduto $produto)
     {
         // Carrega as relações para evitar N+1
-       // $produto->load(['marca.categoria', 'relation_series']);
-       //dd($produto); exit;
+        // $produto->load(['marca.categoria', 'relation_series']);
+        //dd($produto); exit;
 
         return view('produtos.show', [
             'menu'    => 'produtos',
             'produto' => $produto
         ]);
     }
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-   
-

@@ -13,4 +13,9 @@ class ModelTipoInfracao extends Model implements Auditable
 
     //guardar todos dados
     protected $guarded = [];
+
+    public function relation_infracoes()
+    {
+        return $this->belongsTo(ModelInfracao::class, 'tipo_infracao_id');
+    }
 }

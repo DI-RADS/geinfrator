@@ -16,7 +16,7 @@ class ModelSituacaoProcesso extends Model implements Auditable
     protected $guarded = [];
 
 
-    public function relation_situacao_processo()
+    public function relation_processo()
     {
         return $this->hasMany(ModelSituacaoProcesso::class, 'situacao_id');
     }

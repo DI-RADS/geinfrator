@@ -11,7 +11,7 @@ class ProcessoRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,9 @@ class ProcessoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'situacao_processo'    => 'nullable|exists:tb_situacao_processos,id',
+            'entidade_judicial'    => 'nullable|exists:tb_entidades,id'
+           // 'infracao'    => 'nullable|exists:tb_infracoes,id'
         ];
     }
 }

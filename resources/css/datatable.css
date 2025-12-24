@@ -15,6 +15,7 @@
 
 /* Tailwind sources */
 
+
 /* ---------------------------------------------------------
 | Arquivos que o Tailwind deve monitorizar (JIT Mode)
 | Serve para gerar classes apenas quando usadas.
@@ -499,26 +500,7 @@
     /* =========================================================
    CHOICES PERSONALIZADO — baseado no form-personalized
    ========================================================= */
-    /* Exemplo: em app.css ou tailwind.css */
+   
 
-    .datatable [data-table-pagination] {
-        @apply flex gap-2 justify-end mt-4;
-    }
-
-    .datatable [data-table-search] input {
-        @apply input input-sm border rounded w-full;
-    }
-
-    .datatable th,
-    .datatable td {
-        @apply px-4 py-2;
-    }
-
-    .datatable th {
-        @apply bg-gray-100 font-medium cursor-pointer;
-    }
-
-    .datatable tr:hover {
-        @apply bg-gray-50;
-    }
+    
 }

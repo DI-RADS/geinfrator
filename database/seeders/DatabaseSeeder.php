@@ -40,14 +40,12 @@ class DatabaseSeeder extends Seeder
                 LessonSeeder::class,
 
 
-                //Seed do sistema de estoque
-                CategoriaSeeder::class,
-                MarcaSeeder::class,
-                EstadoSeeder::class,
 
 
                 //Seed do sistema do Infractor
+                TipoInfracaoSeeder::class,
                 EntidadeSeeder::class,
+                InfracaoSeeder::class,
                 SituacaoProcessoSeeder::class
             ]);
         }

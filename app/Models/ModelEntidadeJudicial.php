@@ -15,4 +15,9 @@ class ModelEntidadeJudicial extends Model implements Auditable
     //guardar todos dados
     protected $guarded = [];
 
+    public function ralation_processo() {
+        return $this->hasMany(ModelProcesso::class, 'processo_id');
+        
+    }
+
 }
