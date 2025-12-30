@@ -19,7 +19,7 @@
     <div class="content-box-header">
         <h3 class="content-box-title">Cadastrar</h3>
         <div class="content-box-btn">
-           
+           @can('index-processo')
             <a href="{{ route('processos.index') }}" class="btn-info align-icon-btn">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="size-5">
@@ -28,6 +28,7 @@
                 </svg>
                 <span>Listar</span>
             </a>
+            @endcan
           
         </div>
     </div>

@@ -25,6 +25,16 @@ class PermissionSeeder extends Seeder
                 // Menus principais do administrativo
 
 
+                // Páginas para gestão do Proceso (SITEMA DE GESTÃO DE PROCESSOS JUDICIAIS)
+                ['title' => 'Listar os processos', 'name' => 'index-processo'],
+                ['title' => 'Visualizar o processo', 'name' => 'show-processo'],
+                ['title' => 'Cadastrar o processo', 'name' => 'create-processo'],
+                ['title' => 'Editar o processo', 'name' => 'edit-processo'],
+                ['title' => 'Apagar o processo', 'name' => 'destroy-processo'],
+                ['title' => 'Gerar pdf do processo', 'name' => 'pdf-show-processo'],
+                ['title' => 'gerar pdf da lista dos processos ', 'name' => 'pdf-index-processos'],
+                ['title' => 'Gerar Exell da lista do processo', 'name' => 'csv-index-processos'],
+
                 // Páginas para gestão do produto
                 ['title' => 'Listar os produtos', 'name' => 'index-produto'],
                 ['title' => 'Visualizar o produto', 'name' => 'show-produto'],

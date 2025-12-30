@@ -11,51 +11,62 @@ window.bootstrap = bootstrap;
 // Plugins
 import Choices from "choices.js";
 import "choices.js/public/assets/styles/choices.min.css";
+import DataTable from "datatables.net";
 
-import "select2";
-import "select2/dist/css/select2.css";
-
-// ✅ DataTables + Tailwind
-// DataTables core
-import "datatables.net";
-
-// DataTables
-//import "datatables.net";
-//import "datatables.net-bs5";
-//import "datatables.net-bs5/css/dataTables.bootstrap5.min.css";
-
-// Init
 document.addEventListener("DOMContentLoaded", () => {
-    if (!$.fn.DataTable) {
-        console.error("DataTables não carregado");
-        return;
-    }
+    $(".datatable").each(function () {
+        // Evita erro "Cannot reinitialise DataTable"
+        if ($.fn.DataTable.isDataTable(this)) {
+            return;
+        }
 
-    $(".datatable").DataTable({
-        responsive: true,
-        autoWidth: false,
-        order: [],
-
-        language: {
-            info: "Mostrando _START_ até _END_ de _TOTAL_ registros",
-            infoEmpty: "Nenhum registro disponível",
-            infoFiltered: "(filtrado de _MAX_ registros totais)",
-            lengthMenu: "Mostrar _MENU_ registros",
-            search: "Pesquisar:",
-            zeroRecords: "Nenhum resultado encontrado",
-            paginate: {
-                first: "Primeiro",
-                last: "Último",
-                next: "Próximo",
-                previous: "Anterior",
+        new DataTable(this, {
+            responsive: true,
+            autoWidth: false,
+            pageLength: 10,
+           
+            order: [],
+            dom: `
+        <"flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-4"
+            <"datatable-length-wrapper"l>
+            <"datatable-search-wrapper"f>
+        >
+        rt
+        <"flex flex-col md:flex-row md:items-center md:justify-between gap-4 mt-4"
+            i
+            p
+        >
+    `,
+            language: {
+                lengthMenu: "_MENU_",
+                search: "",
+                searchPlaceholder: "Pesquisar...",
+                info: "Exibindo _START_ a _END_ de _TOTAL_ registros",
+                zeroRecords: "Nenhum resultado encontrado",
+                paginate: {
+                    previous: "‹",
+                    next: "›",  
+                },
+                
             },
-        },
+            
+        });
 
-        columnDefs: [
-            { targets: "no-sort", orderable: false },
-        ],
+        aplicarEstiloTailwind();
     });
 });
+
+// 🔥 FILTRO POR ENTIDADE (COLUNA 3)
+const filtroEntidade = document.getElementById("filtro-entidade");
+
+if (filtroEntidade) {
+    filtroEntidade.addEventListener("change", () => {
+        const valor = filtroEntidade.value;
+
+        // coluna 3 = "Entidade" (começa do 0)
+        dt.columns(3).search(valor).draw();
+    });
+}
 
 /**** Script para abrir/fechar o dropdown ****/
 const dropdownButton = document.getElementById("userDropdownButton");
@@ -418,13 +429,13 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!tipoSelect || !infracaoSelect) return;
     tipoSelect.addEventListener("change", function () {
         // Lê as infrações do atributo data-infracoes
-        const infractions = JSON.parse(this.selectedOptions[0].dataset.infracoes || "[]");
-           
-   
+        const infractions = JSON.parse(
+            this.selectedOptions[0].dataset.infracoes || "[]"
+        );
 
         // Limpa o select
-        infracaoSelect.innerHTML = '<option value="" selected disabled>Selecione uma t opção</option>';
-            
+        infracaoSelect.innerHTML =
+            '<option value="" selected disabled>Selecione uma t opção</option>';
 
         infractions.forEach((inf) => {
             const opt = document.createElement("option");

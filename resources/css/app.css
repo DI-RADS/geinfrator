@@ -1,23 +1,11 @@
 /* ---------------------------------------------------------
 | Importação base do TailwindCSS
 ---------------------------------------------------------- */
-/* Depois Tailwind */
 @import "tailwindcss";
-
-/* DataTables base 
-@import "datatables.net-dt/css/jquery.dataTables.css";*/
-
-/* Tema Tailwind do DataTables 
-@import "datatables.net-tailwind/css/dataTables.tailwind.css";*/
-
-/* Base mínima do DataTables (estrutura) 
-@import "datatables.net-dt/css/jquery.dataTables.css";*/
-
-/* Tailwind sources */
+/*@import "datatables.net-dt/css/jquery.dataTables.css";*/
 
 /* ---------------------------------------------------------
 | Arquivos que o Tailwind deve monitorizar (JIT Mode)
-| Serve para gerar classes apenas quando usadas.
 ---------------------------------------------------------- */
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
@@ -37,30 +25,20 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @layer components {
-    /****** Início Login ******/
-    /* Estilização do fundo com gradiente vermelho */
+    /****** Login ******/
     .bg-login {
         @apply min-h-screen flex flex-col justify-center items-center;
-        background: linear-gradient(
-            to right,
-            #530d0d,
-            #dc2626,
-            #520808
-        ); /* vermelho escuro nas laterais, vermelho mais claro no centro */
+        background: linear-gradient(to right, #530d0d, #dc2626, #520808);
     }
 
-    /* Container principal do formulário */
     .card-login {
         @apply bg-white w-full max-w-2xl rounded-lg shadow-lg overflow-hidden;
-
         display: grid;
-        grid-template-columns: 2fr 3fr; /* 🔥 50% | 50% SEM DEPENDER DE CONTEÚDO */
+        grid-template-columns: 2fr 3fr;
     }
 
-    /* Lado esquerdo (logo) */
-    /* Wrapper da logo */
     .logo-wrapper-login {
-        @apply flex flex items-center justify-center bg-red-800;
+        @apply flex items-center justify-center bg-red-800;
         min-height: 100%;
     }
 
@@ -70,455 +48,393 @@
         justify-content: center;
     }
 
-    /* Lado direito (formulário) */
     .form-container-login {
-        @apply flex flex-col justify-center  p-6;
+        @apply flex flex-col justify-center p-6;
     }
 
-    /* Estilização da logo */
     .logo-login {
         width: 180px;
         max-width: 70%;
         height: auto;
     }
-    /* Responsividade */
+
     @media (max-width: 640px) {
         .card-login {
             grid-template-columns: 1fr;
         }
-
         .logo-wrapper-login {
             min-height: 160px;
         }
     }
 
-    /* Estilização do título */
     .title-login {
         @apply text-2xl font-semibold text-center text-red-500 mb-4;
     }
-
-    /* Margem superior para os campos */
     .form-group-login {
         @apply mt-4;
     }
-
-    /* Estilização do label */
     .form-label-login {
         @apply text-gray-600 block text-sm font-medium dark:text-gray-400;
     }
-
-    /* Estilização do input */
     .form-input-login {
-        @apply mt-1 block w-full rounded-md border-2 border-gray-200 shadow-sm focus:border-gray-300 focus:ring focus:ring-gray-200 focus:outline-none px-3 py-2 dark:border-gray-600 dark:text-gray-200 dark:placeholder-gray-400;
+        @apply mt-1 block w-full rounded-md border-2 border-gray-200 shadow-sm 
+               focus:border-gray-300 focus:ring focus:ring-gray-200 focus:outline-none 
+               px-3 py-2 dark:border-gray-600 dark:text-gray-200 dark:placeholder-gray-400;
     }
-
-    /* Margem superior para o link e o botão */
     .btn-group-login {
         @apply mt-4 flex items-center justify-between;
     }
-
-    /* Link da página de login */
     .link-login {
         @apply text-base text-red-500 hover:no-underline;
     }
 
-    /****** Fim Login ******/
-
-    /****** Início Navbar ******/
-    /* Estilização do fundo */
+    /****** Navbar ******/
     .bg-dashboard {
         @apply bg-gray-100 dark:bg-zinc-950;
     }
-
-    /* Navbar */
     .navbar {
-        @apply bg-gray-50 border-b border-gray-200 px-4 py-2 sm:px-6 lg:px-8 dark:bg-zinc-900 dark:border-zinc-950;
+        @apply bg-gray-50 border-b border-gray-200 px-4 py-2 sm:px-6 lg:px-8 
+               dark:bg-zinc-900 dark:border-zinc-950;
     }
-
-    /* Botão de menu mobile */
     .menu-button {
         @apply text-red-600 sm:hidden cursor-pointer;
     }
-
-    /* Container da Navbar */
     .navbar-container {
         @apply flex justify-end items-center;
     }
-
-    /* Container do usuário */
     .user-container {
         @apply ml-auto flex items-center space-x-0;
     }
-
-    /* Dropdown */
     .dropdown-button {
-        @apply bg-gray-50 px-3 py-2 text-sm text-gray-500 flex items-center cursor-pointer dark:bg-zinc-900 dark:text-gray-400;
+        @apply bg-gray-50 px-3 py-2 text-sm text-gray-500 flex items-center cursor-pointer 
+               dark:bg-zinc-900 dark:text-gray-400;
     }
-
-    /* Dropdown border */
     .dropdown-button-border {
         @apply border-e-2 border-gray-300 dark:border-gray-600;
     }
-
     .dropdown-content {
         @apply absolute right-0 z-50 mt-2 rounded-md shadow-lg bg-white w-48 dark:bg-zinc-800;
     }
-
     .dropdown-item {
-        @apply block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 focus:bg-gray-100 focus:outline-none hover:rounded-md dark:text-gray-400 dark:hover:bg-zinc-950 dark:focus:bg-gray-400;
+        @apply block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 
+               focus:bg-gray-100 focus:outline-none hover:rounded-md 
+               dark:text-gray-400 dark:hover:bg-zinc-950 dark:focus:bg-gray-400;
     }
-
-    /* Ícone do dropdown */
     .dropdown-icon {
         @apply ml-2 h-4 w-4;
     }
 
-    /****** Fim Navbar ******/
-
-    /****** Início Sidebar ******/
+    /****** Sidebar ******/
     .sidebar {
-        @apply fixed inset-y-0 left-0 w-64 bg-white shadow-md transform -translate-x-full transition-transform duration-300 ease-in-out sm:translate-x-0;
-        top: 55px; /* define distância do topo da página */
-        height: calc(100% - 60px); /* altura ajustada para não “vazar” */
+        @apply fixed inset-y-0 left-0 w-64 bg-white shadow-md transform -translate-x-full 
+               transition-transform duration-300 ease-in-out sm:translate-x-0;
+        top: 55px;
+        height: calc(100% - 60px);
     }
-
     .sidebar-open {
         @apply translate-x-0;
     }
-
     .sidebar-container {
         @apply bg-gray-50 relative h-full dark:bg-zinc-900;
     }
-
     .sidebar-close-button {
         @apply absolute top-4 right-4 text-gray-500 sm:hidden cursor-pointer;
     }
-
     .sidebar-header {
         @apply flex items-center border-b-2 border-gray-200 space-x-2 pl-4 py-3 dark:border-zinc-950;
     }
-
     .sidebar-title {
         @apply text-lg font-bold text-red-600;
     }
-
     .sidebar-nav {
         @apply mt-4;
     }
-
-    /* tipo de letra so sidebar-link usuado nos menus do administrativo */
     .sidebar-link {
-        @apply px-4 py-2 
-        text-base /* text-sm	Pequeno  text-base	Normal text-lg	Médio */
-        text-gray-800  /* 800 texto escuro  500 texto castanho*/
-        hover:bg-gray-200 
-        hover:text-red-600 
-        flex items-center 
-        space-x-1 
-        dark:text-gray-400 
-        dark:hover:bg-zinc-950 
-        dark:hover:text-red-600;
+        @apply px-4 py-2 text-base text-gray-800 hover:bg-gray-200 hover:text-red-600 
+               flex items-center space-x-1 dark:text-gray-400 dark:hover:bg-zinc-950 dark:hover:text-red-600;
     }
-
     .sidebar-link.active {
         @apply bg-gray-200 text-red-600 dark:bg-zinc-950 dark:text-red-600;
     }
 
-    /****** Fim Sidebar ******/
-
-    /****** Início Conteúdo Principal ******/
+    /****** Conteúdo Principal ******/
     .main-content {
         @apply flex-1 px-4 pb-4 pt-2 ml-0 sm:ml-64 border border-blue-200;
     }
-
     .content-wrapper {
         @apply mx-auto px-1 sm:px-0 lg:px-0 mb-2;
     }
-
     .content-header {
         @apply flex justify-between items-center;
     }
-
     .content-title {
         @apply text-xl font-semibold text-gray-600 dark:text-red-600;
     }
-
     .breadcrumb {
         @apply text-sm text-gray-500 dark:text-gray-400;
     }
-
     .breadcrumb-link {
         @apply text-red-600 hover:no-underline hover:text-red-500;
     }
-
     .content-box {
         @apply bg-white shadow-lg sm:rounded-lg text-gray-900 p-4 dark:bg-zinc-900;
     }
-
     .content-box-header {
         @apply flex justify-between items-center border-b-2 border-gray-100 pb-2 mb-3 dark:border-zinc-950;
     }
-
     .content-box-title {
         @apply text-base font-semibold text-gray-600 dark:text-gray-400;
     }
-
     .content-box-btn {
         @apply flex space-x-1;
     }
-
     .content-box-body {
         @apply bg-gray-50 text-sm p-4 dark:bg-zinc-900 dark:text-gray-400;
     }
 
-    /****** Fim Conteúdo Principal ******/
-
-    /****** Inicio Tabela Listar Registros ******/
+    /****** Tabela ******/
     .table-container {
         @apply overflow-hidden bg-white shadow-sm dark:bg-zinc-900;
     }
-
     .table {
         @apply min-w-full divide-y divide-gray-200 border-separate border-spacing-0 dark:divide-zinc-950;
     }
-
     .table-row-header {
         @apply bg-gray-50 dark:bg-zinc-800;
     }
-
     .table-header {
         @apply px-6 py-3 text-left text-sm font-medium text-gray-500 tracking-wider border-b border-gray-200 dark:border-zinc-950 dark:text-gray-400;
     }
-
     .table-header.center {
         @apply text-center;
     }
-
     .table-body {
         @apply px-6 py-2 text-sm text-gray-950 border-b border-gray-200 dark:text-gray-400 dark:border-zinc-950 break-all;
     }
-
     .table-row-body {
         @apply hover:bg-gray-50 dark:hover:bg-zinc-950;
     }
-
     .table-actions {
         @apply px-6 py-2 text-sm text-gray-950 border-b border-gray-200 dark:text-gray-400 dark:border-zinc-950 text-center table-cell;
     }
-
     .table-actions-align {
         @apply flex flex-row space-x-1 items-center justify-center;
     }
-
-    /* .table-actions a {
-        @apply inline-block;
-    } */
-
-    /* Ocultar os botões na tabela em dispositivos pequenos */
     .table-md-hidden {
         @apply hidden md:flex items-center space-x-1;
     }
 
-    /****** Fim Tabela Listar Registros ******/
-
-    /****** Início Formulário Pesquisar ******/
+    /****** Formulários ******/
     .form-search {
         @apply pb-0 grid xl:grid-cols-5 md:grid-cols-2 gap-2 items-end;
     }
-    /****** Fim Formulário Pesquisar ******/
-
-    /****** Início Formulário ******/
-
-    /* Label dos inputs */
     .form-label {
         @apply text-gray-600 block text-sm font-semibold dark:text-gray-400;
     }
-
-    /* Input padrão */
     .form-input {
-        @apply border p-2 w-full mt-1 rounded-md border-gray-200 shadow-sm focus:border-gray-300 focus:ring focus:ring-gray-200 focus:outline-none dark:border-gray-600 dark:text-gray-200 dark:placeholder-gray-400;
+        @apply border p-2 w-full mt-1 rounded-md border-gray-200 shadow-sm 
+               focus:border-gray-300 focus:ring focus:ring-gray-200 focus:outline-none 
+               dark:border-gray-600 dark:text-gray-200 dark:placeholder-gray-400;
     }
-
-    /* Input checkbox */
     .form-input-checkbox {
         @apply text-sm text-gray-500 dark:text-gray-400;
     }
 
-    /****** Fim Formulário ******/
-
-    /****** Início Detalhes registro ******/
-
-    /* Caixa para apresentar os detalhes do registro */
+    /****** Detalhes registro ******/
     .detail-box {
         @apply text-gray-700;
     }
-
-    /* Detalhes do registro */
     .title-detail-content {
         @apply font-semibold dark:text-gray-400;
     }
-
-    /* Detalhes do registro */
     .detail-content {
         @apply dark:text-gray-300;
     }
 
-    /****** Fim Detalhes registro ******/
-
-    /****** Início Botões ******/
-    /* Botão azul */
+    /****** Botões ******/
     .btn-primary {
         @apply bg-blue-500 text-white text-sm px-2 py-1 rounded hover:bg-blue-600 transition-colors cursor-pointer;
     }
-
-    /* Botão azul médio */
     .btn-primary-md {
         @apply bg-blue-500 text-white text-base px-2 py-2 rounded hover:bg-blue-600 transition-colors cursor-pointer;
     }
-
-    /* Botão azul claro */
     .btn-info {
         @apply bg-cyan-500 text-white text-sm px-2 py-1 rounded hover:bg-cyan-600 transition-colors cursor-pointer;
     }
-
-    /* Botão verde */
     .btn-success {
         @apply bg-green-500 text-white text-sm px-2 py-1 rounded hover:bg-green-600 transition-colors cursor-pointer;
     }
-
-    /* Botão amarelo */
     .btn-warning {
         @apply bg-yellow-500 text-white text-sm px-2 py-1 rounded hover:bg-yellow-600 transition-colors cursor-pointer;
     }
-
-    /* Botão vermelho */
     .btn-danger {
         @apply bg-red-500 text-white text-sm px-2 py-1 rounded hover:bg-red-600 transition-colors cursor-pointer;
     }
-
-    /* Botão vermelho médio */
     .btn-danger-md {
         @apply bg-red-500 text-white text-base px-2 py-2 rounded hover:bg-red-600 transition-colors cursor-pointer;
     }
-
-    /* Alinha os botões em linha */
     .align-icon-btn {
         @apply flex items-center space-x-1;
     }
 
-    /****** Fim Botões ******/
-
-    /****** Início Alertas ******/
+    /****** Alertas ******/
     .alert-primary {
         @apply p-3 my-3 text-sm text-blue-800 rounded-lg bg-blue-100 border border-blue-200;
     }
-
     .alert-info {
         @apply p-3 my-3 text-sm text-cyan-800 rounded-lg bg-cyan-100 border border-cyan-200;
     }
-
     .alert-success {
         @apply p-3 my-3 text-sm text-green-800 rounded-lg bg-green-100 border border-green-200;
     }
-
     .alert-warning {
         @apply p-3 my-3 text-sm text-yellow-800 rounded-lg bg-yellow-100 border border-yellow-200;
     }
-
     .alert-danger {
         @apply p-3 my-3 text-sm text-red-800 rounded-lg bg-red-100 border border-red-200;
     }
 
-    /****** Fim Alertas ******/
-
-    /*********  Formularios para registos *****************/
-    /* Classe personalizada para inputs, selects e textareas */
-
-    /* Content box personalizada com borda superior vermelha */
+    /****** Formulários personalizados ******/
     .content-box {
-        background-color: #fff; /* mantém o fundo branco */
-        border-radius: 10px; /* bordas arredondadas */
-        border-top: 4px solid #926563; /* borda superior vermelha */
-        padding: 20px; /* espaçamento interno */
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* sombra suave */
+        background-color: #fff;
+        border-radius: 10px;
+        border-top: 4px solid #926563;
+        padding: 20px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
         margin-bottom: 20px;
     }
-
-    /* Mantendo inputs estilizados dentro da content-box */
     .content-box .form-personalized {
         margin-bottom: 10px;
     }
-
-    /* Estilo para labels personalizados */
     .label-personalized {
         display: block;
         margin-bottom: 0.3rem;
-        font-weight: 500; /* negrito */
-        font-size: 18px; /* tamanho de fonte */
-        color: #3c3e42; /* azul escuro consistente com design */
+        font-weight: 500;
+        font-size: 18px;
+        color: #3c3e42;
     }
-
     .form-personalized {
-        background-color: #fafafa;
-        border: thin solid #c4c4c4;
-        border-radius: 10px;
-        width: 100%;
-        padding: 10px 1rem;
-        font-size: 14px;
-        font-weight: normal;
-        outline: none;
-        transition: 0.3s;
+        @apply w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 
+               focus:border-blue-500 focus:ring focus:ring-blue-200;
     }
-
     .form-personalized:focus {
         background-color: #e6e9ec;
         border-color: #2b7fff;
         box-shadow: 0 0 0 0.25rem #0c08461f;
     }
-
     .form-personalized::placeholder {
         font-size: 14px;
         font-weight: normal;
     }
-
     .form-personalized:disabled {
         background-color: #ededed;
     }
-
-    /* Para textarea manter resize none */
     .form-personalized.textarea {
         resize: none;
     }
 
-    /*********  fim Formularios para registos *****************/
+    /****** DataTables ******/
+    /************ DATATABLES VANILLA + TAILWIND ************/
 
-    /* +          Novo estilo para choices                  +                 */
-    /* =========================================================
-   CHOICES.JS – integração perfeita com form-personalized
-   ========================================================= */
-    /* =========================================================
-   CHOICES PERSONALIZADO — baseado no form-personalized
-   ========================================================= */
-    /* Exemplo: em app.css ou tailwind.css */
-
-    .datatable [data-table-pagination] {
-        @apply flex gap-2 justify-end mt-4;
+    .dt-container {
+        @apply text-sm text-gray-700 dark:text-gray-200;
     }
 
-    .datatable [data-table-search] input {
-        @apply input input-sm border rounded w-full;
+    /* TOP BAR */
+    .dt-top {
+        @apply flex flex-col md:flex-row md:justify-between md:items-center gap-4 mb-4;
     }
 
-    .datatable th,
-    .datatable td {
-        @apply px-4 py-2;
+    /* SEARCH */
+    .dt-search {
+        @apply relative;
     }
 
-    .datatable th {
-        @apply bg-gray-100 font-medium cursor-pointer;
+    .dt-search::before {
+        content: "🔍";
+        @apply absolute left-3 top-1/2 -translate-y-1/2 text-gray-400;
     }
 
-    .datatable tr:hover {
-        @apply bg-gray-50;
+    .dt-search input {
+        @apply pl-10 pr-4 py-2 w-64
+    border border-gray-300 rounded-lg
+    focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500
+    dark:bg-gray-800 dark:border-gray-700 dark:text-white;
+    }
+
+    /* PAGE LENGTH */
+    .dt-length {
+        @apply relative;
+    }
+
+    .dt-length select {
+        @apply appearance-none
+    pl-4 pr-10 py-2
+    border border-gray-300 rounded-lg
+    focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500
+    dark:bg-gray-800 dark:border-gray-700 dark:text-white;
+    }
+
+    .dt-length::after {
+        content: "⌄";
+        @apply absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none;
+    }
+
+    /* TABLE */
+    table.datatable {
+        @apply w-full border border-gray-200 rounded-lg overflow-hidden
+    dark:border-gray-700;
+    }
+
+    table.datatable thead {
+        @apply bg-gray-100 dark:bg-gray-800;
+    }
+
+    table.datatable th {
+        @apply px-4 py-3 text-left font-semibold text-gray-700 dark:text-gray-200;
+    }
+
+    table.datatable td {
+        @apply px-4 py-3 text-gray-600 dark:text-gray-300;
+    }
+
+    table.datatable tbody tr:hover {
+        @apply bg-gray-50 dark:bg-gray-700;
+    }
+
+    /* PAGINATION */
+    .dt-pagination {
+        @apply flex gap-2 mt-4;
+    }
+
+    .dt-pagination a {
+        @apply px-3 py-1 rounded-md border text-sm
+    text-gray-600 border-gray-300
+    hover:bg-indigo-500 hover:text-white
+    dark:border-gray-700 dark:text-gray-300;
+    }
+
+    .dt-pagination .active {
+        @apply bg-indigo-600 text-white;
+    }
+
+
+    
+    .dt-filter-select {
+        @apply appearance-none
+    pl-4 pr-10 py-2
+    border border-gray-300 rounded-lg
+    text-sm
+    focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500
+    dark:bg-gray-800 dark:border-gray-700 dark:text-white;
+    }
+
+    .dt-filter-select-wrapper {
+        @apply relative;
+    }
+
+    .dt-filter-select-wrapper::after {
+        content: "⌄";
+        @apply absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none;
     }
 }
