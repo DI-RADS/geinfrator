@@ -65,8 +65,22 @@ Route::group(['middleware' => 'auth'], function () {
         Route::put('/{processo}', [ProcessoController::class, 'update'])->name('processo.update')->middleware('permission:edit-processo');
         Route::delete('/{processo}', [ProcessoController::class, 'destroy'])->name('processo.destroy')->middleware('permission:destroy-processo');
 
+
+        // Processos - PDF
+        Route::get('processos/generate-pdf', [ProcessoController::class, 'pdfIndexProcessos'])->name('processos.generate-pdf')->middleware('permission:pdf-index-processos');
+
+
+
+
+
+
+        //funções extras do processo
+        Route::put('/processo/{id}/alterar-situacao', [ProcessoController::class, 'altsituacaoprocesso'])->name('processos.altsituacaoprocesso')->middleware('permission:altsituacaoprocesso');
+
         Route::get('/pdf-show-processo/{processo}', [ProcessoController::class, 'pdfshowprocesso'])->name('processos.pdfshowprocesso')->middleware('permission:pdfshowprocesso');
-        Route::get('/pdf-index-processos/processos', [ProcessoController::class, 'pdfIndexprocessos'])->name('processos.pdfindexprocessos')->middleware('permission:pdfindexprocessos');
+
+
+
 
         Route::get('/csv-index/processos', [ProcessoController::class, 'csvindexprocessos'])->name('processos.csv-index-processos')->middleware('permission:csvindexprocessos');
     });

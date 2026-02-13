@@ -19,7 +19,7 @@
     <div class="content-box-header">
         <h3 class="content-box-title">Cadastrar</h3>
         <div class="content-box-btn">
-           @can('index-processo')
+            @can('index-processo')
             <a href="{{ route('processos.index') }}" class="btn-info align-icon-btn">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="size-5">
@@ -29,7 +29,7 @@
                 <span>Listar</span>
             </a>
             @endcan
-          
+
         </div>
     </div>
 
@@ -133,22 +133,24 @@
                                 <textarea name="descricao_processo" id="descricao_processo" cols="3" rows="5" class="form-personalized">Descreve o processo
                                     
                                 </textarea>
-                                
-                        <!-- BOTÃO FINAL -->
-                        <div class="flex justify-end">
-                            <button type="submit" class="px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-medium rounded">
-                                Salvar
-                            </button>
+
+                                <!-- BOTÃO FINAL -->
+                                <div class="flex justify-end">
+                                    <button type="submit" class="px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-medium rounded">
+                                        Salvar
+                                    </button>
+                                </div>
+
+                            </div>
                         </div>
-
                     </div>
-
                 </form>
             </div>
         </div>
     </div>
-    <script>
+</div>
+<script>
 
-    </script>
+</script>
 </div>
 @endsection

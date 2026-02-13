@@ -11,6 +11,12 @@ window.bootstrap = bootstrap;
 // Plugins
 import Choices from "choices.js";
 import "choices.js/public/assets/styles/choices.min.css";
+
+import Alpine from 'alpinejs'
+
+window.Alpine = Alpine
+Alpine.start()
+
 import DataTable from "datatables.net";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -67,6 +73,8 @@ if (filtroEntidade) {
         dt.columns(3).search(valor).draw();
     });
 }
+
+
 
 /**** Script para abrir/fechar o dropdown ****/
 const dropdownButton = document.getElementById("userDropdownButton");
@@ -162,6 +170,7 @@ window.confirmDelete = function (id) {
         }
     });
 };
+
 
 /****** Academia de softwares estilo******/
 document.addEventListener("DOMContentLoaded", () => {

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->foreignId('entidade_id')->constrained('tb_entidades')->onDelete('cascade'); // Relaciona com o tipo de entidades
            // $table->foreignId('infracao_id')->constrained('tb_infracoes')->onDelete('cascade');
             $table->timestamps();
+           $table->softDeletes(); // 🔥 Para ocultar o processo apagado das listagens normais
         });
     }
 
